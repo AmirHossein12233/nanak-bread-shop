@@ -1,3 +1,4 @@
+```javascript
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -12,666 +13,294 @@ const ORDERS_FILE = path.join(ROOT, "orders.json");
 const SALES_FILE = path.join(ROOT, "sales.json");
 const PRODUCTS_FILE = path.join(ROOT, "products.json");
 
-
 function createFile(file, data) {
-
     if (!fs.existsSync(file)) {
-
         fs.writeFileSync(
             file,
             JSON.stringify(data, null, 2),
             "utf8"
         );
-
     }
-
 }
 
+createFile(ORDERS_FILE, []);
 
-createFile(
-    ORDERS_FILE,
-    []
-);
+createFile(SALES_FILE, []);
 
-
-createFile(
-    SALES_FILE,
-    []
-);
-
-
-createFile(
-    PRODUCTS_FILE,
-    [
-        {
-            id: "sesameBread",
-            name: "نان خانگی کنجدی",
-            price: 15000,
-            available: true
-        }
-    ]
-);
-
+createFile(PRODUCTS_FILE, [
+    {
+        id: "sesameBread",
+        name: "نان خانگی کنجدی",
+        price: 15000,
+        available: true
+    }
+]);
 
 function readJSON(file, fallback) {
-
     try {
-
         if (!fs.existsSync(file)) {
             return fallback;
         }
 
-        return JSON.parse(
-            fs.readFileSync(
-                file,
-                "utf8"
-            )
-        );
+        const text = fs.readFileSync(file, "utf8");
+
+        if (!text.trim()) {
+            return fallback;
+        }
+
+        return JSON.parse(text);
 
     } catch (error) {
-
-        console.log(
-            "خطا در خواندن فایل:",
-            file
-        );
-
+        console.log("خطا در خواندن فایل:", file);
         return fallback;
-
     }
-
 }
-
 
 function writeJSON(file, data) {
-
     fs.writeFileSync(
         file,
-        JSON.stringify(
-            data,
-            null,
-            2
-        ),
+        JSON.stringify(data, null, 2),
         "utf8"
     );
-
 }
-
 
 function getContentType(filePath) {
-
-    const ext =
-        path.extname(
-            filePath
-        ).toLowerCase();
-
+    const ext = path.extname(filePath).toLowerCase();
 
     const types = {
-
-        ".html":
-            "text/html; charset=utf-8",
-
-        ".css":
-            "text/css; charset=utf-8",
-
-        ".js":
-            "application/javascript; charset=utf-8",
-
-        ".json":
-            "application/json; charset=utf-8",
-
-        ".xml":
-            "application/xml; charset=utf-8",
-
-        ".txt":
-            "text/plain; charset=utf-8",
-
-        ".png":
-            "image/png",
-
-        ".jpg":
-            "image/jpeg",
-
-        ".jpeg":
-            "image/jpeg",
-
-        ".webp":
-            "image/webp",
-
-        ".svg":
-            "image/svg+xml",
-
-        ".ico":
-            "image/x-icon"
-
+        ".html": "text/html; charset=utf-8",
+        ".css": "text/css; charset=utf-8",
+        ".js": "application/javascript; charset=utf-8",
+        ".json": "application/json; charset=utf-8",
+        ".xml": "application/xml; charset=utf-8",
+        ".txt": "text/plain; charset=utf-8",
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".webp": "image/webp",
+        ".svg": "image/svg+xml",
+        ".ico": "image/x-icon"
     };
 
-
-    return (
-        types[ext] ||
-        "application/octet-stream"
-    );
-
+    return types[ext] || "application/octet-stream";
 }
 
-
-function sendJSON(
-    response,
-    statusCode,
-    data
-) {
-
-    response.writeHead(
-        statusCode,
-        {
-            "Content-Type":
-                "application/json; charset=utf-8",
-
-            "Access-Control-Allow-Origin":
-                "*",
-
-            "Access-Control-Allow-Methods":
-                "GET, POST, PUT, DELETE, OPTIONS",
-
-            "Access-Control-Allow-Headers":
-                "Content-Type"
-        }
-    );
-
+function sendJSON(response, statusCode, data) {
+    response.writeHead(statusCode, {
+        "Content-Type": "application/json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
+    });
 
     response.end(
         JSON.stringify(data)
     );
-
 }
-
 
 function getRequestBody(request) {
+    return new Promise(function(resolve, reject) {
 
-    return new Promise(
-        function(resolve, reject) {
+        let body = "";
 
-            let body = "";
+        request.on("data", function(chunk) {
 
+            body += chunk.toString();
 
-            request.on(
-                "data",
-                function(chunk) {
+            if (body.length > 1024 * 1024) {
+                reject(
+                    new Error("Request too large")
+                );
 
-                    body +=
-                        chunk.toString();
+                request.destroy();
+            }
+        });
 
+        request.on("end", function() {
 
-                    if (
-                        body.length >
-                        1024 * 1024
-                    ) {
-
-                        reject(
-                            new Error(
-                                "Request too large"
-                            )
-                        );
-
-                        request.destroy();
-
-                    }
-
-                }
-            );
-
-
-            request.on(
-                "end",
-                function() {
-
-                    if (!body) {
-
-                        resolve({});
-
-                        return;
-
-                    }
-
-
-                    try {
-
-                        resolve(
-                            JSON.parse(body)
-                        );
-
-                    } catch (error) {
-
-                        reject(
-                            new Error(
-                                "JSON نامعتبر است"
-                            )
-                        );
-
-                    }
-
-                }
-            );
-
-
-            request.on(
-                "error",
-                reject
-            );
-
-        }
-    );
-
-}
-
-
-const server =
-    http.createServer(
-        async function(
-            request,
-            response
-        ) {
+            if (!body) {
+                resolve({});
+                return;
+            }
 
             try {
+                resolve(
+                    JSON.parse(body)
+                );
+            } catch (error) {
+                reject(
+                    new Error("JSON نامعتبر است")
+                );
+            }
+        });
 
-                const parsed =
-                    url.parse(
-                        request.url,
-                        true
-                    );
+        request.on("error", reject);
+    });
+}
 
+function send404(response) {
+    response.writeHead(404, {
+        "Content-Type":
+            "text/plain; charset=utf-8"
+    });
 
-                const pathname =
-                    parsed.pathname;
+    response.end(
+        "صفحه پیدا نشد"
+    );
+}
 
+const server = http.createServer(
+    async function(request, response) {
 
-                const method =
-                    request.method;
+        try {
 
+            const parsed =
+                url.parse(
+                    request.url,
+                    true
+                );
 
-                if (
-                    method === "OPTIONS"
-                ) {
+            const pathname =
+                parsed.pathname;
 
-                    response.writeHead(
-                        204,
-                        {
-                            "Access-Control-Allow-Origin":
-                                "*",
-
-                            "Access-Control-Allow-Methods":
-                                "GET, POST, PUT, DELETE, OPTIONS",
-
-                            "Access-Control-Allow-Headers":
-                                "Content-Type"
-                        }
-                    );
-
-
-                    response.end();
-
-                    return;
-
-                }
-
-
-                /*
-                 * HEALTH
-                 */
-
-                if (
-                    pathname ===
-                        "/api/health" &&
-                    method === "GET"
-                ) {
-
-                    sendJSON(
-                        response,
-                        200,
-                        {
-                            success: true,
-                            message:
-                                "Nanak server is running"
-                        }
-                    );
-
-                    return;
-
-                }
+            const method =
+                request.method;
 
 
-                /*
-                 * PRODUCTS GET
-                 */
+            /*
+             * OPTIONS
+             */
 
-                if (
-                    pathname ===
-                        "/api/products" &&
-                    method === "GET"
-                ) {
+            if (method === "OPTIONS") {
 
-                    const products =
-                        readJSON(
-                            PRODUCTS_FILE,
-                            []
-                        );
+                response.writeHead(204, {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods":
+                        "GET, POST, PUT, DELETE, OPTIONS",
+                    "Access-Control-Allow-Headers":
+                        "Content-Type"
+                });
 
+                response.end();
 
-                    sendJSON(
-                        response,
-                        200,
-                        {
-                            success: true,
-                            products:
-                                products
-                        }
-                    );
-
-                    return;
-
-                }
+                return;
+            }
 
 
-                /*
-                 * PRODUCTS UPDATE
-                 */
+            /*
+             * HEALTH
+             */
 
-                if (
-                    pathname ===
-                        "/api/products" &&
-                    method === "PUT"
-                ) {
+            if (
+                pathname === "/api/health" &&
+                method === "GET"
+            ) {
 
-                    const body =
-                        await getRequestBody(
-                            request
-                        );
-
-
-                    const products =
-                        readJSON(
-                            PRODUCTS_FILE,
-                            []
-                        );
-
-
-                    if (
-                        Array.isArray(
-                            body.products
-                        )
-                    ) {
-
-                        writeJSON(
-                            PRODUCTS_FILE,
-                            body.products
-                        );
-
-
-                        sendJSON(
-                            response,
-                            200,
-                            {
-                                success: true,
-                                products:
-                                    body.products
-                            }
-                        );
-
-                        return;
-
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
+                        message:
+                            "Nanak server is running"
                     }
+                );
+
+                return;
+            }
 
 
-                    const productId =
-                        String(
-                            body.id || ""
-                        );
+            /*
+             * PRODUCTS GET
+             */
 
+            if (
+                pathname === "/api/products" &&
+                method === "GET"
+            ) {
 
-                    const index =
-                        products.findIndex(
-                            function(product) {
-
-                                return String(
-                                    product.id
-                                ) === productId;
-
-                            }
-                        );
-
-
-                    if (index === -1) {
-
-                        sendJSON(
-                            response,
-                            404,
-                            {
-                                success: false,
-                                message:
-                                    "محصول پیدا نشد."
-                            }
-                        );
-
-                        return;
-
-                    }
-
-
-                    if (
-                        body.name !==
-                        undefined
-                    ) {
-
-                        products[index].name =
-                            String(
-                                body.name
-                            );
-
-                    }
-
-
-                    if (
-                        body.price !==
-                        undefined
-                    ) {
-
-                        const price =
-                            Number(
-                                body.price
-                            );
-
-
-                        if (
-                            Number.isFinite(
-                                price
-                            ) &&
-                            price >= 0
-                        ) {
-
-                            products[index].price =
-                                price;
-
-                        }
-
-                    }
-
-
-                    if (
-                        body.available !==
-                        undefined
-                    ) {
-
-                        products[index].available =
-                            Boolean(
-                                body.available
-                            );
-
-                    }
-
-
-                    writeJSON(
+                const products =
+                    readJSON(
                         PRODUCTS_FILE,
-                        products
+                        []
                     );
 
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
+                        products:
+                            products
+                    }
+                );
+
+                return;
+            }
+
+
+            /*
+             * PRODUCTS PUT
+             */
+
+            if (
+                pathname === "/api/products" &&
+                method === "PUT"
+            ) {
+
+                const body =
+                    await getRequestBody(
+                        request
+                    );
+
+                const products =
+                    readJSON(
+                        PRODUCTS_FILE,
+                        []
+                    );
+
+                const id =
+                    String(
+                        body.id || ""
+                    );
+
+                const index =
+                    products.findIndex(
+                        function(product) {
+                            return String(
+                                product.id
+                            ) === id;
+                        }
+                    );
+
+                if (index === -1) {
 
                     sendJSON(
                         response,
-                        200,
+                        404,
                         {
-                            success: true,
-                            product:
-                                products[index]
+                            success: false,
+                            message:
+                                "محصول پیدا نشد."
                         }
                     );
 
                     return;
-
                 }
 
 
-                /*
-                 * ORDERS GET
-                 */
-
                 if (
-                    pathname ===
-                        "/api/orders" &&
-                    method === "GET"
+                    body.price !== undefined
                 ) {
 
-                    const orders =
-                        readJSON(
-                            ORDERS_FILE,
-                            []
-                        );
-
-
-                    sendJSON(
-                        response,
-                        200,
-                        {
-                            success: true,
-                            orders:
-                                orders
-                        }
-                    );
-
-                    return;
-
-                }
-
-
-                /*
-                 * CREATE ORDER
-                 */
-
-                if (
-                    pathname ===
-                        "/api/orders" &&
-                    method === "POST"
-                ) {
-
-                    const body =
-                        await getRequestBody(
-                            request
-                        );
-
-
-                    const customerName =
-                        String(
-                            body.customerName ||
-                            ""
-                        ).trim();
-
-
-                    const customerPhone =
-                        String(
-                            body.customerPhone ||
-                            ""
-                        ).trim();
-
-
-                    const productName =
-                        String(
-                            body.product ||
-                            "نان خانگی کنجدی"
-                        ).trim();
-
-
-                    const quantity =
+                    const price =
                         Number(
-                            body.quantity
+                            body.price
                         );
-
-
-                    const unitPrice =
-                        Number(
-                            body.unitPrice
-                        );
-
-
-                    if (!customerName) {
-
-                        sendJSON(
-                            response,
-                            400,
-                            {
-                                success: false,
-                                message:
-                                    "نام مشتری وارد نشده است."
-                            }
-                        );
-
-                        return;
-
-                    }
-
-
-                    if (!customerPhone) {
-
-                        sendJSON(
-                            response,
-                            400,
-                            {
-                                success: false,
-                                message:
-                                    "شماره تماس وارد نشده است."
-                            }
-                        );
-
-                        return;
-
-                    }
-
 
                     if (
-                        !Number.isFinite(
-                            quantity
-                        ) ||
-                        quantity < 1 ||
-                        quantity > 100
-                    ) {
-
-                        sendJSON(
-                            response,
-                            400,
-                            {
-                                success: false,
-                                message:
-                                    "تعداد سفارش نامعتبر است."
-                            }
-                        );
-
-                        return;
-
-                    }
-
-
-                    if (
-                        !Number.isFinite(
-                            unitPrice
-                        ) ||
-                        unitPrice < 0
+                        !Number.isFinite(price) ||
+                        price < 0
                     ) {
 
                         sendJSON(
@@ -685,633 +314,840 @@ const server =
                         );
 
                         return;
-
                     }
 
+                    products[index].price =
+                        price;
+                }
 
-                    const total =
-                        quantity *
-                        unitPrice;
+
+                if (
+                    body.available !== undefined
+                ) {
+
+                    products[index].available =
+                        Boolean(
+                            body.available
+                        );
+                }
 
 
-                    const order = {
+                if (
+                    body.name !== undefined
+                ) {
 
-                        id:
-                            Date.now(),
+                    products[index].name =
+                        String(
+                            body.name
+                        ).trim();
+                }
 
-                        orderNumber:
-                            "NK-" +
-                            Date.now()
-                                .toString()
-                                .slice(-6),
 
-                        date:
-                            new Date()
-                                .toLocaleString(
-                                    "fa-IR"
-                                ),
+                writeJSON(
+                    PRODUCTS_FILE,
+                    products
+                );
 
-                        customerName:
-                            customerName,
 
-                        customerPhone:
-                            customerPhone,
-
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
                         product:
-                            productName,
+                            products[index]
+                    }
+                );
 
-                        quantity:
-                            quantity,
-
-                        unitPrice:
-                            unitPrice,
-
-                        total:
-                            total,
-
-                        status:
-                            "جدید",
-
-                        description:
-                            "سفارش برای خرید حضوری",
-
-                        type:
-                            "حضوری"
-
-                    };
+                return;
+            }
 
 
-                    const orders =
-                        readJSON(
-                            ORDERS_FILE,
-                            []
-                        );
+            /*
+             * ORDERS GET
+             */
 
+            if (
+                pathname === "/api/orders" &&
+                method === "GET"
+            ) {
 
-                    orders.unshift(
-                        order
-                    );
-
-
-                    writeJSON(
+                const orders =
+                    readJSON(
                         ORDERS_FILE,
-                        orders
+                        []
+                    );
+
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
+                        orders:
+                            orders
+                    }
+                );
+
+                return;
+            }
+
+
+            /*
+             * CREATE ORDER
+             */
+
+            if (
+                pathname === "/api/orders" &&
+                method === "POST"
+            ) {
+
+                const body =
+                    await getRequestBody(
+                        request
                     );
 
 
-                    console.log(
-                        "سفارش جدید:",
-                        order.orderNumber
+                const customerName =
+                    String(
+                        body.customerName || ""
+                    ).trim();
+
+
+                const customerPhone =
+                    String(
+                        body.customerPhone || ""
+                    ).trim();
+
+
+                const productName =
+                    String(
+                        body.product ||
+                        "نان خانگی کنجدی"
+                    ).trim();
+
+
+                const quantity =
+                    Number(
+                        body.quantity
                     );
 
+
+                const unitPrice =
+                    Number(
+                        body.unitPrice
+                    );
+
+
+                if (!customerName) {
 
                     sendJSON(
                         response,
-                        201,
+                        400,
                         {
-                            success: true,
-
+                            success: false,
                             message:
-                                "سفارش با موفقیت ثبت شد.",
-
-                            order:
-                                order
+                                "نام مشتری وارد نشده است."
                         }
                     );
 
                     return;
-
                 }
 
 
-                /*
-                 * UPDATE ORDER
-                 */
-
-                if (
-                    pathname.startsWith(
-                        "/api/orders/"
-                    ) &&
-                    method === "PUT"
-                ) {
-
-                    const orderNumber =
-                        decodeURIComponent(
-                            pathname
-                                .split("/")
-                                .pop()
-                        );
-
-
-                    const body =
-                        await getRequestBody(
-                            request
-                        );
-
-
-                    const orders =
-                        readJSON(
-                            ORDERS_FILE,
-                            []
-                        );
-
-
-                    const index =
-                        orders.findIndex(
-                            function(order) {
-
-                                return String(
-                                    order.orderNumber
-                                ) ===
-                                    orderNumber;
-
-                            }
-                        );
-
-
-                    if (
-                        index === -1
-                    ) {
-
-                        sendJSON(
-                            response,
-                            404,
-                            {
-                                success: false,
-                                message:
-                                    "سفارش پیدا نشد."
-                            }
-                        );
-
-                        return;
-
-                    }
-
-
-                    if (
-                        body.status
-                    ) {
-
-                        orders[index].status =
-                            String(
-                                body.status
-                            );
-
-                    }
-
-
-                    if (
-                        body.description !==
-                        undefined
-                    ) {
-
-                        orders[index]
-                            .description =
-                            String(
-                                body.description
-                            );
-
-                    }
-
-
-                    writeJSON(
-                        ORDERS_FILE,
-                        orders
-                    );
-
+                if (!customerPhone) {
 
                     sendJSON(
                         response,
-                        200,
+                        400,
                         {
-                            success: true,
-                            order:
-                                orders[index]
-                        }
-                    );
-
-                    return;
-
-                }
-
-
-                /*
-                 * DELETE ONE ORDER
-                 */
-
-                if (
-                    pathname.startsWith(
-                        "/api/orders/"
-                    ) &&
-                    method === "DELETE"
-                ) {
-
-                    const orderNumber =
-                        decodeURIComponent(
-                            pathname
-                                .split("/")
-                                .pop()
-                        );
-
-
-                    const orders =
-                        readJSON(
-                            ORDERS_FILE,
-                            []
-                        );
-
-
-                    const newOrders =
-                        orders.filter(
-                            function(order) {
-
-                                return String(
-                                    order.orderNumber
-                                ) !==
-                                    orderNumber;
-
-                            }
-                        );
-
-
-                    if (
-                        newOrders.length ===
-                        orders.length
-                    ) {
-
-                        sendJSON(
-                            response,
-                            404,
-                            {
-                                success: false,
-                                message:
-                                    "سفارش پیدا نشد."
-                            }
-                        );
-
-                        return;
-
-                    }
-
-
-                    writeJSON(
-                        ORDERS_FILE,
-                        newOrders
-                    );
-
-
-                    console.log(
-                        "سفارش حذف شد:",
-                        orderNumber
-                    );
-
-
-                    sendJSON(
-                        response,
-                        200,
-                        {
-                            success: true,
+                            success: false,
                             message:
-                                "سفارش با موفقیت حذف شد."
+                                "شماره تماس وارد نشده است."
                         }
                     );
 
                     return;
-
                 }
 
 
-                /*
-                 * DELETE ALL ORDERS
-                 */
-
                 if (
-                    pathname ===
-                        "/api/orders" &&
-                    method === "DELETE"
+                    !Number.isFinite(quantity) ||
+                    quantity < 1 ||
+                    quantity > 100
                 ) {
 
-                    writeJSON(
+                    sendJSON(
+                        response,
+                        400,
+                        {
+                            success: false,
+                            message:
+                                "تعداد سفارش نامعتبر است."
+                        }
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    !Number.isFinite(unitPrice) ||
+                    unitPrice < 0
+                ) {
+
+                    sendJSON(
+                        response,
+                        400,
+                        {
+                            success: false,
+                            message:
+                                "قیمت نامعتبر است."
+                        }
+                    );
+
+                    return;
+                }
+
+
+                const total =
+                    quantity *
+                    unitPrice;
+
+
+                const now =
+                    new Date();
+
+
+                const order = {
+
+                    id:
+                        Date.now(),
+
+                    orderNumber:
+                        "NK-" +
+                        Date.now()
+                            .toString()
+                            .slice(-6),
+
+                    date:
+                        now.toLocaleString(
+                            "fa-IR"
+                        ),
+
+                    timestamp:
+                        now.toISOString(),
+
+                    customerName:
+                        customerName,
+
+                    customerPhone:
+                        customerPhone,
+
+                    product:
+                        productName,
+
+                    quantity:
+                        quantity,
+
+                    unitPrice:
+                        unitPrice,
+
+                    total:
+                        total,
+
+                    status:
+                        "جدید",
+
+                    description:
+                        "سفارش برای خرید حضوری",
+
+                    type:
+                        "حضوری"
+                };
+
+
+                const orders =
+                    readJSON(
                         ORDERS_FILE,
                         []
                     );
 
 
-                    console.log(
-                        "تمام سفارش‌ها حذف شدند."
+                orders.unshift(
+                    order
+                );
+
+
+                writeJSON(
+                    ORDERS_FILE,
+                    orders
+                );
+
+
+                console.log(
+                    "سفارش جدید:",
+                    order.orderNumber
+                );
+
+
+                sendJSON(
+                    response,
+                    201,
+                    {
+                        success: true,
+                        message:
+                            "سفارش با موفقیت ثبت شد.",
+                        order:
+                            order
+                    }
+                );
+
+                return;
+            }
+
+
+            /*
+             * ORDER PUT
+             */
+
+            if (
+                pathname.startsWith(
+                    "/api/orders/"
+                ) &&
+                method === "PUT"
+            ) {
+
+                const orderNumber =
+                    decodeURIComponent(
+                        pathname
+                            .split("/")
+                            .pop()
                     );
 
 
+                const body =
+                    await getRequestBody(
+                        request
+                    );
+
+
+                const orders =
+                    readJSON(
+                        ORDERS_FILE,
+                        []
+                    );
+
+
+                const index =
+                    orders.findIndex(
+                        function(order) {
+
+                            return String(
+                                order.orderNumber
+                            ) === orderNumber;
+
+                        }
+                    );
+
+
+                if (index === -1) {
+
                     sendJSON(
                         response,
-                        200,
+                        404,
                         {
-                            success: true,
+                            success: false,
                             message:
-                                "تمام سفارش‌ها حذف شدند."
+                                "سفارش پیدا نشد."
                         }
                     );
 
                     return;
-
                 }
 
 
-                /*
-                 * SALES POST
-                 */
-
                 if (
-                    pathname ===
-                        "/api/sales" &&
-                    method === "POST"
+                    body.status !== undefined
                 ) {
 
-                    const body =
-                        await getRequestBody(
-                            request
+                    orders[index].status =
+                        String(
+                            body.status
                         );
+                }
 
 
-                    const sale = {
+                if (
+                    body.description !== undefined
+                ) {
 
-                        id:
-                            Date.now(),
-
-                        date:
-                            new Date()
-                                .toLocaleString(
-                                    "fa-IR"
-                                ),
-
-                        customerName:
-                            String(
-                                body.customerName ||
-                                ""
-                            ).trim(),
-
-                        customerPhone:
-                            String(
-                                body.customerPhone ||
-                                ""
-                            ).trim(),
-
-                        product:
-                            String(
-                                body.product ||
-                                "نان خانگی کنجدی"
-                            ).trim(),
-
-                        weight:
-                            Number(
-                                body.weight
-                            ) || 0,
-
-                        pricePerUnit:
-                            Number(
-                                body.pricePerUnit
-                            ) || 0,
-
-                        total:
-                            Number(
-                                body.total
-                            ) || 0,
-
-                        paymentMethod:
-                            String(
-                                body.paymentMethod ||
-                                "نقدی"
-                            ),
-
-                        description:
-                            String(
-                                body.description ||
-                                ""
-                            ).trim()
-
-                    };
-
-
-                    const sales =
-                        readJSON(
-                            SALES_FILE,
-                            []
+                    orders[index].description =
+                        String(
+                            body.description
                         );
+                }
 
 
-                    sales.unshift(
-                        sale
+                writeJSON(
+                    ORDERS_FILE,
+                    orders
+                );
+
+
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
+                        order:
+                            orders[index]
+                    }
+                );
+
+                return;
+            }
+
+
+            /*
+             * DELETE ONE ORDER
+             */
+
+            if (
+                pathname.startsWith(
+                    "/api/orders/"
+                ) &&
+                method === "DELETE"
+            ) {
+
+                const orderNumber =
+                    decodeURIComponent(
+                        pathname
+                            .split("/")
+                            .pop()
                     );
 
 
-                    writeJSON(
+                const orders =
+                    readJSON(
+                        ORDERS_FILE,
+                        []
+                    );
+
+
+                const oldLength =
+                    orders.length;
+
+
+                const newOrders =
+                    orders.filter(
+                        function(order) {
+
+                            return String(
+                                order.orderNumber
+                            ) !== orderNumber;
+
+                        }
+                    );
+
+
+                if (
+                    newOrders.length ===
+                    oldLength
+                ) {
+
+                    sendJSON(
+                        response,
+                        404,
+                        {
+                            success: false,
+                            message:
+                                "سفارش پیدا نشد."
+                        }
+                    );
+
+                    return;
+                }
+
+
+                writeJSON(
+                    ORDERS_FILE,
+                    newOrders
+                );
+
+
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
+                        message:
+                            "سفارش حذف شد."
+                    }
+                );
+
+                return;
+            }
+
+
+            /*
+             * DELETE ALL ORDERS
+             */
+
+            if (
+                pathname === "/api/orders" &&
+                method === "DELETE"
+            ) {
+
+                writeJSON(
+                    ORDERS_FILE,
+                    []
+                );
+
+
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
+                        message:
+                            "تمام سفارش‌ها حذف شدند."
+                    }
+                );
+
+                return;
+            }
+
+
+            /*
+             * SALES GET
+             */
+
+            if (
+                pathname === "/api/sales" &&
+                method === "GET"
+            ) {
+
+                const sales =
+                    readJSON(
                         SALES_FILE,
-                        sales
+                        []
                     );
 
 
-                    sendJSON(
-                        response,
-                        201,
-                        {
-                            success: true,
-                            sale:
-                                sale
-                        }
-                    );
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
+                        sales:
+                            sales
+                    }
+                );
 
-                    return;
-
-                }
-
-
-                /*
-                 * SALES GET
-                 */
-
-                if (
-                    pathname ===
-                        "/api/sales" &&
-                    method === "GET"
-                ) {
-
-                    const sales =
-                        readJSON(
-                            SALES_FILE,
-                            []
-                        );
+                return;
+            }
 
 
-                    sendJSON(
-                        response,
-                        200,
-                        {
-                            success: true,
-                            sales:
-                                sales
-                        }
-                    );
+            /*
+             * SALES POST
+             */
 
-                    return;
+            if (
+                pathname === "/api/sales" &&
+                method === "POST"
+            ) {
 
-                }
-
-
-                /*
-                 * STATIC FILES
-                 */
-
-                let filePath;
-
-
-                if (
-                    pathname === "/" ||
-                    pathname === ""
-                ) {
-
-                    filePath =
-                        path.join(
-                            ROOT,
-                            "index.html"
-                        );
-
-                } else {
-
-                    const cleanPath =
-                        pathname.replace(
-                            /^\/+/,
-                            ""
-                        );
-
-
-                    filePath =
-                        path.join(
-                            ROOT,
-                            cleanPath
-                        );
-
-                }
-
-
-                const relativePath =
-                    path.relative(
-                        ROOT,
-                        filePath
+                const body =
+                    await getRequestBody(
+                        request
                     );
 
 
-                if (
-                    relativePath.startsWith(
-                        ".."
+                const weight =
+                    Number(
+                        body.weight
+                    ) || 0;
+
+
+                const pricePerUnit =
+                    Number(
+                        body.pricePerUnit
+                    ) || 0;
+
+
+                const total =
+                    Number(
+                        body.total
                     ) ||
-                    path.isAbsolute(
-                        relativePath
+                    (
+                        weight *
+                        pricePerUnit
+                    );
+
+
+                const now =
+                    new Date();
+
+
+                const sale = {
+
+                    id:
+                        Date.now(),
+
+                    date:
+                        now.toLocaleString(
+                            "fa-IR"
+                        ),
+
+                    timestamp:
+                        now.toISOString(),
+
+                    customerName:
+                        String(
+                            body.customerName ||
+                            ""
+                        ).trim(),
+
+                    customerPhone:
+                        String(
+                            body.customerPhone ||
+                            ""
+                        ).trim(),
+
+                    product:
+                        String(
+                            body.product ||
+                            "نان خانگی کنجدی"
+                        ).trim(),
+
+                    weight:
+                        weight,
+
+                    pricePerUnit:
+                        pricePerUnit,
+
+                    total:
+                        total,
+
+                    paymentMethod:
+                        String(
+                            body.paymentMethod ||
+                            "نقدی"
+                        ),
+
+                    description:
+                        String(
+                            body.description ||
+                            ""
+                        ).trim()
+                };
+
+
+                const sales =
+                    readJSON(
+                        SALES_FILE,
+                        []
+                    );
+
+
+                sales.unshift(
+                    sale
+                );
+
+
+                writeJSON(
+                    SALES_FILE,
+                    sales
+                );
+
+
+                console.log(
+                    "فروش جدید:",
+                    moneyText(
+                        sale.total
                     )
-                ) {
+                );
 
-                    response.writeHead(
-                        403,
-                        {
-                            "Content-Type":
-                                "text/plain; charset=utf-8"
-                        }
+
+                sendJSON(
+                    response,
+                    201,
+                    {
+                        success: true,
+                        sale:
+                            sale
+                    }
+                );
+
+                return;
+            }
+
+
+            /*
+             * DELETE ALL SALES
+             */
+
+            if (
+                pathname === "/api/sales" &&
+                method === "DELETE"
+            ) {
+
+                writeJSON(
+                    SALES_FILE,
+                    []
+                );
+
+
+                sendJSON(
+                    response,
+                    200,
+                    {
+                        success: true,
+                        message:
+                            "تمام فروش‌ها حذف شدند."
+                    }
+                );
+
+                return;
+            }
+
+
+            /*
+             * STATIC FILES
+             */
+
+            let filePath;
+
+
+            if (
+                pathname === "/" ||
+                pathname === ""
+            ) {
+
+                filePath =
+                    path.join(
+                        ROOT,
+                        "index.html"
+                    );
+
+            } else {
+
+                const cleanPath =
+                    pathname.replace(
+                        /^\/+/,
+                        ""
                     );
 
 
-                    response.end(
-                        "Forbidden"
+                filePath =
+                    path.join(
+                        ROOT,
+                        cleanPath
                     );
-
-                    return;
-
-                }
+            }
 
 
-                if (
-                    fs.existsSync(
-                        filePath
-                    ) &&
-                    fs.statSync(
-                        filePath
-                    ).isFile()
-                ) {
-
-                    const content =
-                        fs.readFileSync(
-                            filePath
-                        );
+            const relativePath =
+                path.relative(
+                    ROOT,
+                    filePath
+                );
 
 
-                    response.writeHead(
-                        200,
-                        {
-                            "Content-Type":
-                                getContentType(
-                                    filePath
-                                )
-                        }
-                    );
-
-
-                    response.end(
-                        content
-                    );
-
-                    return;
-
-                }
-
-
-                /*
-                 * 404
-                 */
+            if (
+                relativePath.startsWith("..") ||
+                path.isAbsolute(
+                    relativePath
+                )
+            ) {
 
                 response.writeHead(
-                    404,
+                    403,
                     {
                         "Content-Type":
                             "text/plain; charset=utf-8"
                     }
                 );
 
-
                 response.end(
-                    "صفحه پیدا نشد"
+                    "Forbidden"
                 );
 
-
-            } catch (error) {
-
-                console.error(
-                    "Server error:",
-                    error
-                );
-
-
-                if (
-                    !response.headersSent
-                ) {
-
-                    sendJSON(
-                        response,
-                        500,
-                        {
-                            success: false,
-                            message:
-                                "خطای داخلی سرور"
-                        }
-                    );
-
-                } else {
-
-                    response.end();
-
-                }
-
+                return;
             }
 
+
+            if (
+                fs.existsSync(
+                    filePath
+                ) &&
+                fs.statSync(
+                    filePath
+                ).isFile()
+            ) {
+
+                const content =
+                    fs.readFileSync(
+                        filePath
+                    );
+
+
+                response.writeHead(
+                    200,
+                    {
+                        "Content-Type":
+                            getContentType(
+                                filePath
+                            )
+                    }
+                );
+
+
+                response.end(
+                    content
+                );
+
+                return;
+            }
+
+
+            send404(
+                response
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Server error:",
+                error
+            );
+
+
+            sendJSON(
+                response,
+                500,
+                {
+                    success: false,
+                    message:
+                        "خطای داخلی سرور"
+                }
+            );
         }
-    );
+
+    }
+);
+
+
+function moneyText(value) {
+
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "fa-IR"
+    ) + " تومان";
+
+}
 
 
 server.listen(
@@ -1320,17 +1156,29 @@ server.listen(
     function() {
 
         console.log(
+            "================================"
+        );
+
+        console.log(
             "🍞 نانک - سرور اجرا شد"
         );
 
         console.log(
-            "Port: " +
-            PORT
+            "Port: " + PORT
         );
 
         console.log(
             "Panel: /admin.html"
         );
 
+        console.log(
+            "Health: /api/health"
+        );
+
+        console.log(
+            "================================"
+        );
+
     }
 );
+```

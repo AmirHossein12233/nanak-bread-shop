@@ -1,500 +1,535 @@
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>پنل مدیریت نانک</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Tahoma, Arial, sans-serif;
-            background: #f5f1e8;
-            color: #33251b;
-        }
-
-        button,
-        input,
-        select,
-        textarea {
-            font-family: inherit;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* LOGIN */
-
-        #loginPage {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .login-box {
-            width: 100%;
-            max-width: 420px;
-            background: white;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 15px 45px rgba(0,0,0,.12);
-            text-align: center;
-        }
-
-        .login-logo {
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-
-        .login-box h1 {
-            margin: 0 0 10px;
-            color: #7a431f;
-        }
-
-        .login-box p {
-            color: #777;
-            margin-bottom: 25px;
-        }
-
-        .input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            font-size: 16px;
-            outline: none;
-            margin-bottom: 12px;
-        }
-
-        .input:focus {
-            border-color: #b87535;
-        }
-
-        .btn {
-            border: 0;
-            border-radius: 12px;
-            padding: 13px 18px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .btn-primary {
-            background: #8b4f25;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #6e3c1c;
-        }
-
-        .btn-danger {
-            background: #c62828;
-            color: white;
-        }
-
-        .btn-success {
-            background: #2e7d32;
-            color: white;
-        }
-
-        .btn-warning {
-            background: #ef8f00;
-            color: white;
-        }
-
-        .btn-gray {
-            background: #666;
-            color: white;
-        }
-
-        .error {
-            color: #c62828;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        /* ADMIN */
-
-        #adminPage {
-            min-height: 100vh;
-        }
-
-        header {
-            background: linear-gradient(
-                135deg,
-                #7b421e,
-                #b66b2d
-            );
-
-            color: white;
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 5px 20px rgba(0,0,0,.15);
-        }
-
-        .header-inner {
-            max-width: 1200px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-icon {
-            font-size: 35px;
-        }
-
-        .brand h1 {
-            margin: 0;
-            font-size: 22px;
-        }
-
-        .brand span {
-            font-size: 12px;
-            opacity: .9;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 25px 15px 50px;
-        }
-
-        /* DASHBOARD */
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(
-                4,
-                1fr
-            );
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .stat {
-            background: white;
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.07);
-        }
-
-        .stat-icon {
-            font-size: 30px;
-        }
-
-        .stat-title {
-            color: #777;
-            font-size: 13px;
-            margin-top: 8px;
-        }
-
-        .stat-value {
-            font-size: 25px;
-            font-weight: bold;
-            margin-top: 5px;
-            color: #7a431f;
-        }
-
-        /* SECTION */
-
-        .section {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.07);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 18px;
-        }
-
-        .section-title {
-            margin: 0;
-            color: #6d3c1d;
-        }
-
-        .actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        /* ORDERS */
-
-        .orders-list {
-            display: grid;
-            gap: 15px;
-        }
-
-        .order-card {
-            border: 1px solid #eadfd2;
-            border-radius: 16px;
-            padding: 18px;
-            background: #fffdfa;
-        }
-
-        .order-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            flex-wrap: wrap;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 12px;
-            margin-bottom: 12px;
-        }
-
-        .order-number {
-            font-weight: bold;
-            color: #7a431f;
-        }
-
-        .order-date {
-            font-size: 12px;
-            color: #888;
-        }
-
-        .order-info {
-            display: grid;
-            grid-template-columns:
-                repeat(2, 1fr);
-            gap: 8px;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-
-        .order-info div {
-            background: #f8f3ec;
-            padding: 10px;
-            border-radius: 9px;
-        }
-
-        .order-total {
-            font-size: 18px;
-            font-weight: bold;
-            color: #2e7d32;
-            margin-bottom: 15px;
-        }
-
-        .order-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .status-new {
-            background: #e3f2fd;
-            color: #1565c0;
-        }
-
-        .status-preparing {
-            background: #fff3cd;
-            color: #946200;
-        }
-
-        .status-ready {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .status-done {
-            background: #eeeeee;
-            color: #555;
-        }
-
-        .empty {
-            text-align: center;
-            color: #888;
-            padding: 35px;
-            background: #fafafa;
-            border-radius: 14px;
-        }
-
-        /* PRODUCTS */
-
-        .products-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .product-card {
-            border: 1px solid #eadfd2;
-            border-radius: 15px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .product-name {
-            font-weight: bold;
-        }
-
-        .product-controls {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .price-input {
-            width: 130px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 9px;
-        }
-
-        /* SALE FORM */
-
-        .form-grid {
-            display: grid;
-            grid-template-columns:
-                repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        textarea.input {
-            min-height: 90px;
-            resize: vertical;
-        }
-
-        .sale-total {
-            background: #f3eadf;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #7a431f;
-        }
-
-        /* MESSAGE */
-
-        #message {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            max-width: 350px;
-            padding: 14px 18px;
-            border-radius: 12px;
-            background: #333;
-            color: white;
-            box-shadow: 0 8px 25px rgba(0,0,0,.2);
-            z-index: 9999;
-            display: none;
-        }
-
-        #message.success {
-            background: #2e7d32;
-        }
-
-        #message.error {
-            background: #c62828;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 800px) {
-
-            .stats {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-group.full {
-                grid-column: auto;
-            }
-
-        }
-
-        @media (max-width: 550px) {
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .header-inner {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .order-info {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 15px 10px 40px;
-            }
-
-            .section {
-                padding: 15px;
-            }
-
-        }
-
-    </style>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>پنل مدیریت نانک</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    background: #f5f1e8;
+    color: #33251b;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.btn {
+    border: 0;
+    border-radius: 11px;
+    padding: 11px 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: #8b4f25;
+    color: white;
+}
+
+.btn-success {
+    background: #2e7d32;
+    color: white;
+}
+
+.btn-danger {
+    background: #c62828;
+    color: white;
+}
+
+.btn-warning {
+    background: #ef8f00;
+    color: white;
+}
+
+.btn-gray {
+    background: #666;
+    color: white;
+}
+
+.input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 11px;
+    outline: none;
+    font-size: 15px;
+}
+
+.input:focus {
+    border-color: #b87535;
+}
+
+
+/* LOGIN */
+
+#loginPage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 23px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(0,0,0,.12);
+}
+
+.login-logo {
+    font-size: 55px;
+}
+
+.login-box h1 {
+    color: #7a431f;
+}
+
+.login-box p {
+    color: #777;
+}
+
+.error {
+    color: #c62828;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+/* HEADER */
+
+header {
+    background: linear-gradient(
+        135deg,
+        #7b421e,
+        #b66b2d
+    );
+    color: white;
+    padding: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    font-size: 36px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 21px;
+}
+
+.brand span {
+    font-size: 12px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px 15px 60px;
+}
+
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+.stat-icon {
+    font-size: 28px;
+}
+
+.stat-title {
+    color: #777;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.stat-value {
+    color: #7a431f;
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+/* SECTION */
+
+.section {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.section-title {
+    margin: 0;
+    color: #6d3c1d;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+
+/* CHART */
+
+.chart-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#salesChart {
+    width: 100%;
+    min-width: 700px;
+    height: 360px;
+    display: block;
+}
+
+.chart-summary {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.chart-summary-box {
+    background: #f8f3ec;
+    border-radius: 13px;
+    padding: 15px;
+    text-align: center;
+}
+
+.chart-summary-box strong {
+    display: block;
+    color: #7a431f;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+
+/* ORDERS */
+
+.orders-list {
+    display: grid;
+    gap: 15px;
+}
+
+.order-card {
+    border: 1px solid #eadfd2;
+    border-radius: 16px;
+    padding: 17px;
+    background: #fffdfa;
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.order-number {
+    font-weight: bold;
+    color: #7a431f;
+}
+
+.order-date {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.order-info {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.order-info div {
+    background: #f8f3ec;
+    padding: 10px;
+    border-radius: 9px;
+}
+
+.order-total {
+    color: #2e7d32;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 13px;
+}
+
+.order-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-new {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-preparing {
+    background: #fff3cd;
+    color: #946200;
+}
+
+.status-ready {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-done {
+    background: #eeeeee;
+    color: #555;
+}
+
+.empty {
+    text-align: center;
+    color: #888;
+    padding: 35px;
+    background: #fafafa;
+    border-radius: 14px;
+}
+
+
+/* PRODUCTS */
+
+.products-list {
+    display: grid;
+    gap: 12px;
+}
+
+.product-card {
+    border: 1px solid #eadfd2;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.product-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.price-input {
+    width: 130px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+}
+
+
+/* FORM */
+
+.form-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+textarea.input {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.sale-total {
+    background: #f3eadf;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #7a431f;
+}
+
+
+/* MESSAGE */
+
+#message {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: white;
+    background: #333;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 8px 25px rgba(0,0,0,.2);
+}
+
+#message.success {
+    background: #2e7d32;
+}
+
+#message.error {
+    background: #c62828;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .chart-summary {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:550px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .order-info {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 15px 10px 50px;
+    }
+
+    .section {
+        padding: 15px;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
+
 
 <!-- LOGIN -->
 
@@ -519,8 +554,9 @@
             class="input"
             type="password"
             placeholder="رمز پنل"
-            autocomplete="off"
         >
+
+        <br><br>
 
         <button
             id="loginButton"
@@ -547,415 +583,492 @@
     class="hidden"
 >
 
-    <header>
+<header>
 
-        <div class="header-inner">
+    <div class="header-inner">
 
-            <div class="brand">
+        <div class="brand">
 
-                <div class="brand-icon">
-                    🍞
-                </div>
+            <div class="brand-icon">
+                🍞
+            </div>
 
-                <div>
+            <div>
 
-                    <h1>
-                        پنل مدیریت نانک
-                    </h1>
+                <h1>
+                    پنل مدیریت نانک
+                </h1>
 
-                    <span>
-                        مدیریت سفارش‌ها و فروش حضوری
-                    </span>
-
-                </div>
+                <span>
+                    مدیریت فروشگاه نان
+                </span>
 
             </div>
 
-            <button
-                id="logoutButton"
-                class="btn btn-gray"
+        </div>
+
+        <button
+            id="logoutButton"
+            class="btn btn-gray"
+        >
+            خروج
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📦
+        </div>
+
+        <div class="stat-title">
+            کل سفارش‌ها
+        </div>
+
+        <div
+            id="totalOrders"
+            class="stat-value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🆕
+        </div>
+
+        <div class="stat-title">
+            سفارش‌های جدید
+        </div>
+
+        <div
+            id="newOrders"
+            class="stat-value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ⏳
+        </div>
+
+        <div class="stat-title">
+            در حال آماده‌سازی
+        </div>
+
+        <div
+            id="preparingOrders"
+            class="stat-value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            💰
+        </div>
+
+        <div class="stat-title">
+            مبلغ سفارش‌ها
+        </div>
+
+        <div
+            id="totalMoney"
+            class="stat-value"
+        >
+            0 تومان
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- DAILY CHART -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            📊 نمودار فروش روزانه
+        </h2>
+
+        <button
+            id="refreshChart"
+            class="btn btn-primary"
+        >
+            🔄 بروزرسانی نمودار
+        </button>
+
+    </div>
+
+    <div class="chart-wrapper">
+
+        <canvas
+            id="salesChart"
+            width="1000"
+            height="360"
+        ></canvas>
+
+    </div>
+
+
+    <div class="chart-summary">
+
+        <div class="chart-summary-box">
+
+            فروش امروز
+
+            <strong
+                id="todaySales"
             >
-                خروج
+                0 تومان
+            </strong>
+
+        </div>
+
+
+        <div class="chart-summary-box">
+
+            فروش ۷ روز اخیر
+
+            <strong
+                id="weekSales"
+            >
+                0 تومان
+            </strong>
+
+        </div>
+
+
+        <div class="chart-summary-box">
+
+            تعداد فروش ۷ روز اخیر
+
+            <strong
+                id="weekSaleCount"
+            >
+                ۰
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ORDERS -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            📦 سفارش‌های مشتریان
+        </h2>
+
+        <div class="actions">
+
+            <button
+                id="refreshOrders"
+                class="btn btn-primary"
+            >
+                🔄 بروزرسانی
+            </button>
+
+            <button
+                id="deleteAllOrders"
+                class="btn btn-danger"
+            >
+                🗑️ حذف همه سفارش‌ها
             </button>
 
         </div>
 
-    </header>
+    </div>
 
 
-    <main class="container">
+    <div
+        id="ordersList"
+        class="orders-list"
+    >
 
-        <!-- STATS -->
+        <div class="empty">
+            در حال دریافت سفارش‌ها...
+        </div>
 
-        <div class="stats">
+    </div>
 
-            <div class="stat">
+</section>
 
-                <div class="stat-icon">
-                    📦
-                </div>
 
-                <div class="stat-title">
-                    کل سفارش‌ها
-                </div>
+<!-- PRODUCTS -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            🍞 محصولات
+        </h2>
+
+        <button
+            id="refreshProducts"
+            class="btn btn-primary"
+        >
+            🔄 بروزرسانی
+        </button>
+
+    </div>
+
+
+    <div
+        id="productsList"
+        class="products-list"
+    >
+
+        <div class="empty">
+            در حال دریافت محصولات...
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SALE -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            🧾 ثبت فروش حضوری
+        </h2>
+
+    </div>
+
+
+    <form id="saleForm">
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    نام مشتری
+                </label>
+
+                <input
+                    id="saleCustomerName"
+                    class="input"
+                    type="text"
+                    placeholder="اختیاری"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    شماره تماس
+                </label>
+
+                <input
+                    id="saleCustomerPhone"
+                    class="input"
+                    type="tel"
+                    placeholder="اختیاری"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    محصول
+                </label>
+
+                <select
+                    id="saleProduct"
+                    class="input"
+                ></select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    وزن / تعداد
+                </label>
+
+                <input
+                    id="saleWeight"
+                    class="input"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    value="1"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    قیمت واحد
+                </label>
+
+                <input
+                    id="salePrice"
+                    class="input"
+                    type="number"
+                    min="0"
+                    value="15000"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    روش پرداخت
+                </label>
+
+                <select
+                    id="paymentMethod"
+                    class="input"
+                >
+
+                    <option value="نقدی">
+                        💵 نقدی
+                    </option>
+
+                    <option value="کارت">
+                        💳 کارت
+                    </option>
+
+                    <option value="پرداخت نشده">
+                        ⏳ پرداخت نشده
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    توضیحات
+                </label>
+
+                <textarea
+                    id="saleDescription"
+                    class="input"
+                    placeholder="توضیحات فروش..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group full">
 
                 <div
-                    id="totalOrders"
-                    class="stat-value"
+                    id="saleTotal"
+                    class="sale-total"
                 >
-                    0
+                    مبلغ کل: 15,000 تومان
                 </div>
 
             </div>
 
 
-            <div class="stat">
+            <div class="form-group full">
 
-                <div class="stat-icon">
-                    🆕
-                </div>
-
-                <div class="stat-title">
-                    سفارش‌های جدید
-                </div>
-
-                <div
-                    id="newOrders"
-                    class="stat-value"
+                <button
+                    type="submit"
+                    class="btn btn-success"
                 >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    ⏳
-                </div>
-
-                <div class="stat-title">
-                    در حال آماده‌سازی
-                </div>
-
-                <div
-                    id="preparingOrders"
-                    class="stat-value"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-icon">
-                    💰
-                </div>
-
-                <div class="stat-title">
-                    مبلغ سفارش‌ها
-                </div>
-
-                <div
-                    id="totalMoney"
-                    class="stat-value"
-                >
-                    0 تومان
-                </div>
+                    ✅ ثبت فروش حضوری
+                </button>
 
             </div>
 
         </div>
 
+    </form>
 
-        <!-- ORDERS -->
+</section>
 
-        <section class="section">
 
-            <div class="section-header">
+<!-- SALES -->
 
-                <h2 class="section-title">
-                    📦 سفارش‌های مشتریان
-                </h2>
+<section class="section">
 
-                <div class="actions">
+    <div class="section-header">
 
-                    <button
-                        id="refreshOrders"
-                        class="btn btn-primary"
-                    >
-                        🔄 بروزرسانی
-                    </button>
+        <h2 class="section-title">
+            🧾 فروش‌های ثبت‌شده
+        </h2>
 
-                    <button
-                        id="deleteAllOrders"
-                        class="btn btn-danger"
-                    >
-                        🗑️ حذف همه سفارش‌ها
-                    </button>
+        <button
+            id="refreshSales"
+            class="btn btn-primary"
+        >
+            🔄 بروزرسانی
+        </button>
 
-                </div>
+    </div>
 
-            </div>
 
+    <div
+        id="salesList"
+        class="orders-list"
+    >
 
-            <div
-                id="ordersList"
-                class="orders-list"
-            >
+        <div class="empty">
+            در حال دریافت فروش‌ها...
+        </div>
 
-                <div class="empty">
-                    در حال دریافت سفارش‌ها...
-                </div>
+    </div>
 
-            </div>
+</section>
 
-        </section>
 
-
-        <!-- PRODUCTS -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <h2 class="section-title">
-                    🍞 محصولات
-                </h2>
-
-                <button
-                    id="refreshProducts"
-                    class="btn btn-primary"
-                >
-                    🔄 بروزرسانی
-                </button>
-
-            </div>
-
-
-            <div
-                id="productsList"
-                class="products-list"
-            >
-
-                <div class="empty">
-                    در حال دریافت محصولات...
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SALES -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <h2 class="section-title">
-                    🧾 ثبت فروش حضوری
-                </h2>
-
-            </div>
-
-
-            <form id="saleForm">
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-
-                        <label>
-                            نام مشتری
-                        </label>
-
-                        <input
-                            id="saleCustomerName"
-                            class="input"
-                            type="text"
-                            placeholder="اختیاری"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            شماره تماس
-                        </label>
-
-                        <input
-                            id="saleCustomerPhone"
-                            class="input"
-                            type="tel"
-                            placeholder="اختیاری"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            محصول
-                        </label>
-
-                        <select
-                            id="saleProduct"
-                            class="input"
-                        >
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            وزن / تعداد
-                        </label>
-
-                        <input
-                            id="saleWeight"
-                            class="input"
-                            type="number"
-                            min="0"
-                            step="0.1"
-                            value="1"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            قیمت واحد
-                        </label>
-
-                        <input
-                            id="salePrice"
-                            class="input"
-                            type="number"
-                            min="0"
-                            value="15000"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            روش پرداخت
-                        </label>
-
-                        <select
-                            id="paymentMethod"
-                            class="input"
-                        >
-
-                            <option value="نقدی">
-                                💵 نقدی
-                            </option>
-
-                            <option value="کارت">
-                                💳 کارت
-                            </option>
-
-                            <option value="پرداخت نشده">
-                                ⏳ پرداخت نشده
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label>
-                            توضیحات
-                        </label>
-
-                        <textarea
-                            id="saleDescription"
-                            class="input"
-                            placeholder="توضیحات فروش..."
-                        ></textarea>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <div
-                            id="saleTotal"
-                            class="sale-total"
-                        >
-                            مبلغ کل: 15,000 تومان
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <button
-                            type="submit"
-                            class="btn btn-success"
-                        >
-                            ✅ ثبت فروش حضوری
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </form>
-
-        </section>
-
-
-        <!-- SALES HISTORY -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <h2 class="section-title">
-                    🧾 فروش‌های ثبت‌شده
-                </h2>
-
-                <button
-                    id="refreshSales"
-                    class="btn btn-primary"
-                >
-                    🔄 بروزرسانی
-                </button>
-
-            </div>
-
-
-            <div
-                id="salesList"
-                class="orders-list"
-            >
-
-                <div class="empty">
-                    در حال دریافت فروش‌ها...
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+</main>
 
 </div>
 
@@ -965,1544 +1078,180 @@
 
 <script>
 
-    /*
-     * رمز پنل
-     */
 
-    const ADMIN_PASSWORD =
-        "123456";
+/* =========================
+   SETTINGS
+========================= */
 
+const ADMIN_PASSWORD =
+    "123456";
 
-    /*
-     * چون سایت و سرور روی یک دامنه هستند،
-     * از مسیر نسبی استفاده می‌کنیم.
-     */
-
-    const API_BASE = "";
+const API_BASE = "";
 
 
-    function $(id) {
+/* =========================
+   HELPERS
+========================= */
 
-        return document.getElementById(id);
-
-    }
-
-
-    function showMessage(
-        text,
-        type = "success"
-    ) {
-
-        const box =
-            $("message");
-
-        box.textContent =
-            text;
-
-        box.className =
-            type;
-
-        box.style.display =
-            "block";
+function $(id) {
+    return document.getElementById(id);
+}
 
 
-        setTimeout(
-            function() {
+function money(value) {
 
-                box.style.display =
-                    "none";
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "fa-IR"
+    ) + " تومان";
 
-            },
-            3000
-        );
-
-    }
+}
 
 
-    async function apiRequest(
-        endpoint,
-        options = {}
-    ) {
+function numberFa(value) {
 
-        const response =
-            await fetch(
-                API_BASE +
-                endpoint,
-                {
-                    ...options,
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "fa-IR"
+    );
 
-                    headers: {
-                        "Content-Type":
-                            "application/json",
+}
 
-                        ...(options.headers || {})
-                    }
+
+function escapeHtml(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+function escapeJs(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/\n/g, "\\n")
+    .replace(/\r/g, "\\r");
+
+}
+
+
+function showMessage(
+    text,
+    type = "success"
+) {
+
+    const box =
+        $("message");
+
+    box.textContent =
+        text;
+
+    box.className =
+        type;
+
+    box.style.display =
+        "block";
+
+
+    setTimeout(
+        function() {
+
+            box.style.display =
+                "none";
+
+        },
+        3000
+    );
+
+}
+
+
+/* =========================
+   API
+========================= */
+
+async function apiRequest(
+    endpoint,
+    options = {}
+) {
+
+    const response =
+        await fetch(
+            API_BASE +
+            endpoint,
+            {
+                ...options,
+
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    ...(options.headers || {})
                 }
-            );
-
-
-        let data;
-
-
-        try {
-
-            data =
-                await response.json();
-
-        } catch (error) {
-
-            throw new Error(
-                "پاسخ سرور معتبر نیست."
-            );
-
-        }
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.message ||
-                "خطا در ارتباط با سرور"
-            );
-
-        }
-
-
-        return data;
-
-    }
-
-
-    /*
-     * LOGIN
-     */
-
-    function login() {
-
-        const password =
-            $("password").value;
-
-
-        if (
-            password ===
-            ADMIN_PASSWORD
-        ) {
-
-            localStorage.setItem(
-                "nanak_admin_login",
-                "true"
-            );
-
-
-            $("loginPage")
-                .classList
-                .add("hidden");
-
-
-            $("adminPage")
-                .classList
-                .remove("hidden");
-
-
-            $("loginError")
-                .textContent =
-                "";
-
-
-            loadAll();
-
-        } else {
-
-            $("loginError")
-                .textContent =
-                "رمز عبور اشتباه است.";
-
-        }
-
-    }
-
-
-    $("loginButton")
-        .addEventListener(
-            "click",
-            login
-        );
-
-
-    $("password")
-        .addEventListener(
-            "keydown",
-            function(event) {
-
-                if (
-                    event.key ===
-                    "Enter"
-                ) {
-
-                    login();
-
-                }
-
             }
         );
 
 
-    $("logoutButton")
-        .addEventListener(
-            "click",
-            function() {
+    let data;
 
-                localStorage.removeItem(
-                    "nanak_admin_login"
-                );
 
-                location.reload();
+    try {
 
-            }
+        data =
+            await response.json();
+
+    } catch {
+
+        throw new Error(
+            "پاسخ سرور معتبر نیست."
         );
 
-
-    /*
-     * FORMAT
-     */
-
-    function money(
-        value
-    ) {
-
-        return Number(
-            value || 0
-        ).toLocaleString(
-            "fa-IR"
-        ) + " تومان";
-
     }
 
 
-    function escapeHtml(
-        value
-    ) {
-
-        return String(
-            value ?? ""
-        )
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
-
-    }
-
-
-    function escapeJs(
-        value
-    ) {
-
-        return String(
-            value ?? ""
-        )
-            .replace(
-                /\\/g,
-                "\\\\"
-            )
-            .replace(
-                /'/g,
-                "\\'"
-            )
-            .replace(
-                /\n/g,
-                "\\n"
-            )
-            .replace(
-                /\r/g,
-                "\\r"
-            );
-
-    }
-
-
-    /*
-     * LOAD ORDERS
-     */
-
-    async function loadOrders() {
-
-        try {
-
-            const data =
-                await apiRequest(
-                    "/api/orders"
-                );
-
-
-            const orders =
-                Array.isArray(
-                    data.orders
-                )
-                    ? data.orders
-                    : [];
-
-
-            renderOrders(
-                orders
-            );
-
-
-            updateStats(
-                orders
-            );
-
-        } catch (error) {
-
-            $("ordersList")
-                .innerHTML = `
-                    <div class="empty">
-                        ❌ اتصال به سرور برقرار نشد.
-                        <br><br>
-                        ${escapeHtml(
-                            error.message
-                        )}
-                    </div>
-                `;
-
-        }
-
-    }
-
-
-    function getStatusClass(
-        status
-    ) {
-
-        if (
-            status === "جدید"
-        ) {
-            return "status-new";
-        }
-
-        if (
-            status ===
-            "در حال آماده‌سازی"
-        ) {
-            return "status-preparing";
-        }
-
-        if (
-            status ===
-            "آماده تحویل"
-        ) {
-            return "status-ready";
-        }
-
-        return "status-done";
-
-    }
-
-
-    function renderOrders(
-        orders
-    ) {
-
-        const list =
-            $("ordersList");
-
-
-        if (
-            orders.length === 0
-        ) {
-
-            list.innerHTML = `
-                <div class="empty">
-                    📭 هنوز سفارشی ثبت نشده است.
-                </div>
-            `;
-
-            return;
-
-        }
-
-
-        list.innerHTML =
-            orders.map(
-                function(order) {
-
-                    const status =
-                        escapeHtml(
-                            order.status ||
-                            "جدید"
-                        );
-
-
-                    return `
-                        <div class="order-card">
-
-                            <div class="order-top">
-
-                                <div>
-
-                                    <div class="order-number">
-                                        🧾 ${escapeHtml(
-                                            order.orderNumber
-                                        )}
-                                    </div>
-
-                                    <div class="order-date">
-                                        ${escapeHtml(
-                                            order.date
-                                        )}
-                                    </div>
-
-                                </div>
-
-                                <div class="status ${getStatusClass(
-                                    order.status
-                                )}">
-                                    ${status}
-                                </div>
-
-                            </div>
-
-
-                            <div class="order-info">
-
-                                <div>
-                                    👤
-                                    <b>مشتری:</b>
-                                    ${escapeHtml(
-                                        order.customerName
-                                    )}
-                                </div>
-
-                                <div>
-                                    📞
-                                    <b>تماس:</b>
-                                    ${escapeHtml(
-                                        order.customerPhone
-                                    )}
-                                </div>
-
-                                <div>
-                                    🍞
-                                    <b>محصول:</b>
-                                    ${escapeHtml(
-                                        order.product
-                                    )}
-                                </div>
-
-                                <div>
-                                    🔢
-                                    <b>تعداد:</b>
-                                    ${escapeHtml(
-                                        order.quantity
-                                    )}
-                                </div>
-
-                                <div>
-                                    💵
-                                    <b>قیمت واحد:</b>
-                                    ${money(
-                                        order.unitPrice
-                                    )}
-                                </div>
-
-                                <div>
-                                    🏪
-                                    <b>نوع:</b>
-                                    ${escapeHtml(
-                                        order.type ||
-                                        "حضوری"
-                                    )}
-                                </div>
-
-                            </div>
-
-
-                            <div class="order-total">
-                                مبلغ کل:
-                                ${money(
-                                    order.total
-                                )}
-                            </div>
-
-
-                            <div class="order-actions">
-
-                                <button
-                                    class="btn btn-primary"
-                                    onclick="changeOrderStatus(
-                                        '${escapeJs(
-                                            order.orderNumber
-                                        )}',
-                                        'جدید'
-                                    )"
-                                >
-                                    🆕 جدید
-                                </button>
-
-
-                                <button
-                                    class="btn btn-warning"
-                                    onclick="changeOrderStatus(
-                                        '${escapeJs(
-                                            order.orderNumber
-                                        )}',
-                                        'در حال آماده‌سازی'
-                                    )"
-                                >
-                                    ⏳ در حال آماده‌سازی
-                                </button>
-
-
-                                <button
-                                    class="btn btn-success"
-                                    onclick="changeOrderStatus(
-                                        '${escapeJs(
-                                            order.orderNumber
-                                        )}',
-                                        'آماده تحویل'
-                                    )"
-                                >
-                                    ✅ آماده تحویل
-                                </button>
-
-
-                                <button
-                                    class="btn btn-gray"
-                                    onclick="changeOrderStatus(
-                                        '${escapeJs(
-                                            order.orderNumber
-                                        )}',
-                                        'تحویل شد'
-                                    )"
-                                >
-                                    📦 تحویل شد
-                                </button>
-
-
-                                <button
-                                    class="btn btn-danger"
-                                    onclick="deleteOrder(
-                                        '${escapeJs(
-                                            order.orderNumber
-                                        )}'
-                                    )"
-                                >
-                                    🗑️ حذف سفارش
-                                </button>
-
-                            </div>
-
-                        </div>
-                    `;
-
-                }
-            )
-            .join("");
-
-    }
-
-
-    /*
-     * CHANGE STATUS
-     */
-
-    async function changeOrderStatus(
-        orderNumber,
-        status
-    ) {
-
-        try {
-
-            await apiRequest(
-                "/api/orders/" +
-                encodeURIComponent(
-                    orderNumber
-                ),
-                {
-                    method: "PUT",
-
-                    body:
-                        JSON.stringify({
-                            status:
-                                status
-                        })
-                }
-            );
-
-
-            showMessage(
-                "وضعیت سفارش تغییر کرد."
-            );
-
-
-            await loadOrders();
-
-        } catch (error) {
-
-            showMessage(
-                error.message,
-                "error"
-            );
-
-        }
-
-    }
-
-
-    /*
-     * DELETE ONE ORDER
-     */
-
-    async function deleteOrder(
-        orderNumber
-    ) {
-
-        const confirmed =
-            confirm(
-                "آیا مطمئن هستید که می‌خواهید سفارش " +
-                orderNumber +
-                " حذف شود؟"
-            );
-
-
-        if (!confirmed) {
-            return;
-        }
-
-
-        try {
-
-            await apiRequest(
-                "/api/orders/" +
-                encodeURIComponent(
-                    orderNumber
-                ),
-                {
-                    method:
-                        "DELETE"
-                }
-            );
-
-
-            showMessage(
-                "سفارش حذف شد."
-            );
-
-
-            await loadOrders();
-
-        } catch (error) {
-
-            showMessage(
-                error.message,
-                "error"
-            );
-
-        }
-
-    }
-
-
-    /*
-     * DELETE ALL ORDERS
-     */
-
-    async function deleteAllOrders() {
-
-        const confirmed =
-            confirm(
-                "⚠️ هشدار\n\n" +
-                "تمام سفارش‌ها حذف خواهند شد.\n" +
-                "این کار قابل برگشت نیست.\n\n" +
-                "آیا ادامه می‌دهید؟"
-            );
-
-
-        if (!confirmed) {
-            return;
-        }
-
-
-        try {
-
-            await apiRequest(
-                "/api/orders",
-                {
-                    method:
-                        "DELETE"
-                }
-            );
-
-
-            showMessage(
-                "تمام سفارش‌ها حذف شدند."
-            );
-
-
-            await loadOrders();
-
-        } catch (error) {
-
-            showMessage(
-                error.message,
-                "error"
-            );
-
-        }
-
-    }
-
-
-    $("deleteAllOrders")
-        .addEventListener(
-            "click",
-            deleteAllOrders
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            "خطا در ارتباط با سرور"
         );
 
-
-    $("refreshOrders")
-        .addEventListener(
-            "click",
-            loadOrders
-        );
-
-
-    /*
-     * STATS
-     */
-
-    function updateStats(
-        orders
-    ) {
-
-        $("totalOrders")
-            .textContent =
-            orders.length
-                .toLocaleString(
-                    "fa-IR"
-                );
-
-
-        const newCount =
-            orders.filter(
-                function(order) {
-
-                    return (
-                        order.status ===
-                        "جدید"
-                    );
-
-                }
-            ).length;
-
-
-        const preparingCount =
-            orders.filter(
-                function(order) {
-
-                    return (
-                        order.status ===
-                        "در حال آماده‌سازی"
-                    );
-
-                }
-            ).length;
-
-
-        const total =
-            orders.reduce(
-                function(sum, order) {
-
-                    return (
-                        sum +
-                        Number(
-                            order.total || 0
-                        )
-                    );
-
-                },
-                0
-            );
-
-
-        $("newOrders")
-            .textContent =
-            newCount.toLocaleString(
-                "fa-IR"
-            );
-
-
-        $("preparingOrders")
-            .textContent =
-            preparingCount.toLocaleString(
-                "fa-IR"
-            );
-
-
-        $("totalMoney")
-            .textContent =
-            money(total);
-
     }
 
 
-    /*
-     * PRODUCTS
-     */
+    return data;
 
-    let products = [];
+}
 
 
-    async function loadProducts() {
+/* =========================
+   LOGIN
+========================= */
 
-        try {
-
-            const data =
-                await apiRequest(
-                    "/api/products"
-                );
-
-
-            products =
-                Array.isArray(
-                    data.products
-                )
-                    ? data.products
-                    : [];
-
-
-            renderProducts(
-                products
-            );
-
-
-            updateSaleProducts(
-                products
-            );
-
-        } catch (error) {
-
-            $("productsList")
-                .innerHTML = `
-                    <div class="empty">
-                        ❌ خطا در دریافت محصولات
-                        <br>
-                        ${escapeHtml(
-                            error.message
-                        )}
-                    </div>
-                `;
-
-        }
-
-    }
-
-
-    function renderProducts(
-        products
-    ) {
-
-        const list =
-            $("productsList");
-
-
-        if (
-            products.length === 0
-        ) {
-
-            list.innerHTML = `
-                <div class="empty">
-                    محصولی وجود ندارد.
-                </div>
-            `;
-
-            return;
-
-        }
-
-
-        list.innerHTML =
-            products.map(
-                function(product) {
-
-                    return `
-                        <div class="product-card">
-
-                            <div>
-
-                                <div class="product-name">
-                                    🍞 ${escapeHtml(
-                                        product.name
-                                    )}
-                                </div>
-
-                                <div style="
-                                    margin-top:6px;
-                                    color:#777;
-                                    font-size:13px;
-                                ">
-                                    وضعیت:
-                                    ${
-                                        product.available
-                                            ? "🟢 موجود"
-                                            : "🔴 ناموجود"
-                                    }
-                                </div>
-
-                            </div>
-
-
-                            <div class="product-controls">
-
-                                <input
-                                    id="price-${escapeHtml(
-                                        product.id
-                                    )}"
-                                    class="price-input"
-                                    type="number"
-                                    min="0"
-                                    value="${Number(
-                                        product.price || 0
-                                    )}"
-                                >
-
-
-                                <button
-                                    class="btn btn-primary"
-                                    onclick="saveProduct(
-                                        '${escapeJs(
-                                            product.id
-                                        )}'
-                                    )"
-                                >
-                                    💾 ذخیره
-                                </button>
-
-
-                                <button
-                                    class="btn ${
-                                        product.available
-                                            ? "btn-danger"
-                                            : "btn-success"
-                                    }"
-                                    onclick="toggleProduct(
-                                        '${escapeJs(
-                                            product.id
-                                        )}',
-                                        ${
-                                            !product.available
-                                        }
-                                    )"
-                                >
-                                    ${
-                                        product.available
-                                            ? "🔴 ناموجود"
-                                            : "🟢 موجود"
-                                    }
-                                </button>
-
-                            </div>
-
-                        </div>
-                    `;
-
-                }
-            )
-            .join("");
-
-    }
-
-
-    async function saveProduct(
-        productId
-    ) {
-
-        const input =
-            document.getElementById(
-                "price-" +
-                productId
-            );
-
-
-        if (!input) {
-            return;
-        }
-
-
-        const price =
-            Number(
-                input.value
-            );
-
-
-        if (
-            !Number.isFinite(price) ||
-            price < 0
-        ) {
-
-            showMessage(
-                "قیمت نامعتبر است.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        try {
-
-            await apiRequest(
-                "/api/products",
-                {
-                    method:
-                        "PUT",
-
-                    body:
-                        JSON.stringify({
-                            id:
-                                productId,
-
-                            price:
-                                price
-                        })
-                }
-            );
-
-
-            showMessage(
-                "قیمت محصول ذخیره شد."
-            );
-
-
-            await loadProducts();
-
-        } catch (error) {
-
-            showMessage(
-                error.message,
-                "error"
-            );
-
-        }
-
-    }
-
-
-    async function toggleProduct(
-        productId,
-        available
-    ) {
-
-        try {
-
-            await apiRequest(
-                "/api/products",
-                {
-                    method:
-                        "PUT",
-
-                    body:
-                        JSON.stringify({
-                            id:
-                                productId,
-
-                            available:
-                                available
-                        })
-                }
-            );
-
-
-            showMessage(
-                available
-                    ? "محصول موجود شد."
-                    : "محصول ناموجود شد."
-            );
-
-
-            await loadProducts();
-
-        } catch (error) {
-
-            showMessage(
-                error.message,
-                "error"
-            );
-
-        }
-
-    }
-
-
-    $("refreshProducts")
-        .addEventListener(
-            "click",
-            loadProducts
-        );
-
-
-    /*
-     * SALE PRODUCTS
-     */
-
-    function updateSaleProducts(
-        products
-    ) {
-
-        const select =
-            $("saleProduct");
-
-
-        select.innerHTML =
-            "";
-
-
-        products.forEach(
-            function(product) {
-
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-
-                option.value =
-                    product.name;
-
-
-                option.textContent =
-                    product.name;
-
-
-                option.dataset.price =
-                    product.price || 0;
-
-
-                select.appendChild(
-                    option
-                );
-
-            }
-        );
-
-
-        updateSalePrice();
-
-    }
-
-
-    function updateSalePrice() {
-
-        const select =
-            $("saleProduct");
-
-
-        const option =
-            select.options[
-                select.selectedIndex
-            ];
-
-
-        if (
-            option &&
-            option.dataset.price
-        ) {
-
-            $("salePrice")
-                .value =
-                option.dataset.price;
-
-        }
-
-
-        calculateSaleTotal();
-
-    }
-
-
-    $("saleProduct")
-        .addEventListener(
-            "change",
-            updateSalePrice
-        );
-
-
-    /*
-     * SALE TOTAL
-     */
-
-    function calculateSaleTotal() {
-
-        const weight =
-            Number(
-                $("saleWeight").value
-            ) || 0;
-
-
-        const price =
-            Number(
-                $("salePrice").value
-            ) || 0;
-
-
-        const total =
-            weight *
-            price;
-
-
-        $("saleTotal")
-            .textContent =
-            "مبلغ کل: " +
-            money(total);
-
-    }
-
-
-    $("saleWeight")
-        .addEventListener(
-            "input",
-            calculateSaleTotal
-        );
-
-
-    $("salePrice")
-        .addEventListener(
-            "input",
-            calculateSaleTotal
-        );
-
-
-    /*
-     * CREATE SALE
-     */
-
-    $("saleForm")
-        .addEventListener(
-            "submit",
-            async function(event) {
-
-                event.preventDefault();
-
-
-                const weight =
-                    Number(
-                        $("saleWeight").value
-                    ) || 0;
-
-
-                const price =
-                    Number(
-                        $("salePrice").value
-                    ) || 0;
-
-
-                const total =
-                    weight *
-                    price;
-
-
-                if (
-                    weight <= 0
-                ) {
-
-                    showMessage(
-                        "وزن یا تعداد را وارد کنید.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                try {
-
-                    await apiRequest(
-                        "/api/sales",
-                        {
-                            method:
-                                "POST",
-
-                            body:
-                                JSON.stringify({
-
-                                    customerName:
-                                        $("saleCustomerName")
-                                            .value
-                                            .trim(),
-
-                                    customerPhone:
-                                        $("saleCustomerPhone")
-                                            .value
-                                            .trim(),
-
-                                    product:
-                                        $("saleProduct")
-                                            .value,
-
-                                    weight:
-                                        weight,
-
-                                    pricePerUnit:
-                                        price,
-
-                                    total:
-                                        total,
-
-                                    paymentMethod:
-                                        $("paymentMethod")
-                                            .value,
-
-                                    description:
-                                        $("saleDescription")
-                                            .value
-                                            .trim()
-
-                                })
-                        }
-                    );
-
-
-                    showMessage(
-                        "فروش حضوری ثبت شد."
-                    );
-
-
-                    $("saleForm")
-                        .reset();
-
-
-                    $("saleWeight")
-                        .value =
-                        "1";
-
-
-                    updateSalePrice();
-
-
-                    await loadSales();
-
-                } catch (error) {
-
-                    showMessage(
-                        error.message,
-                        "error"
-                    );
-
-                }
-
-            }
-        );
-
-
-    /*
-     * SALES
-     */
-
-    async function loadSales() {
-
-        try {
-
-            const data =
-                await apiRequest(
-                    "/api/sales"
-                );
-
-
-            const sales =
-                Array.isArray(
-                    data.sales
-                )
-                    ? data.sales
-                    : [];
-
-
-            renderSales(
-                sales
-            );
-
-        } catch (error) {
-
-            $("salesList")
-                .innerHTML = `
-                    <div class="empty">
-                        ❌ خطا در دریافت فروش‌ها
-                        <br>
-                        ${escapeHtml(
-                            error.message
-                        )}
-                    </div>
-                `;
-
-        }
-
-    }
-
-
-    function renderSales(
-        sales
-    ) {
-
-        const list =
-            $("salesList");
-
-
-        if (
-            sales.length === 0
-        ) {
-
-            list.innerHTML = `
-                <div class="empty">
-                    📭 هنوز فروش حضوری ثبت نشده است.
-                </div>
-            `;
-
-            return;
-
-        }
-
-
-        list.innerHTML =
-            sales.map(
-                function(sale) {
-
-                    return `
-                        <div class="order-card">
-
-                            <div class="order-top">
-
-                                <div>
-
-                                    <div class="order-number">
-                                        🧾 فروش حضوری
-                                    </div>
-
-                                    <div class="order-date">
-                                        ${escapeHtml(
-                                            sale.date
-                                        )}
-                                    </div>
-
-                                </div>
-
-                                <div class="status status-ready">
-                                    ${
-                                        escapeHtml(
-                                            sale.paymentMethod ||
-                                            "نقدی"
-                                        )
-                                    }
-                                </div>
-
-                            </div>
-
-
-                            <div class="order-info">
-
-                                <div>
-                                    👤
-                                    <b>مشتری:</b>
-                                    ${escapeHtml(
-                                        sale.customerName ||
-                                        "بدون نام"
-                                    )}
-                                </div>
-
-                                <div>
-                                    📞
-                                    <b>تماس:</b>
-                                    ${escapeHtml(
-                                        sale.customerPhone ||
-                                        "-"
-                                    )}
-                                </div>
-
-                                <div>
-                                    🍞
-                                    <b>محصول:</b>
-                                    ${escapeHtml(
-                                        sale.product
-                                    )}
-                                </div>
-
-                                <div>
-                                    ⚖️
-                                    <b>وزن/تعداد:</b>
-                                    ${escapeHtml(
-                                        sale.weight
-                                    )}
-                                </div>
-
-                            </div>
-
-
-                            <div class="order-total">
-                                مبلغ:
-                                ${money(
-                                    sale.total
-                                )}
-                            </div>
-
-                        </div>
-                    `;
-
-                }
-            )
-            .join("");
-
-    }
-
-
-    $("refreshSales")
-        .addEventListener(
-            "click",
-            loadSales
-        );
-
-
-    /*
-     * LOAD ALL
-     */
-
-    async function loadAll() {
-
-        await loadOrders();
-
-        await loadProducts();
-
-        await loadSales();
-
-        calculateSaleTotal();
-
-    }
-
-
-    /*
-     * AUTO LOGIN
-     */
+function login() {
 
     if (
-        localStorage.getItem(
-            "nanak_admin_login"
-        ) === "true"
+        $("password").value ===
+        ADMIN_PASSWORD
     ) {
+
+        localStorage.setItem(
+            "nanak_admin_login",
+            "true"
+        );
+
 
         $("loginPage")
             .classList
@@ -2516,9 +1265,1925 @@
 
         loadAll();
 
+    } else {
+
+        $("loginError")
+            .textContent =
+            "رمز عبور اشتباه است.";
+
     }
+
+}
+
+
+$("loginButton")
+    .addEventListener(
+        "click",
+        login
+    );
+
+
+$("password")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                login();
+
+            }
+
+        }
+    );
+
+
+$("logoutButton")
+    .addEventListener(
+        "click",
+        function() {
+
+            localStorage.removeItem(
+                "nanak_admin_login"
+            );
+
+            location.reload();
+
+        }
+    );
+
+
+/* =========================
+   ORDERS
+========================= */
+
+let currentOrders = [];
+
+
+async function loadOrders() {
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/orders"
+            );
+
+
+        currentOrders =
+            Array.isArray(
+                data.orders
+            )
+                ? data.orders
+                : [];
+
+
+        renderOrders(
+            currentOrders
+        );
+
+
+        updateStats(
+            currentOrders
+        );
+
+    } catch(error) {
+
+        $("ordersList")
+            .innerHTML =
+            `
+            <div class="empty">
+                ❌ اتصال به سرور برقرار نشد.
+                <br><br>
+                ${escapeHtml(
+                    error.message
+                )}
+            </div>
+            `;
+
+    }
+
+}
+
+
+function statusClass(status) {
+
+    if (
+        status === "جدید"
+    ) {
+        return "status-new";
+    }
+
+    if (
+        status ===
+        "در حال آماده‌سازی"
+    ) {
+        return "status-preparing";
+    }
+
+    if (
+        status ===
+        "آماده تحویل"
+    ) {
+        return "status-ready";
+    }
+
+    return "status-done";
+
+}
+
+
+function renderOrders(
+    orders
+) {
+
+    const list =
+        $("ordersList");
+
+
+    if (
+        orders.length === 0
+    ) {
+
+        list.innerHTML =
+            `
+            <div class="empty">
+                📭 هنوز سفارشی ثبت نشده است.
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        orders.map(
+            function(order) {
+
+                return `
+                <div class="order-card">
+
+                    <div class="order-top">
+
+                        <div>
+
+                            <div class="order-number">
+                                🧾 ${escapeHtml(
+                                    order.orderNumber
+                                )}
+                            </div>
+
+                            <div class="order-date">
+                                ${escapeHtml(
+                                    order.date
+                                )}
+                            </div>
+
+                        </div>
+
+                        <div class="status ${statusClass(
+                            order.status
+                        )}">
+                            ${escapeHtml(
+                                order.status ||
+                                "جدید"
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-info">
+
+                        <div>
+                            👤 <b>مشتری:</b>
+                            ${escapeHtml(
+                                order.customerName
+                            )}
+                        </div>
+
+                        <div>
+                            📞 <b>تماس:</b>
+                            ${escapeHtml(
+                                order.customerPhone
+                            )}
+                        </div>
+
+                        <div>
+                            🍞 <b>محصول:</b>
+                            ${escapeHtml(
+                                order.product
+                            )}
+                        </div>
+
+                        <div>
+                            🔢 <b>تعداد:</b>
+                            ${escapeHtml(
+                                order.quantity
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-total">
+                        مبلغ کل:
+                        ${money(
+                            order.total
+                        )}
+                    </div>
+
+
+                    <div class="order-actions">
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="changeOrderStatus(
+                                '${escapeJs(
+                                    order.orderNumber
+                                )}',
+                                'جدید'
+                            )"
+                        >
+                            🆕 جدید
+                        </button>
+
+
+                        <button
+                            class="btn btn-warning"
+                            onclick="changeOrderStatus(
+                                '${escapeJs(
+                                    order.orderNumber
+                                )}',
+                                'در حال آماده‌سازی'
+                            )"
+                        >
+                            ⏳ آماده‌سازی
+                        </button>
+
+
+                        <button
+                            class="btn btn-success"
+                            onclick="changeOrderStatus(
+                                '${escapeJs(
+                                    order.orderNumber
+                                )}',
+                                'آماده تحویل'
+                            )"
+                        >
+                            ✅ آماده تحویل
+                        </button>
+
+
+                        <button
+                            class="btn btn-gray"
+                            onclick="changeOrderStatus(
+                                '${escapeJs(
+                                    order.orderNumber
+                                )}',
+                                'تحویل شد'
+                            )"
+                        >
+                            📦 تحویل شد
+                        </button>
+
+
+                        <button
+                            class="btn btn-danger"
+                            onclick="deleteOrder(
+                                '${escapeJs(
+                                    order.orderNumber
+                                )}'
+                            )"
+                        >
+                            🗑️ حذف
+                        </button>
+
+                    </div>
+
+                </div>
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+async function changeOrderStatus(
+    orderNumber,
+    status
+) {
+
+    try {
+
+        await apiRequest(
+            "/api/orders/" +
+            encodeURIComponent(
+                orderNumber
+            ),
+            {
+                method: "PUT",
+
+                body:
+                    JSON.stringify({
+                        status:
+                            status
+                    })
+            }
+        );
+
+
+        showMessage(
+            "وضعیت سفارش تغییر کرد."
+        );
+
+
+        await loadOrders();
+
+    } catch(error) {
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+async function deleteOrder(
+    orderNumber
+) {
+
+    if (
+        !confirm(
+            "آیا از حذف این سفارش مطمئن هستید؟"
+        )
+    ) {
+        return;
+    }
+
+
+    try {
+
+        await apiRequest(
+            "/api/orders/" +
+            encodeURIComponent(
+                orderNumber
+            ),
+            {
+                method: "DELETE"
+            }
+        );
+
+
+        showMessage(
+            "سفارش حذف شد."
+        );
+
+
+        await loadOrders();
+
+    } catch(error) {
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+async function deleteAllOrders() {
+
+    if (
+        !confirm(
+            "⚠️ تمام سفارش‌ها حذف می‌شوند.\n\nادامه می‌دهید؟"
+        )
+    ) {
+        return;
+    }
+
+
+    try {
+
+        await apiRequest(
+            "/api/orders",
+            {
+                method: "DELETE"
+            }
+        );
+
+
+        showMessage(
+            "تمام سفارش‌ها حذف شدند."
+        );
+
+
+        await loadOrders();
+
+    } catch(error) {
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+$("deleteAllOrders")
+    .addEventListener(
+        "click",
+        deleteAllOrders
+    );
+
+
+$("refreshOrders")
+    .addEventListener(
+        "click",
+        loadOrders
+    );
+
+
+/* =========================
+   STATS
+========================= */
+
+function updateStats(
+    orders
+) {
+
+    $("totalOrders")
+        .textContent =
+        numberFa(
+            orders.length
+        );
+
+
+    const newCount =
+        orders.filter(
+            order =>
+                order.status ===
+                "جدید"
+        ).length;
+
+
+    const preparingCount =
+        orders.filter(
+            order =>
+                order.status ===
+                "در حال آماده‌سازی"
+        ).length;
+
+
+    const total =
+        orders.reduce(
+            function(sum, order) {
+
+                return sum +
+                    Number(
+                        order.total || 0
+                    );
+
+            },
+            0
+        );
+
+
+    $("newOrders")
+        .textContent =
+        numberFa(
+            newCount
+        );
+
+
+    $("preparingOrders")
+        .textContent =
+        numberFa(
+            preparingCount
+        );
+
+
+    $("totalMoney")
+        .textContent =
+        money(
+            total
+        );
+
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+let products = [];
+
+
+async function loadProducts() {
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/products"
+            );
+
+
+        products =
+            Array.isArray(
+                data.products
+            )
+                ? data.products
+                : [];
+
+
+        renderProducts(
+            products
+        );
+
+
+        updateSaleProducts(
+            products
+        );
+
+    } catch(error) {
+
+        $("productsList")
+            .innerHTML =
+            `
+            <div class="empty">
+                ❌ خطا در دریافت محصولات
+            </div>
+            `;
+
+    }
+
+}
+
+
+function renderProducts(
+    products
+) {
+
+    if (
+        products.length === 0
+    ) {
+
+        $("productsList")
+            .innerHTML =
+            `
+            <div class="empty">
+                محصولی وجود ندارد.
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    $("productsList")
+        .innerHTML =
+        products.map(
+            function(product) {
+
+                return `
+                <div class="product-card">
+
+                    <div>
+
+                        <div class="product-name">
+                            🍞 ${escapeHtml(
+                                product.name
+                            )}
+                        </div>
+
+                        <div
+                            style="
+                            margin-top:6px;
+                            color:#777;
+                            font-size:13px;
+                            "
+                        >
+                            ${
+                                product.available
+                                ? "🟢 موجود"
+                                : "🔴 ناموجود"
+                            }
+                        </div>
+
+                    </div>
+
+
+                    <div class="product-controls">
+
+                        <input
+                            id="price-${escapeHtml(
+                                product.id
+                            )}"
+                            class="price-input"
+                            type="number"
+                            min="0"
+                            value="${Number(
+                                product.price || 0
+                            )}"
+                        >
+
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="saveProduct(
+                                '${escapeJs(
+                                    product.id
+                                )}'
+                            )"
+                        >
+                            💾 ذخیره
+                        </button>
+
+
+                        <button
+                            class="btn ${
+                                product.available
+                                ? "btn-danger"
+                                : "btn-success"
+                            }"
+                            onclick="toggleProduct(
+                                '${escapeJs(
+                                    product.id
+                                )}',
+                                ${
+                                    !product.available
+                                }
+                            )"
+                        >
+                            ${
+                                product.available
+                                ? "🔴 ناموجود"
+                                : "🟢 موجود"
+                            }
+                        </button>
+
+                    </div>
+
+                </div>
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+async function saveProduct(
+    id
+) {
+
+    const input =
+        $("price-" + id);
+
+
+    const price =
+        Number(
+            input.value
+        );
+
+
+    try {
+
+        await apiRequest(
+            "/api/products",
+            {
+                method: "PUT",
+
+                body:
+                    JSON.stringify({
+                        id: id,
+                        price: price
+                    })
+            }
+        );
+
+
+        showMessage(
+            "قیمت ذخیره شد."
+        );
+
+
+        await loadProducts();
+
+    } catch(error) {
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+async function toggleProduct(
+    id,
+    available
+) {
+
+    try {
+
+        await apiRequest(
+            "/api/products",
+            {
+                method: "PUT",
+
+                body:
+                    JSON.stringify({
+                        id: id,
+                        available:
+                            available
+                    })
+            }
+        );
+
+
+        showMessage(
+            available
+            ? "محصول موجود شد."
+            : "محصول ناموجود شد."
+        );
+
+
+        await loadProducts();
+
+    } catch(error) {
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+$("refreshProducts")
+    .addEventListener(
+        "click",
+        loadProducts
+    );
+
+
+/* =========================
+   SALES FORM
+========================= */
+
+function updateSaleProducts(
+    products
+) {
+
+    const select =
+        $("saleProduct");
+
+
+    select.innerHTML =
+        "";
+
+
+    products.forEach(
+        function(product) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                product.name;
+
+
+            option.textContent =
+                product.name;
+
+
+            option.dataset.price =
+                product.price || 0;
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    updateSalePrice();
+
+}
+
+
+function updateSalePrice() {
+
+    const select =
+        $("saleProduct");
+
+
+    const option =
+        select.options[
+            select.selectedIndex
+        ];
+
+
+    if (option) {
+
+        $("salePrice")
+            .value =
+            option.dataset.price || 0;
+
+    }
+
+
+    calculateSaleTotal();
+
+}
+
+
+$("saleProduct")
+    .addEventListener(
+        "change",
+        updateSalePrice
+    );
+
+
+function calculateSaleTotal() {
+
+    const weight =
+        Number(
+            $("saleWeight").value
+        ) || 0;
+
+
+    const price =
+        Number(
+            $("salePrice").value
+        ) || 0;
+
+
+    $("saleTotal")
+        .textContent =
+        "مبلغ کل: " +
+        money(
+            weight * price
+        );
+
+}
+
+
+$("saleWeight")
+    .addEventListener(
+        "input",
+        calculateSaleTotal
+    );
+
+
+$("salePrice")
+    .addEventListener(
+        "input",
+        calculateSaleTotal
+    );
+
+
+$("saleForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const weight =
+                Number(
+                    $("saleWeight").value
+                ) || 0;
+
+
+            const price =
+                Number(
+                    $("salePrice").value
+                ) || 0;
+
+
+            const total =
+                weight * price;
+
+
+            if (
+                weight <= 0
+            ) {
+
+                showMessage(
+                    "وزن یا تعداد را وارد کنید.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                await apiRequest(
+                    "/api/sales",
+                    {
+                        method: "POST",
+
+                        body:
+                            JSON.stringify({
+
+                                customerName:
+                                    $("saleCustomerName")
+                                        .value
+                                        .trim(),
+
+                                customerPhone:
+                                    $("saleCustomerPhone")
+                                        .value
+                                        .trim(),
+
+                                product:
+                                    $("saleProduct")
+                                        .value,
+
+                                weight:
+                                    weight,
+
+                                pricePerUnit:
+                                    price,
+
+                                total:
+                                    total,
+
+                                paymentMethod:
+                                    $("paymentMethod")
+                                        .value,
+
+                                description:
+                                    $("saleDescription")
+                                        .value
+                                        .trim()
+
+                            })
+                    }
+                );
+
+
+                showMessage(
+                    "فروش حضوری ثبت شد."
+                );
+
+
+                $("saleForm")
+                    .reset();
+
+
+                $("saleWeight")
+                    .value =
+                    "1";
+
+
+                updateSalePrice();
+
+
+                await loadSales();
+
+                await loadChart();
+
+            } catch(error) {
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   SALES HISTORY
+========================= */
+
+async function loadSales() {
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/sales"
+            );
+
+
+        const sales =
+            Array.isArray(
+                data.sales
+            )
+                ? data.sales
+                : [];
+
+
+        renderSales(
+            sales
+        );
+
+    } catch(error) {
+
+        $("salesList")
+            .innerHTML =
+            `
+            <div class="empty">
+                ❌ خطا در دریافت فروش‌ها
+            </div>
+            `;
+
+    }
+
+}
+
+
+function renderSales(
+    sales
+) {
+
+    if (
+        sales.length === 0
+    ) {
+
+        $("salesList")
+            .innerHTML =
+            `
+            <div class="empty">
+                📭 هنوز فروش حضوری ثبت نشده است.
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    $("salesList")
+        .innerHTML =
+        sales.map(
+            function(sale) {
+
+                return `
+                <div class="order-card">
+
+                    <div class="order-top">
+
+                        <div>
+
+                            <div class="order-number">
+                                🧾 فروش حضوری
+                            </div>
+
+                            <div class="order-date">
+                                ${escapeHtml(
+                                    sale.date
+                                )}
+                            </div>
+
+                        </div>
+
+                        <div class="status status-ready">
+                            ${escapeHtml(
+                                sale.paymentMethod ||
+                                "نقدی"
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-info">
+
+                        <div>
+                            👤 <b>مشتری:</b>
+                            ${escapeHtml(
+                                sale.customerName ||
+                                "بدون نام"
+                            )}
+                        </div>
+
+                        <div>
+                            📞 <b>تماس:</b>
+                            ${escapeHtml(
+                                sale.customerPhone ||
+                                "-"
+                            )}
+                        </div>
+
+                        <div>
+                            🍞 <b>محصول:</b>
+                            ${escapeHtml(
+                                sale.product
+                            )}
+                        </div>
+
+                        <div>
+                            ⚖️ <b>وزن/تعداد:</b>
+                            ${escapeHtml(
+                                sale.weight
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-total">
+                        مبلغ:
+                        ${money(
+                            sale.total
+                        )}
+                    </div>
+
+                </div>
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+$("refreshSales")
+    .addEventListener(
+        "click",
+        async function() {
+
+            await loadSales();
+
+            await loadChart();
+
+        }
+    );
+
+
+/* =========================
+   DAILY SALES CHART
+========================= */
+
+let chartSales = [];
+
+
+async function loadChart() {
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/sales"
+            );
+
+
+        chartSales =
+            Array.isArray(
+                data.sales
+            )
+                ? data.sales
+                : [];
+
+
+        drawSalesChart(
+            chartSales
+        );
+
+    } catch(error) {
+
+        console.log(
+            "Chart error:",
+            error
+        );
+
+    }
+
+}
+
+
+function getDateKey(
+    date
+) {
+
+    const d =
+        new Date(date);
+
+
+    if (
+        Number.isNaN(
+            d.getTime()
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    return (
+        d.getFullYear() +
+        "-" +
+        String(
+            d.getMonth() + 1
+        ).padStart(2, "0") +
+        "-" +
+        String(
+            d.getDate()
+        ).padStart(2, "0")
+    );
+
+}
+
+
+function makeDayKey(
+    date
+) {
+
+    return (
+        date.getFullYear() +
+        "-" +
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0") +
+        "-" +
+        String(
+            date.getDate()
+        ).padStart(2, "0")
+    );
+
+}
+
+
+function shortDate(
+    date
+) {
+
+    return (
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0") +
+        "/" +
+        String(
+            date.getDate()
+        ).padStart(2, "0")
+    );
+
+}
+
+
+function drawSalesChart(
+    sales
+) {
+
+    const canvas =
+        $("salesChart");
+
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const dpr =
+        window.devicePixelRatio ||
+        1;
+
+
+    const width =
+        Math.max(
+            rect.width,
+            700
+        );
+
+
+    const height =
+        360;
+
+
+    canvas.width =
+        width * dpr;
+
+
+    canvas.height =
+        height * dpr;
+
+
+    canvas.style.height =
+        height + "px";
+
+
+    ctx.scale(
+        dpr,
+        dpr
+    );
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+     * ۷ روز اخیر
+     */
+
+    const days = [];
+
+
+    for (
+        let i = 6;
+        i >= 0;
+        i--
+    ) {
+
+        const date =
+            new Date();
+
+
+        date.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        date.setDate(
+            date.getDate() - i
+        );
+
+
+        days.push({
+            date: date,
+            key: makeDayKey(date),
+            value: 0,
+            count: 0
+        });
+
+    }
+
+
+    /*
+     * جمع فروش هر روز
+     */
+
+    sales.forEach(
+        function(sale) {
+
+            let date = null;
+
+
+            if (
+                sale.timestamp
+            ) {
+
+                date =
+                    new Date(
+                        sale.timestamp
+                    );
+
+            }
+
+
+            if (
+                !date ||
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            const key =
+                makeDayKey(
+                    date
+                );
+
+
+            const day =
+                days.find(
+                    function(item) {
+                        return item.key === key;
+                    }
+                );
+
+
+            if (day) {
+
+                day.value +=
+                    Number(
+                        sale.total || 0
+                    );
+
+                day.count++;
+
+            }
+
+        }
+    );
+
+
+    const values =
+        days.map(
+            day =>
+                day.value
+        );
+
+
+    const maxValue =
+        Math.max(
+            ...values,
+            1
+        );
+
+
+    const left =
+        70;
+
+    const right =
+        25;
+
+    const top =
+        25;
+
+    const bottom =
+        55;
+
+
+    const chartWidth =
+        width -
+        left -
+        right;
+
+
+    const chartHeight =
+        height -
+        top -
+        bottom;
+
+
+    /*
+     * پس زمینه
+     */
+
+    ctx.fillStyle =
+        "#fff";
+
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+     * خطوط افقی
+     */
+
+    ctx.strokeStyle =
+        "#eadfd2";
+
+    ctx.lineWidth =
+        1;
+
+
+    for (
+        let i = 0;
+        i <= 5;
+        i++
+    ) {
+
+        const y =
+            top +
+            chartHeight -
+            (
+                chartHeight *
+                i /
+                5
+            );
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            left,
+            y
+        );
+
+        ctx.lineTo(
+            width - right,
+            y
+        );
+
+        ctx.stroke();
+
+
+        const value =
+            maxValue *
+            i /
+            5;
+
+
+        ctx.fillStyle =
+            "#777";
+
+        ctx.font =
+            "12px Tahoma";
+
+        ctx.textAlign =
+            "right";
+
+
+        ctx.fillText(
+            moneyShort(value),
+            left - 8,
+            y + 4
+        );
+
+    }
+
+
+    /*
+     * خط نمودار
+     */
+
+    ctx.beginPath();
+
+
+    days.forEach(
+        function(day, index) {
+
+            const x =
+                left +
+                (
+                    chartWidth *
+                    index /
+                    (
+                        days.length - 1
+                    )
+                );
+
+
+            const y =
+                top +
+                chartHeight -
+                (
+                    day.value /
+                    maxValue *
+                    chartHeight
+                );
+
+
+            if (
+                index === 0
+            ) {
+
+                ctx.moveTo(
+                    x,
+                    y
+                );
+
+            } else {
+
+                ctx.lineTo(
+                    x,
+                    y
+                );
+
+            }
+
+        }
+    );
+
+
+    ctx.strokeStyle =
+        "#8b4f25";
+
+    ctx.lineWidth =
+        4;
+
+    ctx.lineJoin =
+        "round";
+
+    ctx.lineCap =
+        "round";
+
+    ctx.stroke();
+
+
+    /*
+     * نقاط
+     */
+
+    days.forEach(
+        function(day, index) {
+
+            const x =
+                left +
+                (
+                    chartWidth *
+                    index /
+                    (
+                        days.length - 1
+                    )
+                );
+
+
+            const y =
+                top +
+                chartHeight -
+                (
+                    day.value /
+                    maxValue *
+                    chartHeight
+                );
+
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                6,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.fillStyle =
+                "#b66b2d";
+
+            ctx.fill();
+
+
+            ctx.strokeStyle =
+                "#fff";
+
+            ctx.lineWidth =
+                2;
+
+            ctx.stroke();
+
+
+            /*
+             * مبلغ بالای نقطه
+             */
+
+            if (
+                day.value > 0
+            ) {
+
+                ctx.fillStyle =
+                    "#6d3c1d";
+
+                ctx.font =
+                    "bold 11px Tahoma";
+
+                ctx.textAlign =
+                    "center";
+
+
+                ctx.fillText(
+                    moneyShort(
+                        day.value
+                    ),
+                    x,
+                    y - 12
+                );
+
+            }
+
+
+            /*
+             * تاریخ
+             */
+
+            ctx.fillStyle =
+                "#777";
+
+            ctx.font =
+                "12px Tahoma";
+
+            ctx.textAlign =
+                "center";
+
+
+            ctx.fillText(
+                shortDate(
+                    day.date
+                ),
+                x,
+                height - 25
+            );
+
+        }
+    );
+
+
+    /*
+     * خلاصه
+     */
+
+    const today =
+        days[
+            days.length - 1
+        ].value;
+
+
+    const week =
+        days.reduce(
+            function(sum, day) {
+                return sum + day.value;
+            },
+            0
+        );
+
+
+    const count =
+        days.reduce(
+            function(sum, day) {
+                return sum + day.count;
+            },
+            0
+        );
+
+
+    $("todaySales")
+        .textContent =
+        money(today);
+
+
+    $("weekSales")
+        .textContent =
+        money(week);
+
+
+    $("weekSaleCount")
+        .textContent =
+        numberFa(count);
+
+}
+
+
+function moneyShort(
+    value
+) {
+
+    value =
+        Number(
+            value || 0
+        );
+
+
+    if (
+        value >= 1000000
+    ) {
+
+        return (
+            (
+                value / 1000000
+            ).toFixed(1)
+        ) +
+        "م";
+
+    }
+
+
+    if (
+        value >= 1000
+    ) {
+
+        return (
+            Math.round(
+                value / 1000
+            )
+        ) +
+        "هزار";
+
+    }
+
+
+    return Math.round(
+        value
+    ).toLocaleString(
+        "fa-IR"
+    );
+
+}
+
+
+$("refreshChart")
+    .addEventListener(
+        "click",
+        loadChart
+    );
+
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        if (
+            chartSales.length
+        ) {
+
+            drawSalesChart(
+                chartSales
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   LOAD ALL
+========================= */
+
+async function loadAll() {
+
+    await loadOrders();
+
+    await loadProducts();
+
+    await loadSales();
+
+    await loadChart();
+
+    calculateSaleTotal();
+
+}
+
+
+/* =========================
+   AUTO LOGIN
+========================= */
+
+if (
+    localStorage.getItem(
+        "nanak_admin_login"
+    ) === "true"
+) {
+
+    $("loginPage")
+        .classList
+        .add("hidden");
+
+
+    $("adminPage")
+        .classList
+        .remove("hidden");
+
+
+    loadAll();
+
+}
 
 </script>
 
 </body>
 </html>
+```
