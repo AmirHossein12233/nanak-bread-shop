@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>نانک | نان خانگی کنجدی</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background: #fff8ed;
+
+            color: #3f2a1d;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #d97706,
+                    #b45309
+                );
+
+            color: white;
+
+            padding: 18px 15px;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 42px;
+        }
+
+        .logo h1 {
+            margin: 0;
+
+            font-size: 25px;
+        }
+
+        .logo small {
+            display: block;
+
+            margin-top: 4px;
+
+            opacity: .9;
+        }
+
+        .admin-link {
+            color: white;
+
+            text-decoration: none;
+
+            background:
+                rgba(255,255,255,.16);
+
+            padding: 10px 14px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1100px;
+
+            margin: 25px auto 0;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: white;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(80,45,15,.08);
+        }
+
+        .hero-icon {
+            font-size: 70px;
+        }
+
+        .hero h2 {
+            margin: 10px 0;
+
+            font-size: 28px;
+        }
+
+        .hero p {
+            color: #777;
+
+            line-height: 2;
+
+            margin: 0;
+        }
+
+        /* =========================
+           PRODUCT
+        ========================= */
+
+        .container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 25px 15px 50px;
+        }
+
+        .product-card {
+            max-width: 650px;
+
+            margin: auto;
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(80,45,15,.08);
+        }
+
+        .product-image {
+            height: 220px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0d5,
+                    #ffe0a8
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 110px;
+
+            margin-bottom: 20px;
+        }
+
+        .product-title {
+            font-size: 24px;
+
+            margin: 0 0 8px;
+        }
+
+        .product-description {
+            color: #777;
+
+            line-height: 1.9;
+
+            margin-bottom: 20px;
+        }
+
+        .availability {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+        .available {
+            background: #dcfce7;
+
+            color: #15803d;
+        }
+
+        .unavailable {
+            background: #fee2e2;
+
+            color: #b91c1c;
+        }
+
+        /* =========================
+           PRICE
+        ========================= */
+
+        .price-box {
+            background: #fff8ed;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            text-align: center;
+
+            margin-bottom: 20px;
+        }
+
+        .price-label {
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+        .price {
+            color: #d97706;
+
+            font-size: 28px;
+
+            font-weight: bold;
+        }
+
+        .price-unit {
+            font-size: 14px;
+
+            color: #777;
+        }
+
+        /* =========================
+           QUANTITY
+        ========================= */
+
+        .quantity-title {
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+        .quantity-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+        }
+
+        .quantity-button {
+            width: 45px;
+
+            height: 45px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #fff0dc;
+
+            color: #b45309;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            flex: 1;
+
+            height: 45px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            font-size: 18px;
+
+            outline: none;
+        }
+
+        /* =========================
+           TOTAL
+        ========================= */
+
+        .total-box {
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7e8,
+                    #ffedcc
+                );
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            margin-bottom: 15px;
+        }
+
+        .total-box span {
+            display: block;
+
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+        .total-price {
+            color: #d97706;
+
+            font-size: 30px;
+
+            font-weight: bold;
+        }
+
+        /* =========================
+           ORDER BUTTON
+        ========================= */
+
+        .order-button {
+            width: 100%;
+
+            border: none;
+
+            padding: 16px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #16a34a,
+                    #15803d
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .order-button:disabled {
+            background: #aaa;
+
+            cursor: not-allowed;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info {
+            margin-top: 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+        .info-box {
+            background: white;
+
+            border-radius: 17px;
+
+            padding: 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(80,45,15,.05);
+        }
+
+        .info-icon {
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+        .info-box strong {
+            display: block;
+
+            margin-bottom: 5px;
+        }
+
+        .info-box span {
+            color: #777;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           FORM MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0,0,0,.55);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 15px;
+
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+
+            max-width: 500px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close {
+            border: none;
+
+            background: #f3f3f3;
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 50%;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 11px;
+
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #d97706;
+        }
+
+        .modal-summary {
+            background: #fff8ed;
+
+            padding: 15px;
+
+            border-radius: 13px;
+
+            text-align: center;
+
+            margin: 20px 0;
+        }
+
+        .modal-summary strong {
+            color: #d97706;
+
+            font-size: 23px;
+        }
+
+        .submit-order {
+            width: 100%;
+
+            border: none;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #d97706;
+
+            color: white;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #3f2a1d;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px 15px;
+
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+
+            font-size: 13px;
+
+            opacity: .9;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .header-inner {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            .hero h2 {
+                font-size: 23px;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                padding: 18px;
+            }
+
+            .product-image {
+                height: 180px;
+
+                font-size: 85px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🍞
+            </div>
+
+            <div>
+
+                <h1>
+                    نانک
+                </h1>
+
+                <small>
+                    نان خانگی تازه
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="admin.html"
+            class="admin-link"
+        >
+
+            🔐 مدیریت
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-icon">
+        🍞
+    </div>
+
+    <h2>
+        نان خانگی کنجدی تازه
+    </h2>
+
+    <p>
+        نان تازه و خوشمزه را حضوری از فروشگاه نانک تهیه کنید.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     PRODUCT
+========================= -->
+
+<main class="container">
+
+    <div class="product-card">
+
+
+        <div class="product-image">
+            🍞
+        </div>
+
+
+        <h2 class="product-title">
+            نان خانگی کنجدی
+        </h2>
+
+
+        <p class="product-description">
+            نان خانگی تازه و خوش‌طعم با کنجد.
+            برای خرید حضوری می‌توانید سفارش خود را
+            از طریق سایت ثبت کنید و سپس برای تحویل
+            به محل فروش مراجعه کنید.
+        </p>
+
+
+        <div
+            id="availability"
+            class="availability available"
+        >
+            ✓ موجود است
+        </div>
+
+
+        <!-- قیمت -->
+
+        <div class="price-box">
+
+            <div class="price-label">
+                قیمت هر عدد
+            </div>
+
+            <div
+                id="unitPrice"
+                class="price"
+            >
+                ۱۵٬۰۰۰ تومان
+            </div>
+
+        </div>
+
+
+        <!-- تعداد -->
+
+        <div class="quantity-title">
+            تعداد نان
+        </div>
+
+
+        <div class="quantity-box">
+
+            <button
+                class="quantity-button"
+                onclick="changeQuantity(-1)"
+            >
+                −
+            </button>
+
+
+            <input
+                id="quantity"
+                class="quantity-input"
+                type="number"
+                value="1"
+                min="1"
+                max="100"
+                oninput="calculateTotal()"
+            >
+
+
+            <button
+                class="quantity-button"
+                onclick="changeQuantity(1)"
+            >
+                +
+            </button>
+
+        </div>
+
+
+        <!-- مبلغ کل -->
+
+        <div class="total-box">
+
+            <span>
+                مبلغ کل
+            </span>
+
+            <div
+                id="totalPrice"
+                class="total-price"
+            >
+                ۱۵٬۰۰۰ تومان
+            </div>
+
+        </div>
+
+
+        <!-- ثبت سفارش -->
+
+        <button
+            id="orderButton"
+            class="order-button"
+            onclick="openOrderForm()"
+        >
+
+            🛒 ثبت سفارش
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =========================
+         INFO
+    ========================= -->
+
+    <div class="info">
+
+
+        <div class="info-box">
+
+            <div class="info-icon">
+                🥖
+            </div>
+
+            <strong>
+                تازه و خانگی
+            </strong>
+
+            <span>
+                تهیه‌شده با کیفیت مناسب
+            </span>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-icon">
+                📍
+            </div>
+
+            <strong>
+                خرید حضوری
+            </strong>
+
+            <span>
+                تحویل حضوری در خمینی‌شهر
+            </span>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-icon">
+                🕐
+            </div>
+
+            <strong>
+                هماهنگی قبل از مراجعه
+            </strong>
+
+            <span>
+                برای اطمینان از موجودی سفارش ثبت کنید
+            </span>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     ORDER MODAL
+========================= -->
+
+<div
+    id="orderModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+            <h2>
+                🛒 ثبت سفارش
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeOrderForm()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                نام مشتری *
+            </label>
+
+            <input
+                id="customerName"
+                type="text"
+                placeholder="نام و نام خانوادگی"
+                maxlength="60"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                شماره تماس *
+            </label>
+
+            <input
+                id="customerPhone"
+                type="tel"
+                placeholder="مثلاً 09933896831"
+                maxlength="20"
+                inputmode="tel"
+            >
+
+        </div>
+
+
+        <div class="modal-summary">
+
+            تعداد:
+
+            <strong id="summaryQuantity">
+                ۱
+            </strong>
+
+            عدد
+
+            <br>
+
+            مبلغ:
+
+            <strong id="summaryTotal">
+                ۱۵٬۰۰۰ تومان
+            </strong>
+
+        </div>
+
+
+        <button
+            class="submit-order"
+            onclick="submitOrder()"
+        >
+
+            ✅ ثبت سفارش
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        🍞 نانک | نان خانگی کنجدی
+    </p>
+
+    <p>
+        خرید حضوری در خمینی‌شهر
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* =========================
+   PRODUCT DATA
+========================= */
+
+let product = {
+
+    name:
+        "نان خانگی کنجدی",
+
+    price:
+        15000,
+
+    available:
+        true
+
+};
+
+
+/* =========================
+   LOAD PRODUCT
+========================= */
+
+function loadProduct() {
+
+    const saved =
+        localStorage.getItem(
+            "sesameBread"
+        );
+
+
+    if (saved) {
+
+        try {
+
+            product = {
+                ...product,
+                ...JSON.parse(saved)
+            };
+
+        } catch (error) {
+
+            console.log(
+                "خطا در خواندن اطلاعات محصول"
+            );
+
+        }
+
+    }
+
+
+    updateProduct();
+
+}
+
+
+/* =========================
+   UPDATE PRODUCT
+========================= */
+
+function updateProduct() {
+
+    document.getElementById(
+        "unitPrice"
+    ).textContent =
+        formatPrice(
+            product.price
+        )
+        +
+        " تومان";
+
+
+    const availability =
+        document.getElementById(
+            "availability"
+        );
+
+
+    const button =
+        document.getElementById(
+            "orderButton"
+        );
+
+
+    if (
+        product.available
+    ) {
+
+        availability.textContent =
+            "✓ موجود است";
+
+        availability.className =
+            "availability available";
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "🛒 ثبت سفارش";
+
+    } else {
+
+        availability.textContent =
+            "✕ فعلاً ناموجود است";
+
+        availability.className =
+            "availability unavailable";
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "✕ محصول ناموجود است";
+
+    }
+
+
+    calculateTotal();
+
+}
+
+
+/* =========================
+   FORMAT
+========================= */
+
+function formatPrice(value) {
+
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "fa-IR"
+    );
+
+}
+
+
+/* =========================
+   QUANTITY
+========================= */
+
+function changeQuantity(
+    amount
+) {
+
+    const input =
+        document.getElementById(
+            "quantity"
+        );
+
+
+    let quantity =
+        Number(
+            input.value
+        ) || 1;
+
+
+    quantity += amount;
+
+
+    if (quantity < 1) {
+
+        quantity = 1;
+
+    }
+
+
+    if (quantity > 100) {
+
+        quantity = 100;
+
+    }
+
+
+    input.value =
+        quantity;
+
+
+    calculateTotal();
+
+}
+
+
+/* =========================
+   CALCULATE TOTAL
+========================= */
+
+function calculateTotal() {
+
+    const input =
+        document.getElementById(
+            "quantity"
+        );
+
+
+    let quantity =
+        Number(
+            input.value
+        ) || 1;
+
+
+    if (quantity < 1) {
+
+        quantity = 1;
+
+        input.value = 1;
+
+    }
+
+
+    if (quantity > 100) {
+
+        quantity = 100;
+
+        input.value = 100;
+
+    }
+
+
+    const total =
+        quantity *
+        Number(
+            product.price || 0
+        );
+
+
+    document.getElementById(
+        "totalPrice"
+    ).textContent =
+        formatPrice(
+            total
+        )
+        +
+        " تومان";
+
+
+    document.getElementById(
+        "summaryQuantity"
+    ).textContent =
+        quantity.toLocaleString(
+            "fa-IR"
+        );
+
+
+    document.getElementById(
+        "summaryTotal"
+    ).textContent =
+        formatPrice(
+            total
+        )
+        +
+        " تومان";
+
+}
+
+
+/* =========================
+   OPEN FORM
+========================= */
+
+function openOrderForm() {
+
+    if (
+        !product.available
+    ) {
+
+        alert(
+            "این محصول در حال حاضر ناموجود است."
+        );
+
+        return;
+
+    }
+
+
+    calculateTotal();
+
+
+    document.getElementById(
+        "orderModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   CLOSE FORM
+========================= */
+
+function closeOrderForm() {
+
+    document.getElementById(
+        "orderModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   SUBMIT ORDER
+========================= */
+
+function submitOrder() {
+
+    const name =
+        document.getElementById(
+            "customerName"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "customerPhone"
+        ).value.trim();
+
+
+    const quantity =
+        Number(
+            document.getElementById(
+                "quantity"
+            ).value
+        ) || 1;
+
+
+    if (!name) {
+
+        alert(
+            "لطفاً نام مشتری را وارد کنید."
+        );
+
+        return;
+
+    }
+
+
+    if (!phone) {
+
+        alert(
+            "لطفاً شماره تماس را وارد کنید."
+        );
+
+        return;
+
+    }
+
+
+    const total =
+        quantity *
+        Number(
+            product.price || 0
+        );
+
+
+    const now =
+        new Date();
+
+
+    const order = {
+
+        id:
+            Date.now(),
+
+        orderNumber:
+            "NK-" +
+            Date.now()
+                .toString()
+                .slice(-6),
+
+        date:
+            now.toLocaleString(
+                "fa-IR"
+            ),
+
+        customerName:
+            name,
+
+        customerPhone:
+            phone,
+
+        product:
+            product.name,
+
+        quantity:
+            quantity,
+
+        unitPrice:
+            Number(
+                product.price
+            ),
+
+        total:
+            total,
+
+        status:
+            "جدید",
+
+        description:
+            "سفارش برای خرید حضوری",
+
+        type:
+            "حضوری"
+
+    };
+
+
+    let orders = [];
+
+
+    try {
+
+        orders =
+            JSON.parse(
+                localStorage.getItem(
+                    "breadOrders"
+                )
+            ) || [];
+
+    } catch (error) {
+
+        orders = [];
+
+    }
+
+
+    orders.unshift(
+        order
+    );
+
+
+    localStorage.setItem(
+        "breadOrders",
+        JSON.stringify(
+            orders
+        )
+    );
+
+
+    closeOrderForm();
+
+
+    document.getElementById(
+        "customerName"
+    ).value = "";
+
+
+    document.getElementById(
+        "customerPhone"
+    ).value = "";
+
+
+    alert(
+        "سفارش شما با موفقیت ثبت شد.\n\n" +
+        "شماره سفارش: " +
+        order.orderNumber +
+        "\n" +
+        "مبلغ: " +
+        formatPrice(total) +
+        " تومان\n\n" +
+        "لطفاً برای تحویل حضوری هماهنگ کنید."
+    );
+
+}
+
+
+/* =========================
+   CLICK OUTSIDE MODAL
+========================= */
+
+document.getElementById(
+    "orderModal"
+).addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target ===
+            this
+        ) {
+
+            closeOrderForm();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   STORAGE SYNC
+========================= */
+
+window.addEventListener(
+    "storage",
+    function(event) {
+
+        if (
+            event.key ===
+            "sesameBread"
+        ) {
+
+            loadProduct();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   START
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadProduct();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

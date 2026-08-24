@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ورود مدیریت | نانک</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        .login-page {
+            min-height: 70vh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 15px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+
+            background: white;
+
+            padding: 32px 25px;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(80, 45, 15, 0.13);
+
+            text-align: center;
+        }
+
+        .login-icon {
+            width: 90px;
+            height: 90px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #fff5df;
+
+            border-radius: 50%;
+
+            font-size: 50px;
+        }
+
+        .login-card h2 {
+            margin: 10px 0;
+
+            font-size: 27px;
+        }
+
+        .login-card p {
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+        .login-field {
+            margin-top: 20px;
+
+            text-align: right;
+        }
+
+        .login-field label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+        }
+
+        .login-field input {
+            width: 100%;
+
+            padding: 14px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 12px;
+
+            font-family: Tahoma, Arial, sans-serif;
+
+            font-size: 16px;
+
+            outline: none;
+
+            text-align: center;
+        }
+
+        .login-field input:focus {
+            border-color: #d97706;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(217, 119, 6, 0.10);
+        }
+
+        .login-button {
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            margin-top: 20px;
+
+            border-radius: 12px;
+
+            background: #d97706;
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #b45309;
+        }
+
+        .login-error {
+            display: none;
+
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+            border-radius: 10px;
+
+            padding: 12px;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+        }
+
+        .back-store {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #5b4636;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back-store:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        🍞
+    </div>
+
+    <h1>
+        نانک
+    </h1>
+
+    <p>
+        ورود به پنل مدیریت
+    </p>
+
+</header>
+
+
+<main class="login-page">
+
+
+    <div class="login-card">
+
+
+        <div class="login-icon">
+            🔐
+        </div>
+
+
+        <h2>
+            ورود مدیریت
+        </h2>
+
+
+        <p>
+            برای ورود به پنل مدیریت،
+            رمز عبور را وارد کنید.
+        </p>
+
+
+        <div class="login-field">
+
+            <label for="password">
+                رمز عبور
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="رمز عبور را وارد کنید"
+                autocomplete="current-password"
+            >
+
+        </div>
+
+
+        <button
+            class="login-button"
+            onclick="login()"
+        >
+            🔓 ورود به پنل
+        </button>
+
+
+        <div
+            id="loginError"
+            class="login-error"
+        >
+            ❌ رمز عبور اشتباه است.
+        </div>
+
+
+        <a
+            href="index.html"
+            class="back-store"
+        >
+            ← بازگشت به فروشگاه
+        </a>
+
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        🍞 نانک
+    </p>
+
+    <small>
+        فروش نان خانگی کنجدی
+    </small>
+
+</footer>
+
+
+<script>
+
+
+/* =========================
+   ADMIN PASSWORD
+========================= */
+
+const ADMIN_PASSWORD =
+    "123456";
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login() {
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    const error =
+        document.getElementById(
+            "loginError"
+        );
+
+
+    if (
+        password === ADMIN_PASSWORD
+    ) {
+
+        sessionStorage.setItem(
+            "adminLoggedIn",
+            "true"
+        );
+
+
+        window.location.href =
+            "admin.html";
+
+
+    } else {
+
+        error.style.display =
+            "block";
+
+
+        document.getElementById(
+            "password"
+        ).value = "";
+
+
+        document.getElementById(
+            "password"
+        ).focus();
+
+    }
+
+}
+
+
+/* =========================
+   ENTER KEY
+========================= */
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                login();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

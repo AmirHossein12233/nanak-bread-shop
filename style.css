@@ -1,0 +1,852 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    background:
+        radial-gradient(
+            circle at top,
+            #fff4df 0%,
+            #fff8ed 45%,
+            #f8eee0 100%
+        );
+    color: #3f2a1d;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #d97706,
+            #b45309
+        );
+    color: white;
+    text-align: center;
+    padding: 42px 20px 48px;
+    box-shadow:
+        0 8px 25px rgba(80, 45, 15, 0.18);
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+
+    top: -100px;
+    right: -70px;
+}
+
+.header::after {
+    content: "";
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border-radius: 50%;
+
+    bottom: -90px;
+    left: -50px;
+}
+
+.logo {
+    position: relative;
+    z-index: 1;
+
+    font-size: 68px;
+
+    margin-bottom: 8px;
+
+    filter:
+        drop-shadow(
+            0 5px 5px
+            rgba(0, 0, 0, 0.15)
+        );
+}
+
+.header h1 {
+    position: relative;
+    z-index: 1;
+
+    margin: 0;
+
+    font-size: 38px;
+
+    letter-spacing: 1px;
+}
+
+.header p {
+    position: relative;
+    z-index: 1;
+
+    margin: 12px 0 0;
+
+    font-size: 17px;
+
+    opacity: 0.95;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    min-height: 75vh;
+
+    padding:
+        45px 15px;
+}
+
+
+/* =========================
+   PRODUCT CONTAINER
+========================= */
+
+#productContainer {
+    width: 100%;
+
+    max-width: 500px;
+
+    margin: auto;
+}
+
+
+/* =========================
+   PRODUCT CARD
+========================= */
+
+.product-card {
+    width: 100%;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    padding:
+        32px 24px;
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(80, 45, 15, 0.13),
+
+        0 3px 10px
+        rgba(80, 45, 15, 0.05);
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(217, 119, 6, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 20px 50px
+        rgba(80, 45, 15, 0.17);
+}
+
+
+/* =========================
+   BREAD ICON
+========================= */
+
+.bread-icon {
+    width: 125px;
+    height: 125px;
+
+    margin:
+        0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff5df;
+
+    border-radius: 50%;
+
+    font-size: 75px;
+
+    box-shadow:
+        inset
+        0 0 0 8px
+        rgba(217, 119, 6, 0.05);
+}
+
+
+/* =========================
+   TAG
+========================= */
+
+.tag {
+    display: inline-block;
+
+    background: #fff7ed;
+
+    color: #c2410c;
+
+    padding:
+        9px 17px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+    border:
+        1px solid #fed7aa;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.product-card h2 {
+    font-size: 29px;
+
+    margin:
+        10px 0 12px;
+
+    color: #3f2a1d;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description {
+    color: #777;
+
+    line-height: 2;
+
+    font-size: 15px;
+
+    margin: 0;
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.price-box {
+    background:
+        linear-gradient(
+            135deg,
+            #fff8ed,
+            #fff1dc
+        );
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    margin:
+        25px 0 20px;
+
+    border:
+        1px solid #fde6c7;
+}
+
+.price-label {
+    display: block;
+
+    color: #777;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+.price {
+    color: #d97706;
+
+    font-size: 31px;
+
+    font-weight: bold;
+}
+
+.currency {
+    color: #8a5a32;
+
+    font-size: 15px;
+
+    margin-right: 4px;
+}
+
+
+/* =========================
+   AVAILABLE
+========================= */
+
+.available {
+    background: #ecfdf3;
+
+    color: #15803d;
+
+    border:
+        1px solid #bbf7d0;
+
+    border-radius: 13px;
+
+    padding: 14px;
+
+    font-weight: bold;
+
+    margin: 15px 0;
+}
+
+
+/* =========================
+   UNAVAILABLE
+========================= */
+
+.unavailable {
+    background: #fff1f2;
+
+    color: #b91c1c;
+
+    border:
+        1px solid #fecdd3;
+
+    border-radius: 13px;
+
+    padding: 14px;
+
+    font-weight: bold;
+
+    margin: 15px 0;
+}
+
+
+/* =========================
+   QUANTITY BOX
+========================= */
+
+.quantity-box {
+    margin-top: 20px;
+
+    background: #fff8ed;
+
+    border:
+        1px solid #fde6c7;
+
+    border-radius: 16px;
+
+    padding: 18px;
+}
+
+.quantity-box label {
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   QUANTITY CONTROLS
+========================= */
+
+.quantity-controls {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.quantity-controls button {
+    width: 45px;
+    height: 45px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #d97706;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.quantity-controls button:hover {
+    background: #b45309;
+
+    transform:
+        scale(1.04);
+}
+
+.quantity-controls button:active {
+    transform:
+        scale(0.95);
+}
+
+
+/* =========================
+   QUANTITY INPUT
+========================= */
+
+.quantity-controls input {
+    width: 75px;
+    height: 45px;
+
+    border:
+        1px solid #ddd;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    font-family: inherit;
+
+    outline: none;
+
+    background: white;
+}
+
+.quantity-controls input:focus {
+    border-color: #d97706;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(217, 119, 6, 0.10);
+}
+
+
+/* =========================
+   TOTAL PRICE
+========================= */
+
+.total-box {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 18px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid #ead9c4;
+}
+
+.total-box span {
+    color: #666;
+
+    font-size: 14px;
+}
+
+.total-box strong {
+    color: #d97706;
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   SHOP ONLY
+========================= */
+
+.shop-only {
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    font-weight: bold;
+
+    margin:
+        20px 0 0;
+
+    border:
+        1px solid #dbeafe;
+}
+
+.shop-only small {
+    display: block;
+
+    margin-top: 8px;
+
+    font-weight: normal;
+
+    font-size: 13px;
+
+    color: #4b6aa3;
+}
+
+
+/* =========================
+   CALL BUTTON
+========================= */
+
+.call-button {
+    display: block;
+
+    margin-top: 14px;
+
+    padding:
+        13px 18px;
+
+    background: #15803d;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+    transition:
+        0.2s ease;
+
+    box-shadow:
+        0 5px 12px
+        rgba(21, 128, 61, 0.15);
+}
+
+.call-button:hover {
+    background: #166534;
+
+    transform:
+        translateY(-2px);
+}
+
+.call-button:active {
+    transform:
+        scale(0.98);
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-box {
+    width: 100%;
+}
+
+.contact-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    text-align: right;
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    padding: 16px;
+
+    border-radius: 15px;
+
+    margin-top: 12px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(80, 45, 15, 0.07);
+
+    border:
+        1px solid
+        rgba(80, 45, 15, 0.05);
+}
+
+.contact-item > span {
+    width: 48px;
+    height: 48px;
+
+    min-width: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff3df;
+
+    border-radius: 13px;
+
+    font-size: 25px;
+}
+
+.contact-item strong {
+    font-size: 15px;
+
+    color: #3f2a1d;
+}
+
+.contact-item p {
+    margin:
+        5px 0 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   ADMIN LINK
+========================= */
+
+.admin-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin:
+        18px 0;
+
+    padding:
+        12px 22px;
+
+    background: #5b4636;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 6px 15px
+        rgba(63, 42, 29, 0.18);
+
+    transition:
+        0.2s ease;
+}
+
+.admin-link:hover {
+    background: #3f2a1d;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background:
+        linear-gradient(
+            135deg,
+            #3f2a1d,
+            #2d1c13
+        );
+
+    color: white;
+
+    text-align: center;
+
+    padding:
+        30px 15px;
+
+    margin-top: 20px;
+}
+
+footer p {
+    margin:
+        8px 0;
+
+    color: #f3dfca;
+}
+
+footer small {
+    color: #cdb9a5;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding:
+            34px 15px 40px;
+    }
+
+    .logo {
+        font-size: 58px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .header p {
+        font-size: 15px;
+    }
+
+    main {
+        padding:
+            30px 12px;
+    }
+
+    .product-card {
+        padding:
+            27px 18px;
+
+        border-radius: 23px;
+    }
+
+    .bread-icon {
+        width: 105px;
+        height: 105px;
+
+        font-size: 65px;
+    }
+
+    .product-card h2 {
+        font-size: 25px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 27px;
+    }
+
+    .contact-item {
+        padding: 14px;
+    }
+
+    .quantity-box {
+        padding: 15px;
+    }
+
+    .total-box {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .total-box strong {
+        font-size: 21px;
+    }
+
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 380px) {
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .product-card h2 {
+        font-size: 23px;
+    }
+
+    .price {
+        font-size: 25px;
+    }
+
+    .bread-icon {
+        width: 95px;
+        height: 95px;
+
+        font-size: 58px;
+    }
+
+    .quantity-controls button {
+        width: 42px;
+        height: 42px;
+    }
+
+    .quantity-controls input {
+        width: 65px;
+        height: 42px;
+    }
+
+    .call-button {
+        font-size: 14px;
+
+        padding:
+            12px 15px;
+    }
+
+}
