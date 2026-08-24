@@ -1,8 +1,8 @@
-
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const url = require("url");
+const crypto = require("crypto");
 
 const HOST = "0.0.0.0";
 const PORT = process.env.PORT || 3000;
@@ -13,546 +13,1420 @@ const ORDERS_FILE = path.join(ROOT, "orders.json");
 const SALES_FILE = path.join(ROOT, "sales.json");
 const PRODUCTS_FILE = path.join(ROOT, "products.json");
 
+/*
+==================================================
+تنظیمات پنل مدیریت
+==================================================
+*/
+
+const ADMIN_PASSWORD =
+    process.env.ADMIN_PASSWORD || "Nanak1405";
+
+/*
+==================================================
+فایل‌ها
+==================================================
+*/
+
 function createFile(file, data) {
+
     if (!fs.existsSync(file)) {
-        fs.writeFileSync(file, JSON.stringify(data, null, 2), "utf8");
+
+        fs.writeFileSync(
+            file,
+            JSON.stringify(data, null, 2),
+            "utf8"
+        );
+
     }
+
 }
 
-createFile(ORDERS_FILE, []);
-createFile(SALES_FILE, []);
-createFile(PRODUCTS_FILE, [
-    {
-        id: "sesameBread",
-        name: "نان خانگی کنجدی",
-        price: 15000,
-        available: true
+createFile(
+    ORDERS_FILE,
+    []
+);
+
+createFile(
+    SALES_FILE,
+    []
+);
+
+createFile(
+    PRODUCTS_FILE,
+    [
+        {
+            id: "sesameBread",
+            name: "نان خانگی کنجدی",
+            price: 15000,
+            available: true
+        }
+    ]
+);
+
+/*
+==================================================
+توکن‌های ورود
+==================================================
+*/
+
+const activeTokens = new Set();
+
+function createToken() {
+
+    return crypto.randomBytes(32).toString("hex");
+
+}
+
+function getToken(request) {
+
+    const auth =
+        request.headers.authorization || "";
+
+    if (
+        auth.startsWith("Bearer ")
+    ) {
+
+        return auth.substring(7).trim();
+
     }
-]);
+
+    return null;
+
+}
+
+function isAdmin(request) {
+
+    const token =
+        getToken(request);
+
+    return (
+        token &&
+        activeTokens.has(token)
+    );
+
+}
+
+/*
+==================================================
+JSON
+==================================================
+*/
 
 function readJSON(file, fallback) {
+
     try {
+
         if (!fs.existsSync(file)) {
+
             return fallback;
+
         }
 
         return JSON.parse(
-            fs.readFileSync(file, "utf8")
+            fs.readFileSync(
+                file,
+                "utf8"
+            )
         );
 
     } catch (error) {
-        console.log("خطا در خواندن فایل:", file);
+
+        console.log(
+            "خطا در خواندن فایل:",
+            file
+        );
+
         return fallback;
+
     }
+
 }
 
 function writeJSON(file, data) {
+
     fs.writeFileSync(
         file,
-        JSON.stringify(data, null, 2),
+        JSON.stringify(
+            data,
+            null,
+            2
+        ),
         "utf8"
     );
+
 }
+
+/*
+==================================================
+Content-Type
+==================================================
+*/
 
 function getContentType(filePath) {
 
-    const ext = path.extname(filePath).toLowerCase();
+    const ext =
+        path.extname(
+            filePath
+        ).toLowerCase();
 
     const types = {
-        ".html": "text/html; charset=utf-8",
-        ".css": "text/css; charset=utf-8",
-        ".js": "application/javascript; charset=utf-8",
-        ".json": "application/json; charset=utf-8",
-        ".xml": "application/xml; charset=utf-8",
-        ".txt": "text/plain; charset=utf-8",
-        ".png": "image/png",
-        ".jpg": "image/jpeg",
-        ".jpeg": "image/jpeg",
-        ".webp": "image/webp",
-        ".svg": "image/svg+xml",
-        ".ico": "image/x-icon"
+
+        ".html":
+            "text/html; charset=utf-8",
+
+        ".css":
+            "text/css; charset=utf-8",
+
+        ".js":
+            "application/javascript; charset=utf-8",
+
+        ".json":
+            "application/json; charset=utf-8",
+
+        ".xml":
+            "application/xml; charset=utf-8",
+
+        ".txt":
+            "text/plain; charset=utf-8",
+
+        ".png":
+            "image/png",
+
+        ".jpg":
+            "image/jpeg",
+
+        ".jpeg":
+            "image/jpeg",
+
+        ".webp":
+            "image/webp",
+
+        ".svg":
+            "image/svg+xml",
+
+        ".ico":
+            "image/x-icon"
+
     };
 
-    return types[ext] || "application/octet-stream";
+    return (
+        types[ext] ||
+        "application/octet-stream"
+    );
+
 }
 
-function sendJSON(response, statusCode, data) {
+/*
+==================================================
+ارسال JSON
+==================================================
+*/
 
-    response.writeHead(statusCode, {
-        "Content-Type": "application/json; charset=utf-8",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type"
-    });
+function sendJSON(
+    response,
+    statusCode,
+    data
+) {
 
-    response.end(JSON.stringify(data));
+    response.writeHead(
+        statusCode,
+        {
+            "Content-Type":
+                "application/json; charset=utf-8",
+
+            "Access-Control-Allow-Origin":
+                "*",
+
+            "Access-Control-Allow-Methods":
+                "GET, POST, PUT, DELETE, OPTIONS",
+
+            "Access-Control-Allow-Headers":
+                "Content-Type, Authorization"
+        }
+    );
+
+    response.end(
+        JSON.stringify(data)
+    );
+
 }
+
+/*
+==================================================
+خواندن Body
+==================================================
+*/
 
 function getRequestBody(request) {
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(
+        function(resolve, reject) {
 
-        let body = "";
+            let body = "";
 
-        request.on("data", function(chunk) {
-            body += chunk.toString();
+            request.on(
+                "data",
+                function(chunk) {
 
-            if (body.length > 1024 * 1024) {
-                reject(new Error("Request too large"));
-                request.destroy();
-            }
-        });
+                    body +=
+                        chunk.toString();
 
-        request.on("end", function() {
+                    if (
+                        body.length >
+                        1024 * 1024
+                    ) {
 
-            if (!body) {
-                resolve({});
-                return;
-            }
+                        reject(
+                            new Error(
+                                "Request too large"
+                            )
+                        );
 
-            try {
-                resolve(JSON.parse(body));
-            } catch (error) {
-                reject(new Error("JSON نامعتبر است"));
-            }
-        });
+                        request.destroy();
 
-        request.on("error", reject);
-    });
+                    }
+
+                }
+            );
+
+            request.on(
+                "end",
+                function() {
+
+                    if (!body) {
+
+                        resolve({});
+
+                        return;
+
+                    }
+
+                    try {
+
+                        resolve(
+                            JSON.parse(body)
+                        );
+
+                    } catch (error) {
+
+                        reject(
+                            new Error(
+                                "JSON نامعتبر است"
+                            )
+                        );
+
+                    }
+
+                }
+            );
+
+            request.on(
+                "error",
+                reject
+            );
+
+        }
+    );
+
 }
 
-const server = http.createServer(async function(request, response) {
+/*
+==================================================
+سرور
+==================================================
+*/
 
-    try {
-
-        const parsed = url.parse(request.url, true);
-
-        const pathname = parsed.pathname;
-        const method = request.method;
-
-        if (method === "OPTIONS") {
-
-            response.writeHead(204, {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type"
-            });
-
-            response.end();
-            return;
-        }
-
-        if (
-            pathname === "/api/health" &&
-            method === "GET"
+const server =
+    http.createServer(
+        async function(
+            request,
+            response
         ) {
 
-            sendJSON(response, 200, {
-                success: true,
-                message: "Nanak server is running"
-            });
+            try {
 
-            return;
-        }
+                const parsed =
+                    url.parse(
+                        request.url,
+                        true
+                    );
 
-        if (
-            pathname === "/api/products" &&
-            method === "GET"
-        ) {
+                const pathname =
+                    parsed.pathname;
 
-            const products = readJSON(
-                PRODUCTS_FILE,
-                []
-            );
+                const method =
+                    request.method;
 
-            sendJSON(response, 200, {
-                success: true,
-                products: products
-            });
+                /*
+                ==========================================
+                OPTIONS
+                ==========================================
+                */
 
-            return;
-        }
+                if (
+                    method === "OPTIONS"
+                ) {
 
-        if (
-            pathname === "/api/orders" &&
-            method === "GET"
-        ) {
+                    response.writeHead(
+                        204,
+                        {
+                            "Access-Control-Allow-Origin":
+                                "*",
 
-            const orders = readJSON(
-                ORDERS_FILE,
-                []
-            );
+                            "Access-Control-Allow-Methods":
+                                "GET, POST, PUT, DELETE, OPTIONS",
 
-            sendJSON(response, 200, {
-                success: true,
-                orders: orders
-            });
+                            "Access-Control-Allow-Headers":
+                                "Content-Type, Authorization"
+                        }
+                    );
 
-            return;
-        }
+                    response.end();
 
-        if (
-            pathname === "/api/orders" &&
-            method === "POST"
-        ) {
+                    return;
 
-            const body = await getRequestBody(request);
+                }
 
-            const customerName = String(
-                body.customerName || ""
-            ).trim();
+                /*
+                ==========================================
+                HEALTH
+                ==========================================
+                */
 
-            const customerPhone = String(
-                body.customerPhone || ""
-            ).trim();
+                if (
+                    pathname === "/api/health" &&
+                    method === "GET"
+                ) {
 
-            const productName = String(
-                body.product || "نان خانگی کنجدی"
-            ).trim();
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success: true,
+                            message:
+                                "Nanak server is running"
+                        }
+                    );
 
-            const quantity = Number(
-                body.quantity
-            );
+                    return;
 
-            const unitPrice = Number(
-                body.unitPrice
-            );
+                }
 
-            if (!customerName) {
-                sendJSON(response, 400, {
-                    success: false,
-                    message: "نام مشتری وارد نشده است."
-                });
-                return;
-            }
+                /*
+                ==========================================
+                LOGIN
+                ==========================================
+                */
 
-            if (!customerPhone) {
-                sendJSON(response, 400, {
-                    success: false,
-                    message: "شماره تماس وارد نشده است."
-                });
-                return;
-            }
+                if (
+                    pathname === "/api/login" &&
+                    method === "POST"
+                ) {
 
-            if (
-                !Number.isFinite(quantity) ||
-                quantity < 1 ||
-                quantity > 100
-            ) {
-                sendJSON(response, 400, {
-                    success: false,
-                    message: "تعداد سفارش نامعتبر است."
-                });
-                return;
-            }
+                    const body =
+                        await getRequestBody(
+                            request
+                        );
 
-            if (
-                !Number.isFinite(unitPrice) ||
-                unitPrice < 0
-            ) {
-                sendJSON(response, 400, {
-                    success: false,
-                    message: "قیمت نامعتبر است."
-                });
-                return;
-            }
+                    const password =
+                        String(
+                            body.password || ""
+                        );
 
-            const total = quantity * unitPrice;
+                    if (
+                        password !==
+                        ADMIN_PASSWORD
+                    ) {
 
-            const order = {
+                        sendJSON(
+                            response,
+                            401,
+                            {
+                                success: false,
+                                message:
+                                    "رمز عبور اشتباه است."
+                            }
+                        );
 
-                id: Date.now(),
+                        return;
 
-                orderNumber:
-                    "NK-" +
-                    Date.now().toString().slice(-6),
+                    }
 
-                date:
-                    new Date().toLocaleString("fa-IR"),
+                    const token =
+                        createToken();
 
-                customerName: customerName,
+                    activeTokens.add(
+                        token
+                    );
 
-                customerPhone: customerPhone,
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success: true,
+                            message:
+                                "ورود موفق بود.",
+                            token: token
+                        }
+                    );
 
-                product: productName,
+                    return;
 
-                quantity: quantity,
+                }
 
-                unitPrice: unitPrice,
+                /*
+                ==========================================
+                LOGOUT
+                ==========================================
+                */
 
-                total: total,
+                if (
+                    pathname === "/api/logout" &&
+                    method === "POST"
+                ) {
 
-                status: "جدید",
+                    const token =
+                        getToken(request);
 
-                description: "سفارش برای خرید حضوری",
+                    if (token) {
 
-                type: "حضوری"
-            };
+                        activeTokens.delete(
+                            token
+                        );
 
-            const orders = readJSON(
-                ORDERS_FILE,
-                []
-            );
+                    }
 
-            orders.unshift(order);
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success: true,
+                            message:
+                                "از پنل خارج شدید."
+                        }
+                    );
 
-            writeJSON(
-                ORDERS_FILE,
-                orders
-            );
+                    return;
 
-            console.log(
-                "سفارش جدید:",
-                order.orderNumber
-            );
+                }
 
-            sendJSON(response, 201, {
-                success: true,
-                message: "سفارش با موفقیت ثبت شد.",
-                order: order
-            });
+                /*
+                ==========================================
+                بررسی ورود
+                ==========================================
+                */
 
-            return;
-        }
+                if (
+                    pathname === "/api/admin/check" &&
+                    method === "GET"
+                ) {
 
-        if (
-            pathname.startsWith("/api/orders/") &&
-            method === "PUT"
-        ) {
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success:
+                                isAdmin(request)
+                        }
+                    );
 
-            const orderNumber =
-                decodeURIComponent(
-                    pathname.split("/").pop()
-                );
+                    return;
 
-            const body =
-                await getRequestBody(request);
+                }
 
-            const orders =
-                readJSON(
-                    ORDERS_FILE,
-                    []
-                );
+                /*
+                ==========================================
+                PRODUCTS GET
+                ==========================================
+                */
 
-            const index =
-                orders.findIndex(function(order) {
-                    return String(
+                if (
+                    pathname === "/api/products" &&
+                    method === "GET"
+                ) {
+
+                    const products =
+                        readJSON(
+                            PRODUCTS_FILE,
+                            []
+                        );
+
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success: true,
+                            products:
+                                products
+                        }
+                    );
+
+                    return;
+
+                }
+
+                /*
+                ==========================================
+                PRODUCTS UPDATE
+                ==========================================
+                */
+
+                if (
+                    pathname === "/api/products" &&
+                    method === "PUT"
+                ) {
+
+                    if (
+                        !isAdmin(request)
+                    ) {
+
+                        sendJSON(
+                            response,
+                            401,
+                            {
+                                success: false,
+                                message:
+                                    "دسترسی غیرمجاز. ابتدا وارد پنل شوید."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    const body =
+                        await getRequestBody(
+                            request
+                        );
+
+                    const products =
+                        readJSON(
+                            PRODUCTS_FILE,
+                            []
+                        );
+
+                    const productId =
+                        String(
+                            body.id ||
+                            "sesameBread"
+                        );
+
+                    const index =
+                        products.findIndex(
+                            function(product) {
+
+                                return String(
+                                    product.id
+                                ) === productId;
+
+                            }
+                        );
+
+                    if (
+                        index === -1
+                    ) {
+
+                        sendJSON(
+                            response,
+                            404,
+                            {
+                                success: false,
+                                message:
+                                    "محصول پیدا نشد."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    if (
+                        body.name !==
+                        undefined
+                    ) {
+
+                        products[index].name =
+                            String(
+                                body.name
+                            ).trim();
+
+                    }
+
+                    if (
+                        body.price !==
+                        undefined
+                    ) {
+
+                        const price =
+                            Number(
+                                body.price
+                            );
+
+                        if (
+                            !Number.isFinite(
+                                price
+                            ) ||
+                            price < 0
+                        ) {
+
+                            sendJSON(
+                                response,
+                                400,
+                                {
+                                    success: false,
+                                    message:
+                                        "قیمت نامعتبر است."
+                                }
+                            );
+
+                            return;
+
+                        }
+
+                        products[index].price =
+                            price;
+
+                    }
+
+                    if (
+                        body.available !==
+                        undefined
+                    ) {
+
+                        products[index].available =
+                            Boolean(
+                                body.available
+                            );
+
+                    }
+
+                    writeJSON(
+                        PRODUCTS_FILE,
+                        products
+                    );
+
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success: true,
+                            product:
+                                products[index]
+                        }
+                    );
+
+                    return;
+
+                }
+
+                /*
+                ==========================================
+                ORDERS GET
+                ==========================================
+                */
+
+                if (
+                    pathname === "/api/orders" &&
+                    method === "GET"
+                ) {
+
+                    if (
+                        !isAdmin(request)
+                    ) {
+
+                        sendJSON(
+                            response,
+                            401,
+                            {
+                                success: false,
+                                message:
+                                    "دسترسی غیرمجاز."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    const orders =
+                        readJSON(
+                            ORDERS_FILE,
+                            []
+                        );
+
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success: true,
+                            orders:
+                                orders
+                        }
+                    );
+
+                    return;
+
+                }
+
+                /*
+                ==========================================
+                ORDERS POST
+                ==========================================
+                */
+
+                if (
+                    pathname === "/api/orders" &&
+                    method === "POST"
+                ) {
+
+                    const body =
+                        await getRequestBody(
+                            request
+                        );
+
+                    const customerName =
+                        String(
+                            body.customerName ||
+                            ""
+                        ).trim();
+
+                    const customerPhone =
+                        String(
+                            body.customerPhone ||
+                            ""
+                        ).trim();
+
+                    const productName =
+                        String(
+                            body.product ||
+                            "نان خانگی کنجدی"
+                        ).trim();
+
+                    const quantity =
+                        Number(
+                            body.quantity
+                        );
+
+                    const unitPrice =
+                        Number(
+                            body.unitPrice
+                        );
+
+                    if (
+                        !customerName
+                    ) {
+
+                        sendJSON(
+                            response,
+                            400,
+                            {
+                                success: false,
+                                message:
+                                    "نام مشتری وارد نشده است."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    if (
+                        !customerPhone
+                    ) {
+
+                        sendJSON(
+                            response,
+                            400,
+                            {
+                                success: false,
+                                message:
+                                    "شماره تماس وارد نشده است."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    if (
+                        !Number.isFinite(
+                            quantity
+                        ) ||
+                        quantity < 1 ||
+                        quantity > 100
+                    ) {
+
+                        sendJSON(
+                            response,
+                            400,
+                            {
+                                success: false,
+                                message:
+                                    "تعداد سفارش نامعتبر است."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    if (
+                        !Number.isFinite(
+                            unitPrice
+                        ) ||
+                        unitPrice < 0
+                    ) {
+
+                        sendJSON(
+                            response,
+                            400,
+                            {
+                                success: false,
+                                message:
+                                    "قیمت نامعتبر است."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    const total =
+                        quantity *
+                        unitPrice;
+
+                    const now =
+                        new Date();
+
+                    const order = {
+
+                        id:
+                            Date.now(),
+
+                        orderNumber:
+                            "NK-" +
+                            Date.now()
+                                .toString()
+                                .slice(-6),
+
+                        date:
+                            now.toLocaleString(
+                                "fa-IR"
+                            ),
+
+                        customerName:
+                            customerName,
+
+                        customerPhone:
+                            customerPhone,
+
+                        product:
+                            productName,
+
+                        quantity:
+                            quantity,
+
+                        unitPrice:
+                            unitPrice,
+
+                        total:
+                            total,
+
+                        status:
+                            "جدید",
+
+                        description:
+                            "سفارش برای خرید حضوری",
+
+                        type:
+                            "حضوری"
+
+                    };
+
+                    const orders =
+                        readJSON(
+                            ORDERS_FILE,
+                            []
+                        );
+
+                    orders.unshift(
+                        order
+                    );
+
+                    writeJSON(
+                        ORDERS_FILE,
+                        orders
+                    );
+
+                    console.log(
+                        "سفارش جدید:",
                         order.orderNumber
-                    ) === orderNumber;
-                });
+                    );
 
-            if (index === -1) {
+                    sendJSON(
+                        response,
+                        201,
+                        {
+                            success: true,
+                            message:
+                                "سفارش با موفقیت ثبت شد.",
+                            order:
+                                order
+                        }
+                    );
 
-                sendJSON(response, 404, {
-                    success: false,
-                    message: "سفارش پیدا نشد."
-                });
+                    return;
 
-                return;
+                }
+
+                /*
+                ==========================================
+                ORDER UPDATE
+                ==========================================
+                */
+
+                if (
+                    pathname.startsWith(
+                        "/api/orders/"
+                    ) &&
+                    method === "PUT"
+                ) {
+
+                    if (
+                        !isAdmin(request)
+                    ) {
+
+                        sendJSON(
+                            response,
+                            401,
+                            {
+                                success: false,
+                                message:
+                                    "دسترسی غیرمجاز."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    const orderNumber =
+                        decodeURIComponent(
+                            pathname
+                                .split("/")
+                                .pop()
+                        );
+
+                    const body =
+                        await getRequestBody(
+                            request
+                        );
+
+                    const orders =
+                        readJSON(
+                            ORDERS_FILE,
+                            []
+                        );
+
+                    const index =
+                        orders.findIndex(
+                            function(order) {
+
+                                return String(
+                                    order.orderNumber
+                                ) ===
+                                orderNumber;
+
+                            }
+                        );
+
+                    if (
+                        index === -1
+                    ) {
+
+                        sendJSON(
+                            response,
+                            404,
+                            {
+                                success: false,
+                                message:
+                                    "سفارش پیدا نشد."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    if (
+                        body.status !==
+                        undefined
+                    ) {
+
+                        orders[index].status =
+                            String(
+                                body.status
+                            );
+
+                    }
+
+                    if (
+                        body.description !==
+                        undefined
+                    ) {
+
+                        orders[index].description =
+                            String(
+                                body.description
+                            );
+
+                    }
+
+                    writeJSON(
+                        ORDERS_FILE,
+                        orders
+                    );
+
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success: true,
+                            order:
+                                orders[index]
+                        }
+                    );
+
+                    return;
+
+                }
+
+                /*
+                ==========================================
+                SALES GET
+                ==========================================
+                */
+
+                if (
+                    pathname === "/api/sales" &&
+                    method === "GET"
+                ) {
+
+                    if (
+                        !isAdmin(request)
+                    ) {
+
+                        sendJSON(
+                            response,
+                            401,
+                            {
+                                success: false,
+                                message:
+                                    "دسترسی غیرمجاز."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    const sales =
+                        readJSON(
+                            SALES_FILE,
+                            []
+                        );
+
+                    sendJSON(
+                        response,
+                        200,
+                        {
+                            success: true,
+                            sales:
+                                sales
+                        }
+                    );
+
+                    return;
+
+                }
+
+                /*
+                ==========================================
+                SALES POST
+                ==========================================
+                */
+
+                if (
+                    pathname === "/api/sales" &&
+                    method === "POST"
+                ) {
+
+                    if (
+                        !isAdmin(request)
+                    ) {
+
+                        sendJSON(
+                            response,
+                            401,
+                            {
+                                success: false,
+                                message:
+                                    "دسترسی غیرمجاز."
+                            }
+                        );
+
+                        return;
+
+                    }
+
+                    const body =
+                        await getRequestBody(
+                            request
+                        );
+
+                    const sale = {
+
+                        id:
+                            Date.now(),
+
+                        date:
+                            new Date()
+                                .toLocaleString(
+                                    "fa-IR"
+                                ),
+
+                        customerName:
+                            String(
+                                body.customerName ||
+                                ""
+                            ).trim(),
+
+                        customerPhone:
+                            String(
+                                body.customerPhone ||
+                                ""
+                            ).trim(),
+
+                        product:
+                            String(
+                                body.product ||
+                                "نان خانگی کنجدی"
+                            ).trim(),
+
+                        weight:
+                            Number(
+                                body.weight
+                            ) || 0,
+
+                        pricePerUnit:
+                            Number(
+                                body.pricePerUnit
+                            ) || 0,
+
+                        total:
+                            Number(
+                                body.total
+                            ) || 0,
+
+                        paymentMethod:
+                            String(
+                                body.paymentMethod ||
+                                "نقدی"
+                            ),
+
+                        description:
+                            String(
+                                body.description ||
+                                ""
+                            ).trim()
+
+                    };
+
+                    const sales =
+                        readJSON(
+                            SALES_FILE,
+                            []
+                        );
+
+                    sales.unshift(
+                        sale
+                    );
+
+                    writeJSON(
+                        SALES_FILE,
+                        sales
+                    );
+
+                    sendJSON(
+                        response,
+                        201,
+                        {
+                            success: true,
+                            sale:
+                                sale
+                        }
+                    );
+
+                    return;
+
+                }
+
+                /*
+                ==========================================
+                فایل‌های سایت
+                ==========================================
+                */
+
+                let filePath;
+
+                if (
+                    pathname === "/" ||
+                    pathname === ""
+                ) {
+
+                    filePath =
+                        path.join(
+                            ROOT,
+                            "index.html"
+                        );
+
+                } else {
+
+                    const cleanPath =
+                        pathname.replace(
+                            /^\/+/,
+                            ""
+                        );
+
+                    filePath =
+                        path.join(
+                            ROOT,
+                            cleanPath
+                        );
+
+                }
+
+                /*
+                ==========================================
+                امنیت مسیر فایل
+                ==========================================
+                */
+
+                const relativePath =
+                    path.relative(
+                        ROOT,
+                        filePath
+                    );
+
+                if (
+                    relativePath.startsWith(
+                        ".."
+                    ) ||
+                    path.isAbsolute(
+                        relativePath
+                    )
+                ) {
+
+                    response.writeHead(
+                        403,
+                        {
+                            "Content-Type":
+                                "text/plain; charset=utf-8"
+                        }
+                    );
+
+                    response.end(
+                        "Forbidden"
+                    );
+
+                    return;
+
+                }
+
+                /*
+                ==========================================
+                ارسال فایل
+                ==========================================
+                */
+
+                if (
+                    fs.existsSync(
+                        filePath
+                    ) &&
+                    fs.statSync(
+                        filePath
+                    ).isFile()
+                ) {
+
+                    const content =
+                        fs.readFileSync(
+                            filePath
+                        );
+
+                    response.writeHead(
+                        200,
+                        {
+                            "Content-Type":
+                                getContentType(
+                                    filePath
+                                )
+                        }
+                    );
+
+                    response.end(
+                        content
+                    );
+
+                    return;
+
+                }
+
+                /*
+                ==========================================
+                404
+                ==========================================
+                */
+
+                response.writeHead(
+                    404,
+                    {
+                        "Content-Type":
+                            "text/plain; charset=utf-8"
+                    }
+                );
+
+                response.end(
+                    "صفحه پیدا نشد"
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Server error:",
+                    error
+                );
+
+                sendJSON(
+                    response,
+                    500,
+                    {
+                        success: false,
+                        message:
+                            "خطای داخلی سرور"
+                    }
+                );
+
             }
 
-            if (body.status) {
-                orders[index].status =
-                    String(body.status);
-            }
-
-            if (body.description !== undefined) {
-                orders[index].description =
-                    String(body.description);
-            }
-
-            writeJSON(
-                ORDERS_FILE,
-                orders
-            );
-
-            sendJSON(response, 200, {
-                success: true,
-                order: orders[index]
-            });
-
-            return;
         }
+    );
 
-        if (
-            pathname === "/api/sales" &&
-            method === "POST"
-        ) {
-
-            const body =
-                await getRequestBody(request);
-
-            const sale = {
-
-                id: Date.now(),
-
-                date:
-                    new Date().toLocaleString("fa-IR"),
-
-                customerName:
-                    String(
-                        body.customerName || ""
-                    ).trim(),
-
-                customerPhone:
-                    String(
-                        body.customerPhone || ""
-                    ).trim(),
-
-                product:
-                    String(
-                        body.product ||
-                        "نان خانگی کنجدی"
-                    ).trim(),
-
-                weight:
-                    Number(body.weight) || 0,
-
-                pricePerUnit:
-                    Number(body.pricePerUnit) || 0,
-
-                total:
-                    Number(body.total) || 0,
-
-                paymentMethod:
-                    String(
-                        body.paymentMethod ||
-                        "نقدی"
-                    ),
-
-                description:
-                    String(
-                        body.description || ""
-                    ).trim()
-            };
-
-            const sales =
-                readJSON(
-                    SALES_FILE,
-                    []
-                );
-
-            sales.unshift(sale);
-
-            writeJSON(
-                SALES_FILE,
-                sales
-            );
-
-            sendJSON(response, 201, {
-                success: true,
-                sale: sale
-            });
-
-            return;
-        }
-
-        if (
-            pathname === "/api/sales" &&
-            method === "GET"
-        ) {
-
-            const sales =
-                readJSON(
-                    SALES_FILE,
-                    []
-                );
-
-            sendJSON(response, 200, {
-                success: true,
-                sales: sales
-            });
-
-            return;
-        }
-
-        let filePath;
-
-        if (
-            pathname === "/" ||
-            pathname === ""
-        ) {
-
-            filePath =
-                path.join(
-                    ROOT,
-                    "index.html"
-                );
-
-        } else {
-
-            const cleanPath =
-                pathname.replace(/^\/+/, "");
-
-            filePath =
-                path.join(
-                    ROOT,
-                    cleanPath
-                );
-        }
-
-        const relativePath =
-            path.relative(
-                ROOT,
-                filePath
-            );
-
-        if (
-            relativePath.startsWith("..") ||
-            path.isAbsolute(relativePath)
-        ) {
-
-            response.writeHead(403, {
-                "Content-Type":
-                    "text/plain; charset=utf-8"
-            });
-
-            response.end("Forbidden");
-
-            return;
-        }
-
-        if (
-            fs.existsSync(filePath) &&
-            fs.statSync(filePath).isFile()
-        ) {
-
-            const content =
-                fs.readFileSync(filePath);
-
-            response.writeHead(200, {
-                "Content-Type":
-                    getContentType(filePath)
-            });
-
-            response.end(content);
-
-            return;
-        }
-
-        response.writeHead(404, {
-            "Content-Type":
-                "text/plain; charset=utf-8"
-        });
-
-        response.end(
-            "صفحه پیدا نشد"
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Server error:",
-            error
-        );
-
-        sendJSON(response, 500, {
-            success: false,
-            message: "خطای داخلی سرور"
-        });
-    }
-
-});
+/*
+==================================================
+شروع سرور
+==================================================
+*/
 
 server.listen(
     PORT,
@@ -560,7 +1434,11 @@ server.listen(
     function() {
 
         console.log(
-            "نانک - سرور اجرا شد"
+            "================================"
+        );
+
+        console.log(
+            "🍞 نانک - سرور اجرا شد"
         );
 
         console.log(
@@ -569,6 +1447,14 @@ server.listen(
 
         console.log(
             "Panel: /admin.html"
+        );
+
+        console.log(
+            "Admin login: /api/login"
+        );
+
+        console.log(
+            "================================"
         );
 
     }
