@@ -3,11 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>پنل مدیریت نانک</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>پنل مدیریت | نانک</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -26,95 +31,18 @@
             font-family: inherit;
         }
 
-        /* LOGIN */
-
-        #loginPage {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #d97706,
-                    #92400e
-                );
-        }
-
-        .login-box {
-            width: 100%;
-            max-width: 420px;
-            background: white;
-            border-radius: 25px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,.2);
-            text-align: center;
-        }
-
-        .login-icon {
-            font-size: 65px;
-            margin-bottom: 10px;
-        }
-
-        .login-box h1 {
-            margin: 5px 0 10px;
-        }
-
-        .login-box p {
-            color: #777;
-            margin-bottom: 25px;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            outline: none;
-            text-align: center;
-            font-size: 17px;
-            margin-bottom: 12px;
-        }
-
-        .login-input:focus {
-            border-color: #d97706;
-        }
-
-        .login-button {
-            width: 100%;
-            border: none;
-            border-radius: 12px;
-            padding: 15px;
-            background: #d97706;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
+        button {
             cursor: pointer;
         }
 
-        .login-error {
-            color: #b91c1c;
-            background: #fee2e2;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 12px;
-            display: none;
-        }
-
-        /* ADMIN */
-
-        #adminPage {
-            display: none;
-        }
+        /* HEADER */
 
         header {
-            background:
-                linear-gradient(
-                    135deg,
-                    #d97706,
-                    #b45309
-                );
+            background: linear-gradient(
+                135deg,
+                #d97706,
+                #b45309
+            );
 
             color: white;
             padding: 18px 15px;
@@ -125,44 +53,46 @@
             margin: auto;
 
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+
             gap: 15px;
         }
 
-        .brand {
+        .logo {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .brand-icon {
+        .logo-icon {
             font-size: 40px;
         }
 
-        .brand h1 {
+        .logo h1 {
             margin: 0;
-            font-size: 23px;
+            font-size: 24px;
         }
 
-        .brand small {
+        .logo small {
+            display: block;
+            margin-top: 4px;
             opacity: .9;
         }
 
-        .header-buttons {
-            display: flex;
-            gap: 8px;
+        .home-button {
+            color: white;
+            text-decoration: none;
+
+            background: rgba(255,255,255,.15);
+
+            padding: 10px 15px;
+            border-radius: 10px;
+
+            font-size: 13px;
         }
 
-        .header-button {
-            border: none;
-            background: rgba(255,255,255,.16);
-            color: white;
-            padding: 10px 13px;
-            border-radius: 10px;
-            cursor: pointer;
-            text-decoration: none;
-        }
+        /* MAIN */
 
         .container {
             max-width: 1200px;
@@ -170,301 +100,572 @@
             padding: 25px 15px 50px;
         }
 
+        /* LOGIN */
+
+        .login-box {
+            max-width: 420px;
+            margin: 60px auto;
+
+            background: white;
+            padding: 30px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(80,45,15,.08);
+
+            text-align: center;
+        }
+
+        .login-icon {
+            font-size: 60px;
+        }
+
+        .login-box h2 {
+            margin: 10px 0 20px;
+        }
+
+        .login-input {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #ddd;
+            border-radius: 12px;
+
+            outline: none;
+
+            text-align: center;
+
+            font-size: 16px;
+
+            margin-bottom: 12px;
+        }
+
+        .login-input:focus {
+            border-color: #d97706;
+        }
+
+        .login-button {
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: #d97706;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+        }
+
+        .login-error {
+            color: #b91c1c;
+            margin-top: 12px;
+            font-size: 13px;
+            display: none;
+        }
+
+        /* PANEL */
+
+        #panel {
+            display: none;
+        }
+
+        .panel-title {
+            margin-bottom: 20px;
+        }
+
+        .panel-title h2 {
+            margin: 0 0 7px;
+        }
+
+        .panel-title p {
+            color: #777;
+            margin: 0;
+        }
+
         /* DASHBOARD */
 
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 12px;
+
             margin-bottom: 25px;
         }
 
         .stat {
             background: white;
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: 0 5px 20px rgba(80,45,15,.07);
+
+            border-radius: 17px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(80,45,15,.05);
         }
 
         .stat-icon {
-            font-size: 30px;
+            font-size: 28px;
+            margin-bottom: 8px;
         }
 
         .stat-title {
             color: #777;
-            font-size: 13px;
-            margin-top: 8px;
+            font-size: 12px;
         }
 
         .stat-value {
-            font-size: 25px;
+            font-size: 24px;
             font-weight: bold;
-            color: #d97706;
             margin-top: 5px;
         }
 
-        /* CARDS */
+        /* SECTION */
 
         .section {
             background: white;
-            border-radius: 20px;
+
+            border-radius: 22px;
+
             padding: 22px;
+
             margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(80,45,15,.06);
+
+            box-shadow:
+                0 6px 25px
+                rgba(80,45,15,.06);
         }
 
-        .section-title {
+        .section-header {
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
+            justify-content: space-between;
+
             gap: 10px;
+
             margin-bottom: 18px;
         }
 
-        .section-title h2 {
+        .section-header h2 {
             margin: 0;
             font-size: 20px;
         }
 
         .refresh-button {
             border: none;
+
             background: #fff0dc;
+
             color: #b45309;
-            padding: 9px 13px;
+
+            padding: 10px 14px;
+
             border-radius: 10px;
-            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        /* ORDERS */
+
+        .orders {
+            display: grid;
+            gap: 15px;
+        }
+
+        .order-card {
+            border: 1px solid #eee;
+
+            border-radius: 17px;
+
+            padding: 18px;
+
+            background: #fffdf9;
+        }
+
+        .order-top {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+        }
+
+        .order-number {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .order-date {
+            color: #888;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .status {
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .status-new {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-preparing {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .status-ready {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-delivered {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .order-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            background: #fff8ed;
+
+            padding: 12px;
+
+            border-radius: 11px;
+        }
+
+        .info-item small {
+            display: block;
+
+            color: #888;
+
+            font-size: 11px;
+
+            margin-bottom: 4px;
+        }
+
+        .info-item strong {
+            font-size: 13px;
+        }
+
+        .order-total {
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7e8,
+                    #ffedcc
+                );
+
+            border-radius: 12px;
+
+            padding: 12px;
+
+            margin-bottom: 15px;
+        }
+
+        .order-total span {
+            display: block;
+
+            color: #777;
+
+            font-size: 12px;
+
+            margin-bottom: 4px;
+        }
+
+        .order-total strong {
+            color: #d97706;
+
+            font-size: 22px;
+        }
+
+        /* STATUS BUTTONS */
+
+        .status-buttons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 8px;
+        }
+
+        .status-button {
+            border: none;
+
+            padding: 11px 8px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .new-button {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .preparing-button {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .ready-button {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .delivered-button {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .status-button.active {
+            outline: 3px solid rgba(217,119,6,.25);
+        }
+
+        /* EMPTY */
+
+        .empty {
+            text-align: center;
+
+            padding: 40px 15px;
+
+            color: #888;
+        }
+
+        .empty-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
         }
 
         /* PRODUCT */
 
         .product-card {
             border: 1px solid #eee;
-            border-radius: 16px;
-            padding: 18px;
+
+            border-radius: 17px;
+
+            padding: 20px;
+        }
+
+        .product-row {
             display: flex;
-            align-items: center;
+
             justify-content: space-between;
+
+            align-items: center;
+
             gap: 15px;
         }
 
-        .product-info h3 {
-            margin: 0 0 8px;
-        }
-
-        .product-info p {
-            margin: 5px 0;
-            color: #777;
+        .product-name {
+            font-weight: bold;
+            font-size: 18px;
         }
 
         .product-price {
             color: #d97706;
             font-weight: bold;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 6px 11px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .status.available {
-            background: #dcfce7;
-            color: #15803d;
-        }
-
-        .status.unavailable {
-            background: #fee2e2;
-            color: #b91c1c;
+            margin-top: 7px;
         }
 
         .product-actions {
             display: flex;
+
             gap: 8px;
-            flex-wrap: wrap;
         }
 
-        .action-button {
-            border: none;
-            padding: 10px 13px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        .price-input {
+            width: 130px;
 
-        .green {
-            background: #dcfce7;
-            color: #15803d;
-        }
+            padding: 11px;
 
-        .red {
-            background: #fee2e2;
-            color: #b91c1c;
-        }
-
-        .orange {
-            background: #fff0dc;
-            color: #b45309;
-        }
-
-        /* FORM */
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 5px;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            font-size: 13px;
-            margin-bottom: 7px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
             border: 1px solid #ddd;
+
             border-radius: 10px;
+
+            text-align: center;
+
             outline: none;
         }
 
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .submit-button {
-            width: 100%;
+        .save-button {
             border: none;
-            padding: 14px;
-            border-radius: 12px;
-            background: #16a34a;
+
+            background: #d97706;
+
             color: white;
+
+            padding: 11px 15px;
+
+            border-radius: 10px;
+
             font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
         }
 
-        /* TABLE */
+        /* FOOTER */
 
-        .table-wrapper {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 850px;
-        }
-
-        th,
-        td {
-            padding: 12px 10px;
-            border-bottom: 1px solid #eee;
-            text-align: right;
-            font-size: 13px;
-        }
-
-        th {
-            background: #fff8ed;
-            color: #7c4a20;
-        }
-
-        .empty {
+        footer {
             text-align: center;
-            color: #777;
-            padding: 30px;
-        }
 
-        /* LOADING */
+            color: #888;
 
-        .loading {
-            text-align: center;
-            padding: 25px;
-            color: #777;
+            font-size: 12px;
+
+            padding: 20px;
         }
 
         /* RESPONSIVE */
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
 
             .dashboard {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(3, 1fr);
             }
 
-            .product-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+        }
 
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-group.full {
-                grid-column: auto;
-            }
+        @media (max-width: 650px) {
 
             .header-inner {
                 flex-direction: column;
-                text-align: center;
             }
-        }
-
-        @media (max-width: 500px) {
 
             .dashboard {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .order-info {
                 grid-template-columns: 1fr;
             }
 
-            .section {
-                padding: 16px;
+            .status-buttons {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
+
+            .product-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .product-actions {
+                flex-direction: column;
+            }
+
+            .price-input {
+                width: 100%;
+            }
+
         }
+
     </style>
 </head>
 
 <body>
 
-<!-- =========================
-     LOGIN
-========================= -->
+<header>
 
-<div id="loginPage">
+    <div class="header-inner">
 
-    <div class="login-box">
+        <div class="logo">
+
+            <div class="logo-icon">
+                🍞
+            </div>
+
+            <div>
+
+                <h1>
+                    نانک
+                </h1>
+
+                <small>
+                    پنل مدیریت فروشگاه
+                </small>
+
+            </div>
+
+        </div>
+
+        <a
+            href="/"
+            class="home-button"
+        >
+            🏠 بازگشت به سایت
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- LOGIN -->
+
+    <div
+        id="loginBox"
+        class="login-box"
+    >
 
         <div class="login-icon">
             🔐
         </div>
 
-        <h1>
-            پنل مدیریت نانک
-        </h1>
-
-        <p>
-            برای ورود رمز مدیریت را وارد کنید.
-        </p>
+        <h2>
+            ورود به پنل مدیریت
+        </h2>
 
         <input
             id="passwordInput"
             class="login-input"
             type="password"
             placeholder="رمز مدیریت"
-            autocomplete="off"
+            autocomplete="current-password"
         >
 
         <button
@@ -478,66 +679,27 @@
             id="loginError"
             class="login-error"
         >
-            رمز وارد شده اشتباه است.
+            رمز عبور اشتباه است.
         </div>
 
     </div>
 
-</div>
 
+    <!-- PANEL -->
 
-<!-- =========================
-     ADMIN PAGE
-========================= -->
+    <div id="panel">
 
-<div id="adminPage">
+        <div class="panel-title">
 
-    <header>
+            <h2>
+                📊 داشبورد مدیریت
+            </h2>
 
-        <div class="header-inner">
-
-            <div class="brand">
-
-                <div class="brand-icon">
-                    🍞
-                </div>
-
-                <div>
-                    <h1>
-                        پنل مدیریت نانک
-                    </h1>
-
-                    <small>
-                        مدیریت سفارش‌ها و فروش
-                    </small>
-                </div>
-
-            </div>
-
-            <div class="header-buttons">
-
-                <a
-                    href="/"
-                    class="header-button"
-                >
-                    🏠 سایت
-                </a>
-
-                <button
-                    class="header-button"
-                    onclick="logout()"
-                >
-                    خروج
-                </button>
-
-            </div>
+            <p>
+                مدیریت سفارش‌ها و محصولات نانک
+            </p>
 
         </div>
-
-    </header>
-
-
-    <main class="container">
 
 
         <!-- DASHBOARD -->
@@ -547,7 +709,7 @@
             <div class="stat">
 
                 <div class="stat-icon">
-                    🛒
+                    📦
                 </div>
 
                 <div class="stat-title">
@@ -571,7 +733,7 @@
                 </div>
 
                 <div class="stat-title">
-                    سفارش‌های جدید
+                    سفارش جدید
                 </div>
 
                 <div
@@ -587,18 +749,18 @@
             <div class="stat">
 
                 <div class="stat-icon">
-                    💰
+                    👨‍🍳
                 </div>
 
                 <div class="stat-title">
-                    کل فروش
+                    در حال آماده‌سازی
                 </div>
 
                 <div
-                    id="totalMoney"
+                    id="preparingOrders"
                     class="stat-value"
                 >
-                    ۰ تومان
+                    ۰
                 </div>
 
             </div>
@@ -607,15 +769,35 @@
             <div class="stat">
 
                 <div class="stat-icon">
-                    🥖
+                    ✅
                 </div>
 
                 <div class="stat-title">
-                    محصولات
+                    آماده تحویل
                 </div>
 
                 <div
-                    id="productCount"
+                    id="readyOrders"
+                    class="stat-value"
+                >
+                    ۰
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    💰
+                </div>
+
+                <div class="stat-title">
+                    مجموع سفارش‌ها
+                </div>
+
+                <div
+                    id="totalMoney"
                     class="stat-value"
                 >
                     ۰
@@ -626,202 +808,14 @@
         </div>
 
 
-        <!-- PRODUCTS -->
-
-        <section class="section">
-
-            <div class="section-title">
-
-                <h2>
-                    🥖 وضعیت محصول
-                </h2>
-
-                <button
-                    class="refresh-button"
-                    onclick="loadAll()"
-                >
-                    🔄 بروزرسانی
-                </button>
-
-            </div>
-
-            <div id="productsContainer">
-                <div class="loading">
-                    در حال دریافت اطلاعات...
-                </div>
-            </div>
-
-        </section>
-
-
-        <!-- MANUAL SALE -->
-
-        <section class="section">
-
-            <div class="section-title">
-
-                <h2>
-                    💵 ثبت فروش حضوری
-                </h2>
-
-            </div>
-
-            <div class="form-grid">
-
-                <div class="form-group">
-
-                    <label>
-                        نام مشتری
-                    </label>
-
-                    <input
-                        id="saleCustomerName"
-                        type="text"
-                        placeholder="اختیاری"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        شماره تماس
-                    </label>
-
-                    <input
-                        id="saleCustomerPhone"
-                        type="tel"
-                        placeholder="اختیاری"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        محصول
-                    </label>
-
-                    <select id="saleProduct">
-                        <option>
-                            نان خانگی کنجدی
-                        </option>
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        تعداد / وزن
-                    </label>
-
-                    <input
-                        id="saleWeight"
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value="1"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        قیمت واحد
-                    </label>
-
-                    <input
-                        id="salePrice"
-                        type="number"
-                        min="0"
-                        value="15000"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        مبلغ کل
-                    </label>
-
-                    <input
-                        id="saleTotal"
-                        type="number"
-                        min="0"
-                        value="15000"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        روش پرداخت
-                    </label>
-
-                    <select id="paymentMethod">
-
-                        <option value="نقدی">
-                            نقدی
-                        </option>
-
-                        <option value="کارت">
-                            کارت
-                        </option>
-
-                        <option value="پرداخت نشده">
-                            پرداخت نشده
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        توضیحات
-                    </label>
-
-                    <input
-                        id="saleDescription"
-                        type="text"
-                        placeholder="توضیحات اختیاری"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <button
-                class="submit-button"
-                onclick="submitSale()"
-            >
-                ✅ ثبت فروش حضوری
-            </button>
-
-        </section>
-
-
         <!-- ORDERS -->
 
         <section class="section">
 
-            <div class="section-title">
+            <div class="section-header">
 
                 <h2>
-                    🛒 سفارش‌های مشتریان
+                    📋 سفارش‌های مشتریان
                 </h2>
 
                 <button
@@ -833,168 +827,75 @@
 
             </div>
 
-            <div class="table-wrapper">
+            <div
+                id="orders"
+                class="orders"
+            >
 
-                <table>
+                <div class="empty">
 
-                    <thead>
+                    <div class="empty-icon">
+                        ⏳
+                    </div>
 
-                        <tr>
+                    در حال دریافت سفارش‌ها...
 
-                            <th>
-                                شماره سفارش
-                            </th>
-
-                            <th>
-                                تاریخ
-                            </th>
-
-                            <th>
-                                مشتری
-                            </th>
-
-                            <th>
-                                تماس
-                            </th>
-
-                            <th>
-                                محصول
-                            </th>
-
-                            <th>
-                                تعداد
-                            </th>
-
-                            <th>
-                                مبلغ
-                            </th>
-
-                            <th>
-                                وضعیت
-                            </th>
-
-                            <th>
-                                عملیات
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="ordersTable">
-
-                        <tr>
-                            <td
-                                colspan="9"
-                                class="empty"
-                            >
-                                در حال دریافت...
-                            </td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- SALES -->
+        <!-- PRODUCT -->
 
         <section class="section">
 
-            <div class="section-title">
+            <div class="section-header">
 
                 <h2>
-                    💰 فروش‌های حضوری
+                    🍞 مدیریت محصول
                 </h2>
 
                 <button
                     class="refresh-button"
-                    onclick="loadSales()"
+                    onclick="loadProduct()"
                 >
                     🔄 بروزرسانی
                 </button>
 
             </div>
 
-            <div class="table-wrapper">
+            <div
+                id="product"
+                class="product-card"
+            >
 
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                تاریخ
-                            </th>
-
-                            <th>
-                                مشتری
-                            </th>
-
-                            <th>
-                                تماس
-                            </th>
-
-                            <th>
-                                محصول
-                            </th>
-
-                            <th>
-                                تعداد
-                            </th>
-
-                            <th>
-                                قیمت واحد
-                            </th>
-
-                            <th>
-                                مبلغ کل
-                            </th>
-
-                            <th>
-                                پرداخت
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="salesTable">
-
-                        <tr>
-                            <td
-                                colspan="8"
-                                class="empty"
-                            >
-                                در حال دریافت...
-                            </td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
+                در حال دریافت اطلاعات محصول...
 
             </div>
 
         </section>
 
-    </main>
+    </div>
 
-</div>
+</main>
+
+
+<footer>
+    🍞 نانک | پنل مدیریت
+</footer>
 
 
 <script>
 
-/* =========================
-   SETTINGS
-========================= */
+const API = "/api";
 
-const ADMIN_PASSWORD = "123456";
+const ADMIN_PASSWORD = "1234";
+
+let orders = [];
+
+let product = null;
 
 
 /* =========================
@@ -1004,110 +905,97 @@ const ADMIN_PASSWORD = "123456";
 function login() {
 
     const password =
-        document.getElementById(
-            "passwordInput"
-        ).value;
+        document
+            .getElementById("passwordInput")
+            .value;
 
-    const error =
-        document.getElementById(
-            "loginError"
-        );
+    if (password === ADMIN_PASSWORD) {
 
-    if (
-        password ===
-        ADMIN_PASSWORD
-    ) {
-
-        sessionStorage.setItem(
-            "nanakAdminLoggedIn",
+        localStorage.setItem(
+            "nanakAdminLogin",
             "true"
         );
 
-        error.style.display =
-            "none";
-
-        document.getElementById(
-            "loginPage"
-        ).style.display =
-            "none";
-
-        document.getElementById(
-            "adminPage"
-        ).style.display =
-            "block";
-
-        loadAll();
+        showPanel();
 
     } else {
 
-        error.style.display =
-            "block";
+        const error =
+            document.getElementById(
+                "loginError"
+            );
+
+        error.style.display = "block";
 
     }
-}
-
-
-function logout() {
-
-    sessionStorage.removeItem(
-        "nanakAdminLoggedIn"
-    );
-
-    location.reload();
 
 }
 
 
-document.getElementById(
-    "passwordInput"
-).addEventListener(
-    "keydown",
-    function(event) {
+/* =========================
+   SHOW PANEL
+========================= */
+
+function showPanel() {
+
+    document.getElementById(
+        "loginBox"
+    ).style.display = "none";
+
+    document.getElementById(
+        "panel"
+    ).style.display = "block";
+
+    loadOrders();
+
+    loadProduct();
+
+}
+
+
+/* =========================
+   AUTO LOGIN
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
         if (
-            event.key ===
-            "Enter"
+            localStorage.getItem(
+                "nanakAdminLogin"
+            ) === "true"
         ) {
 
-            login();
+            showPanel();
 
         }
+
+        document
+            .getElementById(
+                "passwordInput"
+            )
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        login();
+
+                    }
+
+                }
+            );
 
     }
 );
 
 
 /* =========================
-   CHECK LOGIN
-========================= */
-
-function checkLogin() {
-
-    if (
-        sessionStorage.getItem(
-            "nanakAdminLoggedIn"
-        ) === "true"
-    ) {
-
-        document.getElementById(
-            "loginPage"
-        ).style.display =
-            "none";
-
-        document.getElementById(
-            "adminPage"
-        ).style.display =
-            "block";
-
-        loadAll();
-
-    }
-
-}
-
-
-/* =========================
-   FORMAT
+   FORMAT PRICE
 ========================= */
 
 function formatPrice(value) {
@@ -1122,652 +1010,753 @@ function formatPrice(value) {
 
 
 /* =========================
-   LOAD ALL
-========================= */
-
-async function loadAll() {
-
-    try {
-
-        await Promise.all([
-            loadProducts(),
-            loadOrders(),
-            loadSales()
-        ]);
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert(
-            "اتصال به سرور برقرار نشد."
-        );
-
-    }
-
-}
-
-
-/* =========================
-   PRODUCTS
-========================= */
-
-async function loadProducts() {
-
-    const response =
-        await fetch(
-            "/api/products"
-        );
-
-    if (!response.ok) {
-        throw new Error(
-            "Products API Error"
-        );
-    }
-
-    const data =
-        await response.json();
-
-    const products =
-        data.products || [];
-
-    document.getElementById(
-        "productCount"
-    ).textContent =
-        products.length.toLocaleString(
-            "fa-IR"
-        );
-
-    const container =
-        document.getElementById(
-            "productsContainer"
-        );
-
-    if (!products.length) {
-
-        container.innerHTML =
-            '<div class="empty">محصولی وجود ندارد.</div>';
-
-        return;
-
-    }
-
-    container.innerHTML =
-        products.map(
-            function(product) {
-
-                return `
-                    <div class="product-card">
-
-                        <div class="product-info">
-
-                            <h3>
-                                🍞 ${escapeHTML(product.name)}
-                            </h3>
-
-                            <p>
-                                قیمت:
-                                <span class="product-price">
-                                    ${formatPrice(product.price)}
-                                    تومان
-                                </span>
-                            </p>
-
-                            <span class="status ${
-                                product.available
-                                ? "available"
-                                : "unavailable"
-                            }">
-
-                                ${
-                                    product.available
-                                    ? "✓ موجود"
-                                    : "✕ ناموجود"
-                                }
-
-                            </span>
-
-                        </div>
-
-                        <div class="product-actions">
-
-                            <button
-                                class="action-button ${
-                                    product.available
-                                    ? "red"
-                                    : "green"
-                                }"
-                                onclick="toggleProduct(
-                                    '${product.id}',
-                                    ${!product.available}
-                                )"
-                            >
-
-                                ${
-                                    product.available
-                                    ? "ناموجود کردن"
-                                    : "موجود کردن"
-                                }
-
-                            </button>
-
-                        </div>
-
-                    </div>
-                `;
-
-            }
-        ).join("");
-
-}
-
-
-/* =========================
-   TOGGLE PRODUCT
-========================= */
-
-async function toggleProduct(
-    productId,
-    available
-) {
-
-    /*
-       server.js فعلی API تغییر محصول ندارد.
-       بنابراین فعلاً این پیام را نشان می‌دهیم.
-    */
-
-    alert(
-        "سرور فعلی شما API تغییر وضعیت محصول ندارد.\n\n" +
-        "مرحله بعد این قابلیت را به server.js اضافه می‌کنیم."
-    );
-
-}
-
-
-/* =========================
-   ORDERS
+   LOAD ORDERS
 ========================= */
 
 async function loadOrders() {
 
-    const response =
-        await fetch(
-            "/api/orders"
-        );
-
-    if (!response.ok) {
-        throw new Error(
-            "Orders API Error"
-        );
-    }
-
-    const data =
-        await response.json();
-
-    const orders =
-        data.orders || [];
-
-    document.getElementById(
-        "totalOrders"
-    ).textContent =
-        orders.length.toLocaleString(
-            "fa-IR"
-        );
-
-    const newOrders =
-        orders.filter(
-            function(order) {
-
-                return order.status ===
-                    "جدید";
-
-            }
-        ).length;
-
-    document.getElementById(
-        "newOrders"
-    ).textContent =
-        newOrders.toLocaleString(
-            "fa-IR"
-        );
-
-    const table =
+    const container =
         document.getElementById(
-            "ordersTable"
+            "orders"
         );
 
-    if (!orders.length) {
-
-        table.innerHTML =
-            `
-            <tr>
-                <td
-                    colspan="9"
-                    class="empty"
-                >
-                    هنوز سفارشی ثبت نشده است.
-                </td>
-            </tr>
-            `;
-
-        return;
-
-    }
-
-    table.innerHTML =
-        orders.map(
-            function(order) {
-
-                return `
-                    <tr>
-
-                        <td>
-                            ${escapeHTML(order.orderNumber)}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(order.date)}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(order.customerName)}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(order.customerPhone)}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(order.product)}
-                        </td>
-
-                        <td>
-                            ${Number(order.quantity).toLocaleString("fa-IR")}
-                        </td>
-
-                        <td>
-                            ${formatPrice(order.total)}
-                            تومان
-                        </td>
-
-                        <td>
-                            ${escapeHTML(order.status || "جدید")}
-                        </td>
-
-                        <td>
-
-                            <button
-                                class="action-button orange"
-                                onclick="changeOrderStatus(
-                                    '${encodeURIComponent(order.orderNumber)}'
-                                )"
-                            >
-                                تغییر وضعیت
-                            </button>
-
-                        </td>
-
-                    </tr>
-                `;
-
-            }
-        ).join("");
-
-}
-
-
-/* =========================
-   CHANGE ORDER STATUS
-========================= */
-
-async function changeOrderStatus(
-    encodedOrderNumber
-) {
-
-    const orderNumber =
-        decodeURIComponent(
-            encodedOrderNumber
-        );
-
-    const status =
-        prompt(
-            "وضعیت جدید را وارد کنید:\n\n" +
-            "جدید\n" +
-            "در حال آماده‌سازی\n" +
-            "آماده تحویل\n" +
-            "تحویل داده شد",
-            "در حال آماده‌سازی"
-        );
-
-    if (!status) {
-        return;
-    }
-
-    const response =
-        await fetch(
-            "/api/orders/" +
-            encodeURIComponent(
-                orderNumber
-            ),
-            {
-                method: "PUT",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify({
-                    status: status
-                })
-            }
-        );
-
-    const data =
-        await response.json();
-
-    if (!response.ok || !data.success) {
-
-        alert(
-            data.message ||
-            "تغییر وضعیت انجام نشد."
-        );
-
-        return;
-
-    }
-
-    await loadOrders();
-
-}
-
-
-/* =========================
-   SALES
-========================= */
-
-async function loadSales() {
-
-    const response =
-        await fetch(
-            "/api/sales"
-        );
-
-    if (!response.ok) {
-        throw new Error(
-            "Sales API Error"
-        );
-    }
-
-    const data =
-        await response.json();
-
-    const sales =
-        data.sales || [];
-
-    let total =
-        0;
-
-    sales.forEach(
-        function(sale) {
-
-            total +=
-                Number(
-                    sale.total || 0
-                );
-
-        }
-    );
-
-    document.getElementById(
-        "totalMoney"
-    ).textContent =
-        formatPrice(total) +
-        " تومان";
-
-    const table =
-        document.getElementById(
-            "salesTable"
-        );
-
-    if (!sales.length) {
-
-        table.innerHTML =
-            `
-            <tr>
-                <td
-                    colspan="8"
-                    class="empty"
-                >
-                    هنوز فروش حضوری ثبت نشده است.
-                </td>
-            </tr>
-            `;
-
-        return;
-
-    }
-
-    table.innerHTML =
-        sales.map(
-            function(sale) {
-
-                return `
-                    <tr>
-
-                        <td>
-                            ${escapeHTML(sale.date)}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(
-                                sale.customerName || "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(
-                                sale.customerPhone || "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHTML(sale.product)}
-                        </td>
-
-                        <td>
-                            ${Number(
-                                sale.weight || 0
-                            ).toLocaleString("fa-IR")}
-                        </td>
-
-                        <td>
-                            ${formatPrice(
-                                sale.pricePerUnit
-                            )}
-                            تومان
-                        </td>
-
-                        <td>
-                            ${formatPrice(
-                                sale.total
-                            )}
-                            تومان
-                        </td>
-
-                        <td>
-                            ${escapeHTML(
-                                sale.paymentMethod || "-"
-                            )}
-                        </td>
-
-                    </tr>
-                `;
-
-            }
-        ).join("");
-
-}
-
-
-/* =========================
-   SUBMIT SALE
-========================= */
-
-async function submitSale() {
-
-    const customerName =
-        document.getElementById(
-            "saleCustomerName"
-        ).value.trim();
-
-    const customerPhone =
-        document.getElementById(
-            "saleCustomerPhone"
-        ).value.trim();
-
-    const product =
-        document.getElementById(
-            "saleProduct"
-        ).value;
-
-    const weight =
-        Number(
-            document.getElementById(
-                "saleWeight"
-            ).value
-        ) || 0;
-
-    const pricePerUnit =
-        Number(
-            document.getElementById(
-                "salePrice"
-            ).value
-        ) || 0;
-
-    let total =
-        Number(
-            document.getElementById(
-                "saleTotal"
-            ).value
-        ) || 0;
-
-    const paymentMethod =
-        document.getElementById(
-            "paymentMethod"
-        ).value;
-
-    const description =
-        document.getElementById(
-            "saleDescription"
-        ).value.trim();
-
-    if (total <= 0) {
-
-        total =
-            weight *
-            pricePerUnit;
-
-    }
-
-    if (total <= 0) {
-
-        alert(
-            "مبلغ فروش را وارد کنید."
-        );
-
-        return;
-
-    }
+    container.innerHTML = `
+        <div class="empty">
+            <div class="empty-icon">⏳</div>
+            در حال دریافت سفارش‌ها...
+        </div>
+    `;
 
     try {
 
         const response =
             await fetch(
-                "/api/sales",
+                API + "/orders"
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "خطا در دریافت سفارش‌ها"
+            );
+        }
+
+        const data =
+            await response.json();
+
+        orders =
+            Array.isArray(
+                data.orders
+            )
+                ? data.orders
+                : [];
+
+        renderOrders();
+
+        updateDashboard();
+
+    } catch (error) {
+
+        console.error(error);
+
+        container.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">❌</div>
+                <strong>
+                    اتصال به سرور برقرار نشد
+                </strong>
+                <br>
+                <small>
+                    دوباره روی بروزرسانی بزنید.
+                </small>
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   RENDER ORDERS
+========================= */
+
+function renderOrders() {
+
+    const container =
+        document.getElementById(
+            "orders"
+        );
+
+    if (!orders.length) {
+
+        container.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">📭</div>
+                هنوز سفارشی ثبت نشده است.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        orders.map(
+            function(order) {
+
+                return createOrderCard(
+                    order
+                );
+
+            }
+        ).join("");
+
+}
+
+
+/* =========================
+   ORDER CARD
+========================= */
+
+function createOrderCard(order) {
+
+    const status =
+        normalizeStatus(
+            order.status
+        );
+
+    const statusClass =
+        getStatusClass(
+            status
+        );
+
+    const statusText =
+        getStatusText(
+            status
+        );
+
+
+    return `
+
+        <div class="order-card">
+
+            <div class="order-top">
+
+                <div>
+
+                    <div class="order-number">
+                        سفارش ${escapeHTML(
+                            order.orderNumber ||
+                            "-"
+                        )}
+                    </div>
+
+                    <div class="order-date">
+                        ${escapeHTML(
+                            order.date || "-"
+                        )}
+                    </div>
+
+                </div>
+
+                <div
+                    class="status ${statusClass}"
+                >
+                    ${statusText}
+                </div>
+
+            </div>
+
+
+            <div class="order-info">
+
+                <div class="info-item">
+
+                    <small>
+                        👤 مشتری
+                    </small>
+
+                    <strong>
+                        ${escapeHTML(
+                            order.customerName || "-"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <small>
+                        📱 شماره تماس
+                    </small>
+
+                    <strong>
+                        ${escapeHTML(
+                            order.customerPhone || "-"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <small>
+                        🍞 محصول
+                    </small>
+
+                    <strong>
+                        ${escapeHTML(
+                            order.product || "-"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <small>
+                        🔢 تعداد
+                    </small>
+
+                    <strong>
+                        ${Number(
+                            order.quantity || 0
+                        ).toLocaleString("fa-IR")}
+                        عدد
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-total">
+
+                <span>
+                    مبلغ کل
+                </span>
+
+                <strong>
+                    ${formatPrice(
+                        order.total
+                    )}
+                    تومان
+                </strong>
+
+            </div>
+
+
+            <div class="status-buttons">
+
+                <button
+                    class="status-button new-button ${
+                        status === "جدید"
+                            ? "active"
+                            : ""
+                    }"
+                    onclick="changeOrderStatus(
+                        '${escapeAttribute(
+                            order.orderNumber
+                        )}',
+                        'جدید'
+                    )"
+                >
+                    🆕 جدید
+                </button>
+
+
+                <button
+                    class="status-button preparing-button ${
+                        status === "در حال آماده‌سازی"
+                            ? "active"
+                            : ""
+                    }"
+                    onclick="changeOrderStatus(
+                        '${escapeAttribute(
+                            order.orderNumber
+                        )}',
+                        'در حال آماده‌سازی'
+                    )"
+                >
+                    👨‍🍳 آماده‌سازی
+                </button>
+
+
+                <button
+                    class="status-button ready-button ${
+                        status === "آماده تحویل"
+                            ? "active"
+                            : ""
+                    }"
+                    onclick="changeOrderStatus(
+                        '${escapeAttribute(
+                            order.orderNumber
+                        )}',
+                        'آماده تحویل'
+                    )"
+                >
+                    ✅ آماده تحویل
+                </button>
+
+
+                <button
+                    class="status-button delivered-button ${
+                        status === "تحویل شد"
+                            ? "active"
+                            : ""
+                    }"
+                    onclick="changeOrderStatus(
+                        '${escapeAttribute(
+                            order.orderNumber
+                        )}',
+                        'تحویل شد'
+                    )"
+                >
+                    📦 تحویل شد
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   CHANGE STATUS
+========================= */
+
+async function changeOrderStatus(
+    orderNumber,
+    status
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                API +
+                "/orders/" +
+                encodeURIComponent(
+                    orderNumber
+                ),
                 {
-                    method: "POST",
+                    method: "PUT",
 
                     headers: {
                         "Content-Type":
                             "application/json"
                     },
 
-                    body:
-                        JSON.stringify({
-
-                            customerName:
-                                customerName,
-
-                            customerPhone:
-                                customerPhone,
-
-                            product:
-                                product,
-
-                            weight:
-                                weight,
-
-                            pricePerUnit:
-                                pricePerUnit,
-
-                            total:
-                                total,
-
-                            paymentMethod:
-                                paymentMethod,
-
-                            description:
-                                description
-
-                        })
+                    body: JSON.stringify({
+                        status: status
+                    })
                 }
             );
 
         const data =
             await response.json();
 
-        if (
-            !response.ok ||
-            !data.success
-        ) {
+        if (!response.ok) {
 
-            alert(
+            throw new Error(
                 data.message ||
-                "ثبت فروش انجام نشد."
+                "خطا در تغییر وضعیت"
             );
-
-            return;
 
         }
 
-        alert(
-            "فروش با موفقیت ثبت شد."
-        );
+        const index =
+            orders.findIndex(
+                function(order) {
 
-        document.getElementById(
-            "saleCustomerName"
-        ).value = "";
+                    return String(
+                        order.orderNumber
+                    ) === String(
+                        orderNumber
+                    );
 
-        document.getElementById(
-            "saleCustomerPhone"
-        ).value = "";
+                }
+            );
 
-        document.getElementById(
-            "saleDescription"
-        ).value = "";
 
-        await loadSales();
+        if (index !== -1) {
+
+            orders[index] =
+                data.order ||
+                {
+                    ...orders[index],
+                    status: status
+                };
+
+        }
+
+
+        renderOrders();
+
+        updateDashboard();
 
     } catch (error) {
 
         console.error(error);
 
         alert(
-            "اتصال به سرور برقرار نشد."
+            "تغییر وضعیت سفارش انجام نشد.\n" +
+            error.message
         );
 
     }
+
+}
+
+
+/* =========================
+   NORMALIZE STATUS
+========================= */
+
+function normalizeStatus(status) {
+
+    if (
+        status === "جدید" ||
+        status === "در حال آماده‌سازی" ||
+        status === "آماده تحویل" ||
+        status === "تحویل شد"
+    ) {
+
+        return status;
+
+    }
+
+    return "جدید";
+
+}
+
+
+/* =========================
+   STATUS CLASS
+========================= */
+
+function getStatusClass(status) {
+
+    if (
+        status === "در حال آماده‌سازی"
+    ) {
+
+        return "status-preparing";
+
+    }
+
+    if (
+        status === "آماده تحویل"
+    ) {
+
+        return "status-ready";
+
+    }
+
+    if (
+        status === "تحویل شد"
+    ) {
+
+        return "status-delivered";
+
+    }
+
+    return "status-new";
+
+}
+
+
+/* =========================
+   STATUS TEXT
+========================= */
+
+function getStatusText(status) {
+
+    if (
+        status === "در حال آماده‌سازی"
+    ) {
+
+        return "👨‍🍳 در حال آماده‌سازی";
+
+    }
+
+    if (
+        status === "آماده تحویل"
+    ) {
+
+        return "✅ آماده تحویل";
+
+    }
+
+    if (
+        status === "تحویل شد"
+    ) {
+
+        return "📦 تحویل شد";
+
+    }
+
+    return "🆕 جدید";
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard() {
+
+    const total =
+        orders.length;
+
+
+    const newCount =
+        orders.filter(
+            function(order) {
+
+                return normalizeStatus(
+                    order.status
+                ) === "جدید";
+
+            }
+        ).length;
+
+
+    const preparingCount =
+        orders.filter(
+            function(order) {
+
+                return normalizeStatus(
+                    order.status
+                ) ===
+                "در حال آماده‌سازی";
+
+            }
+        ).length;
+
+
+    const readyCount =
+        orders.filter(
+            function(order) {
+
+                return normalizeStatus(
+                    order.status
+                ) ===
+                "آماده تحویل";
+
+            }
+        ).length;
+
+
+    const totalMoney =
+        orders.reduce(
+            function(sum, order) {
+
+                return sum +
+                    Number(
+                        order.total || 0
+                    );
+
+            },
+            0
+        );
+
+
+    document.getElementById(
+        "totalOrders"
+    ).textContent =
+        total.toLocaleString(
+            "fa-IR"
+        );
+
+
+    document.getElementById(
+        "newOrders"
+    ).textContent =
+        newCount.toLocaleString(
+            "fa-IR"
+        );
+
+
+    document.getElementById(
+        "preparingOrders"
+    ).textContent =
+        preparingCount.toLocaleString(
+            "fa-IR"
+        );
+
+
+    document.getElementById(
+        "readyOrders"
+    ).textContent =
+        readyCount.toLocaleString(
+            "fa-IR"
+        );
+
+
+    document.getElementById(
+        "totalMoney"
+    ).textContent =
+        formatPrice(
+            totalMoney
+        ) +
+        " تومان";
+
+}
+
+
+/* =========================
+   LOAD PRODUCT
+========================= */
+
+async function loadProduct() {
+
+    const container =
+        document.getElementById(
+            "product"
+        );
+
+    try {
+
+        const response =
+            await fetch(
+                API + "/products"
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                "خطا در دریافت محصول"
+            );
+
+        }
+
+        const data =
+            await response.json();
+
+        const products =
+            Array.isArray(
+                data.products
+            )
+                ? data.products
+                : [];
+
+        product =
+            products[0] || null;
+
+
+        renderProduct();
+
+    } catch (error) {
+
+        console.error(error);
+
+        container.innerHTML = `
+            ❌ دریافت اطلاعات محصول انجام نشد.
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   RENDER PRODUCT
+========================= */
+
+function renderProduct() {
+
+    const container =
+        document.getElementById(
+            "product"
+        );
+
+
+    if (!product) {
+
+        container.innerHTML = `
+            محصولی پیدا نشد.
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="product-row">
+
+            <div>
+
+                <div class="product-name">
+                    🍞 ${escapeHTML(
+                        product.name
+                    )}
+                </div>
+
+                <div class="product-price">
+                    قیمت فعلی:
+                    ${formatPrice(
+                        product.price
+                    )}
+                    تومان
+                </div>
+
+            </div>
+
+
+            <div class="product-actions">
+
+                <input
+                    id="productPrice"
+                    class="price-input"
+                    type="number"
+                    min="0"
+                    value="${Number(
+                        product.price || 0
+                    )}"
+                >
+
+                <button
+                    class="save-button"
+                    onclick="saveProduct()"
+                >
+                    💾 ذخیره قیمت
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   SAVE PRODUCT
+========================= */
+
+async function saveProduct() {
+
+    /*
+      server.js فعلی API برای PUT محصول ندارد.
+      بنابراین فعلاً قیمت را فقط در همین صفحه تغییر نمی‌دهیم.
+      در مرحله بعد API مدیریت محصول را به server.js اضافه می‌کنیم.
+    */
+
+    alert(
+        "بخش ذخیره قیمت را در مرحله بعد به سرور متصل می‌کنیم."
+    );
 
 }
 
@@ -1781,35 +1770,28 @@ function escapeHTML(value) {
     return String(
         value ?? ""
     )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 }
 
 
 /* =========================
-   START
+   ESCAPE ATTRIBUTE
 ========================= */
 
-checkLogin();
+function escapeAttribute(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'");
+
+}
 
 </script>
 
