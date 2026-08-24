@@ -19,8 +19,6 @@ const PRODUCTS_FILE = path.join(ROOT, "products.json");
 
 const ADMIN_USERNAME = "admin";
 
-// در اولین اجرا این رمز استفاده می‌شود.
-// بعداً بهتر است آن را تغییر بدهی.
 const ADMIN_PASSWORD = "نانک1234";
 
 
@@ -2007,6 +2005,7 @@ server.listen(
     function() {
 
         console.log("");
+
         console.log(
             "🍞 نانک - سرور اجرا شد"
         );
