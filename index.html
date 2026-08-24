@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -8,6 +9,22 @@
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- Google Search Console -->
+    <meta
+        name="google-site-verification"
+        content="DHEV-KZtOjW-xsxng25ET-dlpyTEtL6KGUbpG17znUM"
+    >
+
+    <meta
+        name="description"
+        content="نانک | نان خانگی کنجدی تازه با خرید و تحویل حضوری در خمینی‌شهر"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
     >
 
     <title>نانک | نان خانگی کنجدی</title>
@@ -35,10 +52,6 @@
         input {
             font-family: inherit;
         }
-
-        /* =========================
-           HEADER
-        ========================= */
 
         header {
             background:
@@ -108,10 +121,6 @@
             font-size: 13px;
         }
 
-        /* =========================
-           HERO
-        ========================= */
-
         .hero {
             max-width: 1100px;
 
@@ -147,10 +156,6 @@
 
             margin: 0;
         }
-
-        /* =========================
-           PRODUCT
-        ========================= */
 
         .container {
             max-width: 1100px;
@@ -239,10 +244,6 @@
             color: #b91c1c;
         }
 
-        /* =========================
-           PRICE
-        ========================= */
-
         .price-box {
             background: #fff8ed;
 
@@ -270,16 +271,6 @@
 
             font-weight: bold;
         }
-
-        .price-unit {
-            font-size: 14px;
-
-            color: #777;
-        }
-
-        /* =========================
-           QUANTITY
-        ========================= */
 
         .quantity-title {
             font-weight: bold;
@@ -333,10 +324,6 @@
             outline: none;
         }
 
-        /* =========================
-           TOTAL
-        ========================= */
-
         .total-box {
             background:
                 linear-gradient(
@@ -372,10 +359,6 @@
             font-weight: bold;
         }
 
-        /* =========================
-           ORDER BUTTON
-        ========================= */
-
         .order-button {
             width: 100%;
 
@@ -406,10 +389,6 @@
 
             cursor: not-allowed;
         }
-
-        /* =========================
-           INFO
-        ========================= */
 
         .info {
             margin-top: 25px;
@@ -453,10 +432,6 @@
 
             font-size: 12px;
         }
-
-        /* =========================
-           FORM MODAL
-        ========================= */
 
         .modal {
             position: fixed;
@@ -595,10 +570,6 @@
             cursor: pointer;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
-
         footer {
             background: #3f2a1d;
 
@@ -618,10 +589,6 @@
 
             opacity: .9;
         }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
 
         @media (max-width: 700px) {
 
@@ -655,13 +622,7 @@
 
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header>
 
@@ -687,24 +648,16 @@
 
         </div>
 
-
         <a
             href="admin.html"
             class="admin-link"
         >
-
             🔐 مدیریت
-
         </a>
 
     </div>
 
 </header>
-
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
@@ -722,25 +675,17 @@
 
 </section>
 
-
-<!-- =========================
-     PRODUCT
-========================= -->
-
 <main class="container">
 
     <div class="product-card">
-
 
         <div class="product-image">
             🍞
         </div>
 
-
         <h2 class="product-title">
             نان خانگی کنجدی
         </h2>
-
 
         <p class="product-description">
             نان خانگی تازه و خوش‌طعم با کنجد.
@@ -749,16 +694,12 @@
             به محل فروش مراجعه کنید.
         </p>
 
-
         <div
             id="availability"
             class="availability available"
         >
             ✓ موجود است
         </div>
-
-
-        <!-- قیمت -->
 
         <div class="price-box">
 
@@ -775,13 +716,9 @@
 
         </div>
 
-
-        <!-- تعداد -->
-
         <div class="quantity-title">
             تعداد نان
         </div>
-
 
         <div class="quantity-box">
 
@@ -791,7 +728,6 @@
             >
                 −
             </button>
-
 
             <input
                 id="quantity"
@@ -803,7 +739,6 @@
                 oninput="calculateTotal()"
             >
 
-
             <button
                 class="quantity-button"
                 onclick="changeQuantity(1)"
@@ -812,9 +747,6 @@
             </button>
 
         </div>
-
-
-        <!-- مبلغ کل -->
 
         <div class="total-box">
 
@@ -831,29 +763,17 @@
 
         </div>
 
-
-        <!-- ثبت سفارش -->
-
         <button
             id="orderButton"
             class="order-button"
             onclick="openOrderForm()"
         >
-
             🛒 ثبت سفارش
-
         </button>
-
 
     </div>
 
-
-    <!-- =========================
-         INFO
-    ========================= -->
-
     <div class="info">
-
 
         <div class="info-box">
 
@@ -871,7 +791,6 @@
 
         </div>
 
-
         <div class="info-box">
 
             <div class="info-icon">
@@ -887,7 +806,6 @@
             </span>
 
         </div>
-
 
         <div class="info-box">
 
@@ -909,18 +827,12 @@
 
 </main>
 
-
-<!-- =========================
-     ORDER MODAL
-========================= -->
-
 <div
     id="orderModal"
     class="modal"
 >
 
     <div class="modal-box">
-
 
         <div class="modal-header">
 
@@ -937,7 +849,6 @@
 
         </div>
 
-
         <div class="form-group">
 
             <label>
@@ -952,7 +863,6 @@
             >
 
         </div>
-
 
         <div class="form-group">
 
@@ -969,7 +879,6 @@
             >
 
         </div>
-
 
         <div class="modal-summary">
 
@@ -991,24 +900,16 @@
 
         </div>
 
-
         <button
             class="submit-order"
             onclick="submitOrder()"
         >
-
             ✅ ثبت سفارش
-
         </button>
 
     </div>
 
 </div>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
@@ -1022,13 +923,7 @@
 
 </footer>
 
-
 <script>
-
-
-/* =========================
-   PRODUCT DATA
-========================= */
 
 let product = {
 
@@ -1044,17 +939,12 @@ let product = {
 };
 
 
-/* =========================
-   LOAD PRODUCT
-========================= */
-
 function loadProduct() {
 
     const saved =
         localStorage.getItem(
             "sesameBread"
         );
-
 
     if (saved) {
 
@@ -1075,15 +965,10 @@ function loadProduct() {
 
     }
 
-
     updateProduct();
 
 }
 
-
-/* =========================
-   UPDATE PRODUCT
-========================= */
 
 function updateProduct() {
 
@@ -1096,18 +981,15 @@ function updateProduct() {
         +
         " تومان";
 
-
     const availability =
         document.getElementById(
             "availability"
         );
 
-
     const button =
         document.getElementById(
             "orderButton"
         );
-
 
     if (
         product.available
@@ -1141,15 +1023,10 @@ function updateProduct() {
 
     }
 
-
     calculateTotal();
 
 }
 
-
-/* =========================
-   FORMAT
-========================= */
 
 function formatPrice(value) {
 
@@ -1162,10 +1039,6 @@ function formatPrice(value) {
 }
 
 
-/* =========================
-   QUANTITY
-========================= */
-
 function changeQuantity(
     amount
 ) {
@@ -1175,42 +1048,28 @@ function changeQuantity(
             "quantity"
         );
 
-
     let quantity =
         Number(
             input.value
         ) || 1;
 
-
     quantity += amount;
 
-
     if (quantity < 1) {
-
         quantity = 1;
-
     }
-
 
     if (quantity > 100) {
-
         quantity = 100;
-
     }
-
 
     input.value =
         quantity;
-
 
     calculateTotal();
 
 }
 
-
-/* =========================
-   CALCULATE TOTAL
-========================= */
 
 function calculateTotal() {
 
@@ -1219,12 +1078,10 @@ function calculateTotal() {
             "quantity"
         );
 
-
     let quantity =
         Number(
             input.value
         ) || 1;
-
 
     if (quantity < 1) {
 
@@ -1234,7 +1091,6 @@ function calculateTotal() {
 
     }
 
-
     if (quantity > 100) {
 
         quantity = 100;
@@ -1243,13 +1099,11 @@ function calculateTotal() {
 
     }
 
-
     const total =
         quantity *
         Number(
             product.price || 0
         );
-
 
     document.getElementById(
         "totalPrice"
@@ -1260,14 +1114,12 @@ function calculateTotal() {
         +
         " تومان";
 
-
     document.getElementById(
         "summaryQuantity"
     ).textContent =
         quantity.toLocaleString(
             "fa-IR"
         );
-
 
     document.getElementById(
         "summaryTotal"
@@ -1280,10 +1132,6 @@ function calculateTotal() {
 
 }
 
-
-/* =========================
-   OPEN FORM
-========================= */
 
 function openOrderForm() {
 
@@ -1299,9 +1147,7 @@ function openOrderForm() {
 
     }
 
-
     calculateTotal();
-
 
     document.getElementById(
         "orderModal"
@@ -1311,10 +1157,6 @@ function openOrderForm() {
 
 }
 
-
-/* =========================
-   CLOSE FORM
-========================= */
 
 function closeOrderForm() {
 
@@ -1327,10 +1169,6 @@ function closeOrderForm() {
 }
 
 
-/* =========================
-   SUBMIT ORDER
-========================= */
-
 function submitOrder() {
 
     const name =
@@ -1338,12 +1176,10 @@ function submitOrder() {
             "customerName"
         ).value.trim();
 
-
     const phone =
         document.getElementById(
             "customerPhone"
         ).value.trim();
-
 
     const quantity =
         Number(
@@ -1351,7 +1187,6 @@ function submitOrder() {
                 "quantity"
             ).value
         ) || 1;
-
 
     if (!name) {
 
@@ -1363,7 +1198,6 @@ function submitOrder() {
 
     }
 
-
     if (!phone) {
 
         alert(
@@ -1374,17 +1208,14 @@ function submitOrder() {
 
     }
 
-
     const total =
         quantity *
         Number(
             product.price || 0
         );
 
-
     const now =
         new Date();
-
 
     const order = {
 
@@ -1433,9 +1264,7 @@ function submitOrder() {
 
     };
 
-
     let orders = [];
-
 
     try {
 
@@ -1452,11 +1281,9 @@ function submitOrder() {
 
     }
 
-
     orders.unshift(
         order
     );
-
 
     localStorage.setItem(
         "breadOrders",
@@ -1465,19 +1292,15 @@ function submitOrder() {
         )
     );
 
-
     closeOrderForm();
-
 
     document.getElementById(
         "customerName"
     ).value = "";
 
-
     document.getElementById(
         "customerPhone"
     ).value = "";
-
 
     alert(
         "سفارش شما با موفقیت ثبت شد.\n\n" +
@@ -1492,10 +1315,6 @@ function submitOrder() {
 
 }
 
-
-/* =========================
-   CLICK OUTSIDE MODAL
-========================= */
 
 document.getElementById(
     "orderModal"
@@ -1516,10 +1335,6 @@ document.getElementById(
 );
 
 
-/* =========================
-   STORAGE SYNC
-========================= */
-
 window.addEventListener(
     "storage",
     function(event) {
@@ -1537,10 +1352,6 @@ window.addEventListener(
 );
 
 
-/* =========================
-   START
-========================= */
-
 document.addEventListener(
     "DOMContentLoaded",
     function() {
@@ -1552,7 +1363,7 @@ document.addEventListener(
 
 </script>
 
-
 </body>
 
 </html>
+```
