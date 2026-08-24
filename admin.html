@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>پنل مدیریت نانک</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -14,8 +20,8 @@
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: #f5f1ea;
-            color: #2d241c;
+            background: #f5f1e8;
+            color: #33251b;
         }
 
         button,
@@ -25,7 +31,13 @@
             font-family: inherit;
         }
 
-        .login-page {
+        .hidden {
+            display: none !important;
+        }
+
+        /* LOGIN */
+
+        #loginPage {
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -39,104 +51,147 @@
             background: white;
             border-radius: 24px;
             padding: 30px;
-            box-shadow: 0 15px 50px rgba(0,0,0,.12);
+            box-shadow: 0 15px 45px rgba(0,0,0,.12);
             text-align: center;
         }
 
-        .logo {
+        .login-logo {
             font-size: 55px;
             margin-bottom: 10px;
         }
 
-        h1 {
-            margin: 0 0 8px;
-            font-size: 28px;
+        .login-box h1 {
+            margin: 0 0 10px;
+            color: #7a431f;
         }
 
-        .subtitle {
+        .login-box p {
             color: #777;
             margin-bottom: 25px;
         }
 
         .input {
             width: 100%;
+            padding: 14px;
             border: 1px solid #ddd;
-            border-radius: 14px;
-            padding: 15px;
+            border-radius: 12px;
             font-size: 16px;
             outline: none;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .input:focus {
-            border-color: #c47a2c;
+            border-color: #b87535;
         }
 
         .btn {
-            width: 100%;
             border: 0;
-            border-radius: 14px;
-            padding: 15px;
-            font-size: 16px;
+            border-radius: 12px;
+            padding: 13px 18px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 14px;
         }
 
         .btn-primary {
-            background: #c47a2c;
+            background: #8b4f25;
             color: white;
         }
 
         .btn-primary:hover {
-            background: #a96120;
+            background: #6e3c1c;
+        }
+
+        .btn-danger {
+            background: #c62828;
+            color: white;
+        }
+
+        .btn-success {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #ef8f00;
+            color: white;
+        }
+
+        .btn-gray {
+            background: #666;
+            color: white;
         }
 
         .error {
             color: #c62828;
-            margin-top: 12px;
-            min-height: 20px;
-        }
-
-        .dashboard {
-            display: none;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: #3b291d;
-            color: white;
-            padding: 18px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .header-title {
-            font-size: 23px;
+            margin-top: 10px;
             font-weight: bold;
         }
 
-        .logout {
-            background: #b83232;
+        /* ADMIN */
+
+        #adminPage {
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #7b421e,
+                #b66b2d
+            );
+
             color: white;
-            border: 0;
-            border-radius: 10px;
-            padding: 10px 18px;
-            cursor: pointer;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0,0,0,.15);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            font-size: 35px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .brand span {
+            font-size: 12px;
+            opacity: .9;
         }
 
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: auto;
-            padding: 25px;
+            padding: 25px 15px 50px;
         }
+
+        /* DASHBOARD */
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(
+                4,
+                1fr
+            );
             gap: 15px;
             margin-bottom: 25px;
         }
@@ -144,179 +199,213 @@
         .stat {
             background: white;
             border-radius: 18px;
-            padding: 22px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.07);
+        }
+
+        .stat-icon {
+            font-size: 30px;
         }
 
         .stat-title {
             color: #777;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-top: 8px;
         }
 
         .stat-value {
-            font-size: 28px;
+            font-size: 25px;
             font-weight: bold;
+            margin-top: 5px;
+            color: #7a431f;
         }
+
+        /* SECTION */
 
         .section {
             background: white;
             border-radius: 20px;
-            padding: 22px;
+            padding: 20px;
             margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+            box-shadow: 0 5px 20px rgba(0,0,0,.07);
         }
 
-        .section-title {
-            font-size: 21px;
-            font-weight: bold;
-            margin-bottom: 18px;
-        }
-
-        .product-card {
-            border: 1px solid #eee;
-            border-radius: 16px;
-            padding: 18px;
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
+            margin-bottom: 18px;
         }
 
-        .product-name {
-            font-size: 18px;
-            font-weight: bold;
+        .section-title {
+            margin: 0;
+            color: #6d3c1d;
         }
 
-        .product-price {
-            color: #c47a2c;
-            margin-top: 7px;
-        }
-
-        .status {
-            padding: 7px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            display: inline-block;
-            margin-top: 8px;
-        }
-
-        .available {
-            background: #e6f6e9;
-            color: #19702b;
-        }
-
-        .unavailable {
-            background: #fde7e7;
-            color: #a52222;
-        }
-
-        .product-actions {
+        .actions {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
 
-        .small-btn {
-            border: 0;
-            border-radius: 10px;
-            padding: 10px 14px;
-            cursor: pointer;
-        }
-
-        .green {
-            background: #2e7d32;
-            color: white;
-        }
-
-        .orange {
-            background: #c47a2c;
-            color: white;
-        }
-
-        .blue {
-            background: #2468b5;
-            color: white;
-        }
+        /* ORDERS */
 
         .orders-list {
-            display: flex;
-            flex-direction: column;
+            display: grid;
             gap: 15px;
         }
 
-        .order {
-            border: 1px solid #eee;
+        .order-card {
+            border: 1px solid #eadfd2;
             border-radius: 16px;
             padding: 18px;
+            background: #fffdfa;
         }
 
         .order-top {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
             margin-bottom: 12px;
         }
 
         .order-number {
             font-weight: bold;
+            color: #7a431f;
         }
 
-        .order-status {
-            border-radius: 20px;
-            padding: 6px 12px;
-            background: #fff1dc;
-            color: #9a5a16;
-            font-size: 13px;
+        .order-date {
+            font-size: 12px;
+            color: #888;
         }
 
-        .order-grid {
+        .order-info {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns:
+                repeat(2, 1fr);
             gap: 8px;
-            color: #555;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .order-info div {
+            background: #f8f3ec;
+            padding: 10px;
+            border-radius: 9px;
         }
 
         .order-total {
             font-size: 18px;
             font-weight: bold;
-            color: #c47a2c;
-            margin-top: 12px;
+            color: #2e7d32;
+            margin-bottom: 15px;
         }
 
         .order-actions {
             display: flex;
-            gap: 8px;
             flex-wrap: wrap;
-            margin-top: 15px;
+            gap: 7px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .status-new {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .status-preparing {
+            background: #fff3cd;
+            color: #946200;
+        }
+
+        .status-ready {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-done {
+            background: #eeeeee;
+            color: #555;
         }
 
         .empty {
             text-align: center;
             color: #888;
-            padding: 25px;
+            padding: 35px;
+            background: #fafafa;
+            border-radius: 14px;
         }
+
+        /* PRODUCTS */
+
+        .products-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .product-card {
+            border: 1px solid #eadfd2;
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .product-name {
+            font-weight: bold;
+        }
+
+        .product-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .price-input {
+            width: 130px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+        }
+
+        /* SALE FORM */
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns:
+                repeat(2, 1fr);
             gap: 12px;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 7px;
+            gap: 6px;
         }
 
         .form-group.full {
             grid-column: 1 / -1;
         }
 
-        label {
-            font-size: 14px;
+        .form-group label {
+            font-size: 13px;
             font-weight: bold;
         }
 
@@ -326,59 +415,47 @@
         }
 
         .sale-total {
-            background: #fff7eb;
-            border-radius: 14px;
+            background: #f3eadf;
             padding: 15px;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: bold;
-            color: #9a5a16;
+            color: #7a431f;
         }
 
-        .message {
-            padding: 12px;
+        /* MESSAGE */
+
+        #message {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            max-width: 350px;
+            padding: 14px 18px;
             border-radius: 12px;
-            margin-bottom: 15px;
+            background: #333;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,.2);
+            z-index: 9999;
             display: none;
         }
 
-        .message.success {
-            display: block;
-            background: #e8f5e9;
-            color: #256b2b;
+        #message.success {
+            background: #2e7d32;
         }
 
-        .message.error {
-            display: block;
-            background: #ffebee;
-            color: #b71c1c;
+        #message.error {
+            background: #c62828;
         }
 
-        .refresh {
-            background: #444;
-            color: white;
-            border: 0;
-            border-radius: 10px;
-            padding: 10px 16px;
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
+        /* MOBILE */
 
         @media (max-width: 800px) {
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
 
             .stats {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
-            .order-grid,
             .form-grid {
                 grid-template-columns: 1fr;
             }
@@ -387,79 +464,137 @@
                 grid-column: auto;
             }
 
-            .header {
+        }
+
+        @media (max-width: 550px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .header-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .order-info {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px 10px 40px;
+            }
+
+            .section {
                 padding: 15px;
             }
 
-            .header-title {
-                font-size: 18px;
-            }
         }
+
     </style>
 </head>
 
 <body>
 
-<div id="loginPage" class="login-page">
+<!-- LOGIN -->
+
+<div id="loginPage">
 
     <div class="login-box">
 
-        <div class="logo">🍞</div>
-
-        <h1>پنل مدیریت نانک</h1>
-
-        <div class="subtitle">
-            مدیریت فروشگاه نانک
+        <div class="login-logo">
+            🍞
         </div>
 
+        <h1>
+            پنل مدیریت نانک
+        </h1>
+
+        <p>
+            ورود مدیر فروشگاه
+        </p>
+
         <input
-            id="passwordInput"
+            id="password"
             class="input"
             type="password"
-            placeholder="رمز مدیریت"
-            autocomplete="current-password"
+            placeholder="رمز پنل"
+            autocomplete="off"
         >
 
         <button
             id="loginButton"
             class="btn btn-primary"
+            style="width:100%;"
         >
             ورود به پنل
         </button>
 
-        <div id="loginError" class="error"></div>
+        <div
+            id="loginError"
+            class="error"
+        ></div>
 
     </div>
 
 </div>
 
 
-<div id="dashboard" class="dashboard">
+<!-- ADMIN -->
 
-    <header class="header">
+<div
+    id="adminPage"
+    class="hidden"
+>
 
-        <div class="header-title">
-            🍞 پنل مدیریت نانک
+    <header>
+
+        <div class="header-inner">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    🍞
+                </div>
+
+                <div>
+
+                    <h1>
+                        پنل مدیریت نانک
+                    </h1>
+
+                    <span>
+                        مدیریت سفارش‌ها و فروش حضوری
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button
+                id="logoutButton"
+                class="btn btn-gray"
+            >
+                خروج
+            </button>
+
         </div>
-
-        <button
-            id="logoutButton"
-            class="logout"
-        >
-            خروج
-        </button>
 
     </header>
 
 
     <main class="container">
 
-        <div id="message" class="message"></div>
+        <!-- STATS -->
 
-
-        <section class="stats">
+        <div class="stats">
 
             <div class="stat">
+
+                <div class="stat-icon">
+                    📦
+                </div>
+
                 <div class="stat-title">
                     کل سفارش‌ها
                 </div>
@@ -468,12 +603,18 @@
                     id="totalOrders"
                     class="stat-value"
                 >
-                    ۰
+                    0
                 </div>
+
             </div>
 
 
             <div class="stat">
+
+                <div class="stat-icon">
+                    🆕
+                </div>
+
                 <div class="stat-title">
                     سفارش‌های جدید
                 </div>
@@ -482,247 +623,335 @@
                     id="newOrders"
                     class="stat-value"
                 >
-                    ۰
+                    0
                 </div>
+
             </div>
 
 
             <div class="stat">
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
                 <div class="stat-title">
-                    فروش ثبت‌شده
+                    در حال آماده‌سازی
                 </div>
 
                 <div
-                    id="totalSales"
+                    id="preparingOrders"
                     class="stat-value"
                 >
-                    ۰
+                    0
                 </div>
+
             </div>
 
 
             <div class="stat">
+
+                <div class="stat-icon">
+                    💰
+                </div>
+
                 <div class="stat-title">
-                    مبلغ کل فروش
+                    مبلغ سفارش‌ها
                 </div>
 
                 <div
                     id="totalMoney"
                     class="stat-value"
                 >
-                    ۰
+                    0 تومان
                 </div>
+
             </div>
 
-        </section>
+        </div>
 
+
+        <!-- ORDERS -->
 
         <section class="section">
 
-            <div class="section-title">
-                📦 مدیریت محصول
-            </div>
+            <div class="section-header">
 
-            <div id="productsList"></div>
+                <h2 class="section-title">
+                    📦 سفارش‌های مشتریان
+                </h2>
 
-        </section>
-
-
-        <section class="section">
-
-            <div class="section-title">
-                🛒 سفارش‌های مشتریان
-            </div>
-
-            <button
-                id="refreshOrders"
-                class="refresh"
-            >
-                🔄 بروزرسانی سفارش‌ها
-            </button>
-
-            <div
-                id="ordersList"
-                class="orders-list"
-            ></div>
-
-        </section>
-
-
-        <section class="section">
-
-            <div class="section-title">
-                💰 ثبت فروش حضوری
-            </div>
-
-            <div class="form-grid">
-
-                <div class="form-group">
-
-                    <label>
-                        نام مشتری
-                    </label>
-
-                    <input
-                        id="saleCustomerName"
-                        class="input"
-                        type="text"
-                        placeholder="اختیاری"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        شماره تماس
-                    </label>
-
-                    <input
-                        id="saleCustomerPhone"
-                        class="input"
-                        type="tel"
-                        placeholder="اختیاری"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        محصول
-                    </label>
-
-                    <select
-                        id="saleProduct"
-                        class="input"
-                    >
-                        <option value="نان خانگی کنجدی">
-                            نان خانگی کنجدی
-                        </option>
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        وزن / تعداد
-                    </label>
-
-                    <input
-                        id="saleWeight"
-                        class="input"
-                        type="number"
-                        min="0"
-                        step="0.1"
-                        value="1"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        قیمت واحد
-                    </label>
-
-                    <input
-                        id="salePrice"
-                        class="input"
-                        type="number"
-                        min="0"
-                        value="15000"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        روش پرداخت
-                    </label>
-
-                    <select
-                        id="paymentMethod"
-                        class="input"
-                    >
-
-                        <option value="نقدی">
-                            نقدی
-                        </option>
-
-                        <option value="کارت">
-                            کارت
-                        </option>
-
-                        <option value="پرداخت نشده">
-                            پرداخت نشده
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group full">
-
-                    <label>
-                        توضیحات
-                    </label>
-
-                    <textarea
-                        id="saleDescription"
-                        class="input"
-                        placeholder="توضیحات فروش..."
-                    ></textarea>
-
-                </div>
-
-
-                <div class="form-group full">
-
-                    <div
-                        id="saleTotal"
-                        class="sale-total"
-                    >
-                        مبلغ کل: ۱۵٬۰۰۰ تومان
-                    </div>
-
-                </div>
-
-
-                <div class="form-group full">
+                <div class="actions">
 
                     <button
-                        id="saveSale"
+                        id="refreshOrders"
                         class="btn btn-primary"
                     >
-                        ثبت فروش حضوری
+                        🔄 بروزرسانی
+                    </button>
+
+                    <button
+                        id="deleteAllOrders"
+                        class="btn btn-danger"
+                    >
+                        🗑️ حذف همه سفارش‌ها
                     </button>
 
                 </div>
 
             </div>
 
+
+            <div
+                id="ordersList"
+                class="orders-list"
+            >
+
+                <div class="empty">
+                    در حال دریافت سفارش‌ها...
+                </div>
+
+            </div>
+
         </section>
 
 
+        <!-- PRODUCTS -->
+
         <section class="section">
 
-            <div class="section-title">
-                📊 فروش‌های ثبت‌شده
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    🍞 محصولات
+                </h2>
+
+                <button
+                    id="refreshProducts"
+                    class="btn btn-primary"
+                >
+                    🔄 بروزرسانی
+                </button>
+
             </div>
+
+
+            <div
+                id="productsList"
+                class="products-list"
+            >
+
+                <div class="empty">
+                    در حال دریافت محصولات...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SALES -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    🧾 ثبت فروش حضوری
+                </h2>
+
+            </div>
+
+
+            <form id="saleForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            نام مشتری
+                        </label>
+
+                        <input
+                            id="saleCustomerName"
+                            class="input"
+                            type="text"
+                            placeholder="اختیاری"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            شماره تماس
+                        </label>
+
+                        <input
+                            id="saleCustomerPhone"
+                            class="input"
+                            type="tel"
+                            placeholder="اختیاری"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            محصول
+                        </label>
+
+                        <select
+                            id="saleProduct"
+                            class="input"
+                        >
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            وزن / تعداد
+                        </label>
+
+                        <input
+                            id="saleWeight"
+                            class="input"
+                            type="number"
+                            min="0"
+                            step="0.1"
+                            value="1"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            قیمت واحد
+                        </label>
+
+                        <input
+                            id="salePrice"
+                            class="input"
+                            type="number"
+                            min="0"
+                            value="15000"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            روش پرداخت
+                        </label>
+
+                        <select
+                            id="paymentMethod"
+                            class="input"
+                        >
+
+                            <option value="نقدی">
+                                💵 نقدی
+                            </option>
+
+                            <option value="کارت">
+                                💳 کارت
+                            </option>
+
+                            <option value="پرداخت نشده">
+                                ⏳ پرداخت نشده
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            توضیحات
+                        </label>
+
+                        <textarea
+                            id="saleDescription"
+                            class="input"
+                            placeholder="توضیحات فروش..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <div
+                            id="saleTotal"
+                            class="sale-total"
+                        >
+                            مبلغ کل: 15,000 تومان
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <button
+                            type="submit"
+                            class="btn btn-success"
+                        >
+                            ✅ ثبت فروش حضوری
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- SALES HISTORY -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    🧾 فروش‌های ثبت‌شده
+                </h2>
+
+                <button
+                    id="refreshSales"
+                    class="btn btn-primary"
+                >
+                    🔄 بروزرسانی
+                </button>
+
+            </div>
+
 
             <div
                 id="salesList"
                 class="orders-list"
-            ></div>
+            >
+
+                <div class="empty">
+                    در حال دریافت فروش‌ها...
+                </div>
+
+            </div>
 
         </section>
 
@@ -731,283 +960,886 @@
 </div>
 
 
+<div id="message"></div>
+
+
 <script>
 
-const API = "";
+    /*
+     * رمز پنل
+     */
 
-let authToken =
-    localStorage.getItem(
-        "nanak_admin_token"
-    );
-
-
-function formatNumber(number) {
-
-    return Number(number || 0)
-        .toLocaleString("fa-IR");
-
-}
+    const ADMIN_PASSWORD =
+        "123456";
 
 
-function showMessage(
-    text,
-    type = "success"
-) {
+    /*
+     * چون سایت و سرور روی یک دامنه هستند،
+     * از مسیر نسبی استفاده می‌کنیم.
+     */
 
-    const box =
-        document.getElementById(
-            "message"
-        );
-
-    box.textContent = text;
-
-    box.className =
-        "message " + type;
-
-    setTimeout(function() {
-        box.className = "message";
-    }, 4000);
-
-}
+    const API_BASE = "";
 
 
-async function apiRequest(
-    endpoint,
-    options = {}
-) {
+    function $(id) {
 
-    options.headers =
-        options.headers || {};
+        return document.getElementById(id);
 
-    options.headers[
-        "Content-Type"
-    ] = "application/json";
-
-    if (authToken) {
-
-        options.headers[
-            "Authorization"
-        ] =
-            "Bearer " + authToken;
     }
 
-    const response =
-        await fetch(
-            API + endpoint,
-            options
+
+    function showMessage(
+        text,
+        type = "success"
+    ) {
+
+        const box =
+            $("message");
+
+        box.textContent =
+            text;
+
+        box.className =
+            type;
+
+        box.style.display =
+            "block";
+
+
+        setTimeout(
+            function() {
+
+                box.style.display =
+                    "none";
+
+            },
+            3000
         );
 
-    let data = {};
-
-    try {
-        data = await response.json();
-    } catch (error) {
-        data = {};
     }
 
-    if (response.status === 401) {
 
-        logout();
-
-        throw new Error(
-            "دسترسی شما منقضی شده است."
-        );
-    }
-
-    if (!response.ok) {
-
-        throw new Error(
-            data.message ||
-            "خطا در ارتباط با سرور"
-        );
-    }
-
-    return data;
-}
-
-
-async function login() {
-
-    const password =
-        document.getElementById(
-            "passwordInput"
-        ).value.trim();
-
-    const errorBox =
-        document.getElementById(
-            "loginError"
-        );
-
-    errorBox.textContent = "";
-
-    if (!password) {
-
-        errorBox.textContent =
-            "رمز را وارد کنید.";
-
-        return;
-    }
-
-    try {
+    async function apiRequest(
+        endpoint,
+        options = {}
+    ) {
 
         const response =
             await fetch(
-                API + "/api/login",
+                API_BASE +
+                endpoint,
                 {
-                    method: "POST",
+                    ...options,
 
                     headers: {
                         "Content-Type":
-                            "application/json"
-                    },
+                            "application/json",
 
-                    body: JSON.stringify({
-                        password:
-                            password
-                    })
+                        ...(options.headers || {})
+                    }
                 }
             );
 
-        const data =
-            await response.json();
+
+        let data;
+
+
+        try {
+
+            data =
+                await response.json();
+
+        } catch (error) {
+
+            throw new Error(
+                "پاسخ سرور معتبر نیست."
+            );
+
+        }
+
 
         if (!response.ok) {
 
-            errorBox.textContent =
+            throw new Error(
                 data.message ||
-                "رمز اشتباه است.";
+                "خطا در ارتباط با سرور"
+            );
 
+        }
+
+
+        return data;
+
+    }
+
+
+    /*
+     * LOGIN
+     */
+
+    function login() {
+
+        const password =
+            $("password").value;
+
+
+        if (
+            password ===
+            ADMIN_PASSWORD
+        ) {
+
+            localStorage.setItem(
+                "nanak_admin_login",
+                "true"
+            );
+
+
+            $("loginPage")
+                .classList
+                .add("hidden");
+
+
+            $("adminPage")
+                .classList
+                .remove("hidden");
+
+
+            $("loginError")
+                .textContent =
+                "";
+
+
+            loadAll();
+
+        } else {
+
+            $("loginError")
+                .textContent =
+                "رمز عبور اشتباه است.";
+
+        }
+
+    }
+
+
+    $("loginButton")
+        .addEventListener(
+            "click",
+            login
+        );
+
+
+    $("password")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    login();
+
+                }
+
+            }
+        );
+
+
+    $("logoutButton")
+        .addEventListener(
+            "click",
+            function() {
+
+                localStorage.removeItem(
+                    "nanak_admin_login"
+                );
+
+                location.reload();
+
+            }
+        );
+
+
+    /*
+     * FORMAT
+     */
+
+    function money(
+        value
+    ) {
+
+        return Number(
+            value || 0
+        ).toLocaleString(
+            "fa-IR"
+        ) + " تومان";
+
+    }
+
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(
+            value ?? ""
+        )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    function escapeJs(
+        value
+    ) {
+
+        return String(
+            value ?? ""
+        )
+            .replace(
+                /\\/g,
+                "\\\\"
+            )
+            .replace(
+                /'/g,
+                "\\'"
+            )
+            .replace(
+                /\n/g,
+                "\\n"
+            )
+            .replace(
+                /\r/g,
+                "\\r"
+            );
+
+    }
+
+
+    /*
+     * LOAD ORDERS
+     */
+
+    async function loadOrders() {
+
+        try {
+
+            const data =
+                await apiRequest(
+                    "/api/orders"
+                );
+
+
+            const orders =
+                Array.isArray(
+                    data.orders
+                )
+                    ? data.orders
+                    : [];
+
+
+            renderOrders(
+                orders
+            );
+
+
+            updateStats(
+                orders
+            );
+
+        } catch (error) {
+
+            $("ordersList")
+                .innerHTML = `
+                    <div class="empty">
+                        ❌ اتصال به سرور برقرار نشد.
+                        <br><br>
+                        ${escapeHtml(
+                            error.message
+                        )}
+                    </div>
+                `;
+
+        }
+
+    }
+
+
+    function getStatusClass(
+        status
+    ) {
+
+        if (
+            status === "جدید"
+        ) {
+            return "status-new";
+        }
+
+        if (
+            status ===
+            "در حال آماده‌سازی"
+        ) {
+            return "status-preparing";
+        }
+
+        if (
+            status ===
+            "آماده تحویل"
+        ) {
+            return "status-ready";
+        }
+
+        return "status-done";
+
+    }
+
+
+    function renderOrders(
+        orders
+    ) {
+
+        const list =
+            $("ordersList");
+
+
+        if (
+            orders.length === 0
+        ) {
+
+            list.innerHTML = `
+                <div class="empty">
+                    📭 هنوز سفارشی ثبت نشده است.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML =
+            orders.map(
+                function(order) {
+
+                    const status =
+                        escapeHtml(
+                            order.status ||
+                            "جدید"
+                        );
+
+
+                    return `
+                        <div class="order-card">
+
+                            <div class="order-top">
+
+                                <div>
+
+                                    <div class="order-number">
+                                        🧾 ${escapeHtml(
+                                            order.orderNumber
+                                        )}
+                                    </div>
+
+                                    <div class="order-date">
+                                        ${escapeHtml(
+                                            order.date
+                                        )}
+                                    </div>
+
+                                </div>
+
+                                <div class="status ${getStatusClass(
+                                    order.status
+                                )}">
+                                    ${status}
+                                </div>
+
+                            </div>
+
+
+                            <div class="order-info">
+
+                                <div>
+                                    👤
+                                    <b>مشتری:</b>
+                                    ${escapeHtml(
+                                        order.customerName
+                                    )}
+                                </div>
+
+                                <div>
+                                    📞
+                                    <b>تماس:</b>
+                                    ${escapeHtml(
+                                        order.customerPhone
+                                    )}
+                                </div>
+
+                                <div>
+                                    🍞
+                                    <b>محصول:</b>
+                                    ${escapeHtml(
+                                        order.product
+                                    )}
+                                </div>
+
+                                <div>
+                                    🔢
+                                    <b>تعداد:</b>
+                                    ${escapeHtml(
+                                        order.quantity
+                                    )}
+                                </div>
+
+                                <div>
+                                    💵
+                                    <b>قیمت واحد:</b>
+                                    ${money(
+                                        order.unitPrice
+                                    )}
+                                </div>
+
+                                <div>
+                                    🏪
+                                    <b>نوع:</b>
+                                    ${escapeHtml(
+                                        order.type ||
+                                        "حضوری"
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div class="order-total">
+                                مبلغ کل:
+                                ${money(
+                                    order.total
+                                )}
+                            </div>
+
+
+                            <div class="order-actions">
+
+                                <button
+                                    class="btn btn-primary"
+                                    onclick="changeOrderStatus(
+                                        '${escapeJs(
+                                            order.orderNumber
+                                        )}',
+                                        'جدید'
+                                    )"
+                                >
+                                    🆕 جدید
+                                </button>
+
+
+                                <button
+                                    class="btn btn-warning"
+                                    onclick="changeOrderStatus(
+                                        '${escapeJs(
+                                            order.orderNumber
+                                        )}',
+                                        'در حال آماده‌سازی'
+                                    )"
+                                >
+                                    ⏳ در حال آماده‌سازی
+                                </button>
+
+
+                                <button
+                                    class="btn btn-success"
+                                    onclick="changeOrderStatus(
+                                        '${escapeJs(
+                                            order.orderNumber
+                                        )}',
+                                        'آماده تحویل'
+                                    )"
+                                >
+                                    ✅ آماده تحویل
+                                </button>
+
+
+                                <button
+                                    class="btn btn-gray"
+                                    onclick="changeOrderStatus(
+                                        '${escapeJs(
+                                            order.orderNumber
+                                        )}',
+                                        'تحویل شد'
+                                    )"
+                                >
+                                    📦 تحویل شد
+                                </button>
+
+
+                                <button
+                                    class="btn btn-danger"
+                                    onclick="deleteOrder(
+                                        '${escapeJs(
+                                            order.orderNumber
+                                        )}'
+                                    )"
+                                >
+                                    🗑️ حذف سفارش
+                                </button>
+
+                            </div>
+
+                        </div>
+                    `;
+
+                }
+            )
+            .join("");
+
+    }
+
+
+    /*
+     * CHANGE STATUS
+     */
+
+    async function changeOrderStatus(
+        orderNumber,
+        status
+    ) {
+
+        try {
+
+            await apiRequest(
+                "/api/orders/" +
+                encodeURIComponent(
+                    orderNumber
+                ),
+                {
+                    method: "PUT",
+
+                    body:
+                        JSON.stringify({
+                            status:
+                                status
+                        })
+                }
+            );
+
+
+            showMessage(
+                "وضعیت سفارش تغییر کرد."
+            );
+
+
+            await loadOrders();
+
+        } catch (error) {
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    /*
+     * DELETE ONE ORDER
+     */
+
+    async function deleteOrder(
+        orderNumber
+    ) {
+
+        const confirmed =
+            confirm(
+                "آیا مطمئن هستید که می‌خواهید سفارش " +
+                orderNumber +
+                " حذف شود؟"
+            );
+
+
+        if (!confirmed) {
             return;
         }
 
-        authToken =
-            data.token;
 
-        localStorage.setItem(
-            "nanak_admin_token",
-            authToken
-        );
+        try {
 
-        showDashboard();
-
-    } catch (error) {
-
-        errorBox.textContent =
-            "اتصال به سرور برقرار نشد.";
-
-        console.error(error);
-    }
-}
-
-
-function logout() {
-
-    authToken = null;
-
-    localStorage.removeItem(
-        "nanak_admin_token"
-    );
-
-    document.getElementById(
-        "dashboard"
-    ).style.display = "none";
-
-    document.getElementById(
-        "loginPage"
-    ).style.display = "flex";
-
-    document.getElementById(
-        "passwordInput"
-    ).value = "";
-
-}
-
-
-async function showDashboard() {
-
-    document.getElementById(
-        "loginPage"
-    ).style.display = "none";
-
-    document.getElementById(
-        "dashboard"
-    ).style.display = "block";
-
-    await loadProducts();
-
-    await loadOrders();
-
-    await loadSales();
-
-}
-
-
-async function checkLogin() {
-
-    if (!authToken) {
-        return;
-    }
-
-    try {
-
-        const data =
             await apiRequest(
-                "/api/admin/check"
+                "/api/orders/" +
+                encodeURIComponent(
+                    orderNumber
+                ),
+                {
+                    method:
+                        "DELETE"
+                }
             );
 
-        if (data.success) {
-            showDashboard();
+
+            showMessage(
+                "سفارش حذف شد."
+            );
+
+
+            await loadOrders();
+
+        } catch (error) {
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
         }
 
-    } catch (error) {
-
-        console.log(
-            "Login check:",
-            error.message
-        );
-
     }
-}
 
 
-async function loadProducts() {
+    /*
+     * DELETE ALL ORDERS
+     */
 
-    try {
+    async function deleteAllOrders() {
 
-        const data =
-            await apiRequest(
-                "/api/products"
+        const confirmed =
+            confirm(
+                "⚠️ هشدار\n\n" +
+                "تمام سفارش‌ها حذف خواهند شد.\n" +
+                "این کار قابل برگشت نیست.\n\n" +
+                "آیا ادامه می‌دهید؟"
             );
 
-        const products =
-            data.products || [];
 
-        const container =
-            document.getElementById(
-                "productsList"
-            );
-
-        if (!products.length) {
-
-            container.innerHTML =
-                '<div class="empty">محصولی وجود ندارد.</div>';
-
+        if (!confirmed) {
             return;
         }
 
-        container.innerHTML =
+
+        try {
+
+            await apiRequest(
+                "/api/orders",
+                {
+                    method:
+                        "DELETE"
+                }
+            );
+
+
+            showMessage(
+                "تمام سفارش‌ها حذف شدند."
+            );
+
+
+            await loadOrders();
+
+        } catch (error) {
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    $("deleteAllOrders")
+        .addEventListener(
+            "click",
+            deleteAllOrders
+        );
+
+
+    $("refreshOrders")
+        .addEventListener(
+            "click",
+            loadOrders
+        );
+
+
+    /*
+     * STATS
+     */
+
+    function updateStats(
+        orders
+    ) {
+
+        $("totalOrders")
+            .textContent =
+            orders.length
+                .toLocaleString(
+                    "fa-IR"
+                );
+
+
+        const newCount =
+            orders.filter(
+                function(order) {
+
+                    return (
+                        order.status ===
+                        "جدید"
+                    );
+
+                }
+            ).length;
+
+
+        const preparingCount =
+            orders.filter(
+                function(order) {
+
+                    return (
+                        order.status ===
+                        "در حال آماده‌سازی"
+                    );
+
+                }
+            ).length;
+
+
+        const total =
+            orders.reduce(
+                function(sum, order) {
+
+                    return (
+                        sum +
+                        Number(
+                            order.total || 0
+                        )
+                    );
+
+                },
+                0
+            );
+
+
+        $("newOrders")
+            .textContent =
+            newCount.toLocaleString(
+                "fa-IR"
+            );
+
+
+        $("preparingOrders")
+            .textContent =
+            preparingCount.toLocaleString(
+                "fa-IR"
+            );
+
+
+        $("totalMoney")
+            .textContent =
+            money(total);
+
+    }
+
+
+    /*
+     * PRODUCTS
+     */
+
+    let products = [];
+
+
+    async function loadProducts() {
+
+        try {
+
+            const data =
+                await apiRequest(
+                    "/api/products"
+                );
+
+
+            products =
+                Array.isArray(
+                    data.products
+                )
+                    ? data.products
+                    : [];
+
+
+            renderProducts(
+                products
+            );
+
+
+            updateSaleProducts(
+                products
+            );
+
+        } catch (error) {
+
+            $("productsList")
+                .innerHTML = `
+                    <div class="empty">
+                        ❌ خطا در دریافت محصولات
+                        <br>
+                        ${escapeHtml(
+                            error.message
+                        )}
+                    </div>
+                `;
+
+        }
+
+    }
+
+
+    function renderProducts(
+        products
+    ) {
+
+        const list =
+            $("productsList");
+
+
+        if (
+            products.length === 0
+        ) {
+
+            list.innerHTML = `
+                <div class="empty">
+                    محصولی وجود ندارد.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML =
             products.map(
                 function(product) {
-
-                    const statusClass =
-                        product.available
-                            ? "available"
-                            : "unavailable";
-
-                    const statusText =
-                        product.available
-                            ? "موجود"
-                            : "ناموجود";
 
                     return `
                         <div class="product-card">
@@ -1015,371 +1847,596 @@ async function loadProducts() {
                             <div>
 
                                 <div class="product-name">
-                                    🍞 ${escapeHtml(product.name)}
+                                    🍞 ${escapeHtml(
+                                        product.name
+                                    )}
                                 </div>
 
-                                <div class="product-price">
-                                    ${formatNumber(product.price)}
-                                    تومان
+                                <div style="
+                                    margin-top:6px;
+                                    color:#777;
+                                    font-size:13px;
+                                ">
+                                    وضعیت:
+                                    ${
+                                        product.available
+                                            ? "🟢 موجود"
+                                            : "🔴 ناموجود"
+                                    }
                                 </div>
-
-                                <span class="status ${statusClass}">
-                                    ${statusText}
-                                </span>
 
                             </div>
 
-                            <div class="product-actions">
+
+                            <div class="product-controls">
+
+                                <input
+                                    id="price-${escapeHtml(
+                                        product.id
+                                    )}"
+                                    class="price-input"
+                                    type="number"
+                                    min="0"
+                                    value="${Number(
+                                        product.price || 0
+                                    )}"
+                                >
+
 
                                 <button
-                                    class="small-btn ${product.available ? "orange" : "green"}"
+                                    class="btn btn-primary"
+                                    onclick="saveProduct(
+                                        '${escapeJs(
+                                            product.id
+                                        )}'
+                                    )"
+                                >
+                                    💾 ذخیره
+                                </button>
+
+
+                                <button
+                                    class="btn ${
+                                        product.available
+                                            ? "btn-danger"
+                                            : "btn-success"
+                                    }"
                                     onclick="toggleProduct(
-                                        '${escapeJs(product.id)}',
-                                        ${!product.available}
+                                        '${escapeJs(
+                                            product.id
+                                        )}',
+                                        ${
+                                            !product.available
+                                        }
                                     )"
                                 >
-                                    ${product.available
-                                        ? "ناموجود کردن"
-                                        : "موجود کردن"}
+                                    ${
+                                        product.available
+                                            ? "🔴 ناموجود"
+                                            : "🟢 موجود"
+                                    }
                                 </button>
 
                             </div>
 
                         </div>
                     `;
+
                 }
             )
             .join("");
 
-    } catch (error) {
-
-        showMessage(
-            error.message,
-            "error"
-        );
     }
-}
 
 
-async function toggleProduct(
-    id,
-    available
-) {
+    async function saveProduct(
+        productId
+    ) {
 
-    try {
-
-        await apiRequest(
-            "/api/products",
-            {
-                method: "PUT",
-
-                body: JSON.stringify({
-                    id: id,
-                    available:
-                        available
-                })
-            }
-        );
-
-        showMessage(
-            available
-                ? "محصول موجود شد."
-                : "محصول ناموجود شد."
-        );
-
-        await loadProducts();
-
-    } catch (error) {
-
-        showMessage(
-            error.message,
-            "error"
-        );
-    }
-}
-
-
-async function loadOrders() {
-
-    try {
-
-        const data =
-            await apiRequest(
-                "/api/orders"
-            );
-
-        const orders =
-            data.orders || [];
-
-        document.getElementById(
-            "totalOrders"
-        ).textContent =
-            formatNumber(
-                orders.length
-            );
-
-        document.getElementById(
-            "newOrders"
-        ).textContent =
-            formatNumber(
-                orders.filter(
-                    function(order) {
-                        return order.status === "جدید";
-                    }
-                ).length
-            );
-
-        const container =
+        const input =
             document.getElementById(
-                "ordersList"
+                "price-" +
+                productId
             );
 
-        if (!orders.length) {
 
-            container.innerHTML =
-                '<div class="empty">هنوز سفارشی ثبت نشده است.</div>';
-
+        if (!input) {
             return;
         }
 
-        container.innerHTML =
-            orders.map(
-                function(order) {
 
-                    return `
-                        <div class="order">
+        const price =
+            Number(
+                input.value
+            );
 
-                            <div class="order-top">
 
-                                <div class="order-number">
-                                    ${escapeHtml(order.orderNumber)}
-                                </div>
+        if (
+            !Number.isFinite(price) ||
+            price < 0
+        ) {
 
-                                <div class="order-status">
-                                    ${escapeHtml(order.status || "جدید")}
-                                </div>
+            showMessage(
+                "قیمت نامعتبر است.",
+                "error"
+            );
 
-                            </div>
+            return;
 
-                            <div class="order-grid">
+        }
 
-                                <div>
-                                    👤
-                                    ${escapeHtml(order.customerName)}
-                                </div>
 
-                                <div>
-                                    📞
-                                    ${escapeHtml(order.customerPhone)}
-                                </div>
+        try {
 
-                                <div>
-                                    🍞
-                                    ${escapeHtml(order.product)}
-                                </div>
+            await apiRequest(
+                "/api/products",
+                {
+                    method:
+                        "PUT",
 
-                                <div>
-                                    🔢
-                                    تعداد:
-                                    ${formatNumber(order.quantity)}
-                                </div>
+                    body:
+                        JSON.stringify({
+                            id:
+                                productId,
 
-                                <div>
-                                    💵
-                                    قیمت واحد:
-                                    ${formatNumber(order.unitPrice)}
-                                </div>
-
-                                <div>
-                                    🕐
-                                    ${escapeHtml(order.date)}
-                                </div>
-
-                            </div>
-
-                            <div class="order-total">
-                                مبلغ کل:
-                                ${formatNumber(order.total)}
-                                تومان
-                            </div>
-
-                            <div class="order-actions">
-
-                                <button
-                                    class="small-btn blue"
-                                    onclick="changeOrderStatus(
-                                        '${escapeJs(order.orderNumber)}',
-                                        'جدید'
-                                    )"
-                                >
-                                    جدید
-                                </button>
-
-                                <button
-                                    class="small-btn orange"
-                                    onclick="changeOrderStatus(
-                                        '${escapeJs(order.orderNumber)}',
-                                        'در حال آماده‌سازی'
-                                    )"
-                                >
-                                    در حال آماده‌سازی
-                                </button>
-
-                                <button
-                                    class="small-btn green"
-                                    onclick="changeOrderStatus(
-                                        '${escapeJs(order.orderNumber)}',
-                                        'آماده تحویل'
-                                    )"
-                                >
-                                    آماده تحویل
-                                </button>
-
-                                <button
-                                    class="small-btn"
-                                    style="background:#555;color:white"
-                                    onclick="changeOrderStatus(
-                                        '${escapeJs(order.orderNumber)}',
-                                        'تحویل شد'
-                                    )"
-                                >
-                                    تحویل شد
-                                </button>
-
-                            </div>
-
-                        </div>
-                    `;
+                            price:
+                                price
+                        })
                 }
-            )
-            .join("");
+            );
 
-    } catch (error) {
 
-        showMessage(
-            error.message,
-            "error"
-        );
+            showMessage(
+                "قیمت محصول ذخیره شد."
+            );
+
+
+            await loadProducts();
+
+        } catch (error) {
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
     }
-}
 
 
-async function changeOrderStatus(
-    orderNumber,
-    status
-) {
+    async function toggleProduct(
+        productId,
+        available
+    ) {
 
-    try {
+        try {
 
-        await apiRequest(
-            "/api/orders/" +
-            encodeURIComponent(
-                orderNumber
-            ),
-            {
-                method: "PUT",
+            await apiRequest(
+                "/api/products",
+                {
+                    method:
+                        "PUT",
 
-                body: JSON.stringify({
-                    status: status
-                })
+                    body:
+                        JSON.stringify({
+                            id:
+                                productId,
+
+                            available:
+                                available
+                        })
+                }
+            );
+
+
+            showMessage(
+                available
+                    ? "محصول موجود شد."
+                    : "محصول ناموجود شد."
+            );
+
+
+            await loadProducts();
+
+        } catch (error) {
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    $("refreshProducts")
+        .addEventListener(
+            "click",
+            loadProducts
+        );
+
+
+    /*
+     * SALE PRODUCTS
+     */
+
+    function updateSaleProducts(
+        products
+    ) {
+
+        const select =
+            $("saleProduct");
+
+
+        select.innerHTML =
+            "";
+
+
+        products.forEach(
+            function(product) {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    product.name;
+
+
+                option.textContent =
+                    product.name;
+
+
+                option.dataset.price =
+                    product.price || 0;
+
+
+                select.appendChild(
+                    option
+                );
+
             }
         );
 
-        showMessage(
-            "وضعیت سفارش تغییر کرد."
-        );
 
-        await loadOrders();
+        updateSalePrice();
 
-    } catch (error) {
-
-        showMessage(
-            error.message,
-            "error"
-        );
     }
-}
 
 
-async function loadSales() {
+    function updateSalePrice() {
 
-    try {
+        const select =
+            $("saleProduct");
 
-        const data =
-            await apiRequest(
-                "/api/sales"
-            );
 
-        const sales =
-            data.sales || [];
+        const option =
+            select.options[
+                select.selectedIndex
+            ];
 
-        document.getElementById(
-            "totalSales"
-        ).textContent =
-            formatNumber(
-                sales.length
-            );
 
-        const totalMoney =
-            sales.reduce(
-                function(sum, sale) {
-                    return sum +
-                        Number(
-                            sale.total || 0
-                        );
-                },
-                0
-            );
+        if (
+            option &&
+            option.dataset.price
+        ) {
 
-        document.getElementById(
-            "totalMoney"
-        ).textContent =
-            formatNumber(
-                totalMoney
-            );
+            $("salePrice")
+                .value =
+                option.dataset.price;
 
-        const container =
-            document.getElementById(
-                "salesList"
-            );
-
-        if (!sales.length) {
-
-            container.innerHTML =
-                '<div class="empty">هنوز فروش حضوری ثبت نشده است.</div>';
-
-            return;
         }
 
-        container.innerHTML =
+
+        calculateSaleTotal();
+
+    }
+
+
+    $("saleProduct")
+        .addEventListener(
+            "change",
+            updateSalePrice
+        );
+
+
+    /*
+     * SALE TOTAL
+     */
+
+    function calculateSaleTotal() {
+
+        const weight =
+            Number(
+                $("saleWeight").value
+            ) || 0;
+
+
+        const price =
+            Number(
+                $("salePrice").value
+            ) || 0;
+
+
+        const total =
+            weight *
+            price;
+
+
+        $("saleTotal")
+            .textContent =
+            "مبلغ کل: " +
+            money(total);
+
+    }
+
+
+    $("saleWeight")
+        .addEventListener(
+            "input",
+            calculateSaleTotal
+        );
+
+
+    $("salePrice")
+        .addEventListener(
+            "input",
+            calculateSaleTotal
+        );
+
+
+    /*
+     * CREATE SALE
+     */
+
+    $("saleForm")
+        .addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const weight =
+                    Number(
+                        $("saleWeight").value
+                    ) || 0;
+
+
+                const price =
+                    Number(
+                        $("salePrice").value
+                    ) || 0;
+
+
+                const total =
+                    weight *
+                    price;
+
+
+                if (
+                    weight <= 0
+                ) {
+
+                    showMessage(
+                        "وزن یا تعداد را وارد کنید.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    await apiRequest(
+                        "/api/sales",
+                        {
+                            method:
+                                "POST",
+
+                            body:
+                                JSON.stringify({
+
+                                    customerName:
+                                        $("saleCustomerName")
+                                            .value
+                                            .trim(),
+
+                                    customerPhone:
+                                        $("saleCustomerPhone")
+                                            .value
+                                            .trim(),
+
+                                    product:
+                                        $("saleProduct")
+                                            .value,
+
+                                    weight:
+                                        weight,
+
+                                    pricePerUnit:
+                                        price,
+
+                                    total:
+                                        total,
+
+                                    paymentMethod:
+                                        $("paymentMethod")
+                                            .value,
+
+                                    description:
+                                        $("saleDescription")
+                                            .value
+                                            .trim()
+
+                                })
+                        }
+                    );
+
+
+                    showMessage(
+                        "فروش حضوری ثبت شد."
+                    );
+
+
+                    $("saleForm")
+                        .reset();
+
+
+                    $("saleWeight")
+                        .value =
+                        "1";
+
+
+                    updateSalePrice();
+
+
+                    await loadSales();
+
+                } catch (error) {
+
+                    showMessage(
+                        error.message,
+                        "error"
+                    );
+
+                }
+
+            }
+        );
+
+
+    /*
+     * SALES
+     */
+
+    async function loadSales() {
+
+        try {
+
+            const data =
+                await apiRequest(
+                    "/api/sales"
+                );
+
+
+            const sales =
+                Array.isArray(
+                    data.sales
+                )
+                    ? data.sales
+                    : [];
+
+
+            renderSales(
+                sales
+            );
+
+        } catch (error) {
+
+            $("salesList")
+                .innerHTML = `
+                    <div class="empty">
+                        ❌ خطا در دریافت فروش‌ها
+                        <br>
+                        ${escapeHtml(
+                            error.message
+                        )}
+                    </div>
+                `;
+
+        }
+
+    }
+
+
+    function renderSales(
+        sales
+    ) {
+
+        const list =
+            $("salesList");
+
+
+        if (
+            sales.length === 0
+        ) {
+
+            list.innerHTML = `
+                <div class="empty">
+                    📭 هنوز فروش حضوری ثبت نشده است.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML =
             sales.map(
                 function(sale) {
 
                     return `
-                        <div class="order">
+                        <div class="order-card">
 
                             <div class="order-top">
 
                                 <div>
-                                    👤
-                                    ${escapeHtml(
-                                        sale.customerName ||
-                                        "مشتری حضوری"
-                                    )}
+
+                                    <div class="order-number">
+                                        🧾 فروش حضوری
+                                    </div>
+
+                                    <div class="order-date">
+                                        ${escapeHtml(
+                                            sale.date
+                                        )}
+                                    </div>
+
                                 </div>
 
-                                <div class="order-status">
-                                    ${escapeHtml(
-                                        sale.paymentMethod
-                                    )}
+                                <div class="status status-ready">
+                                    ${
+                                        escapeHtml(
+                                            sale.paymentMethod ||
+                                            "نقدی"
+                                        )
+                                    }
                                 </div>
 
                             </div>
 
-                            <div class="order-grid">
+
+                            <div class="order-info">
+
+                                <div>
+                                    👤
+                                    <b>مشتری:</b>
+                                    ${escapeHtml(
+                                        sale.customerName ||
+                                        "بدون نام"
+                                    )}
+                                </div>
+
+                                <div>
+                                    📞
+                                    <b>تماس:</b>
+                                    ${escapeHtml(
+                                        sale.customerPhone ||
+                                        "-"
+                                    )}
+                                </div>
 
                                 <div>
                                     🍞
+                                    <b>محصول:</b>
                                     ${escapeHtml(
                                         sale.product
                                     )}
@@ -1387,306 +2444,79 @@ async function loadSales() {
 
                                 <div>
                                     ⚖️
-                                    وزن/تعداد:
-                                    ${formatNumber(
+                                    <b>وزن/تعداد:</b>
+                                    ${escapeHtml(
                                         sale.weight
                                     )}
                                 </div>
 
-                                <div>
-                                    💵
-                                    قیمت واحد:
-                                    ${formatNumber(
-                                        sale.pricePerUnit
-                                    )}
-                                </div>
-
-                                <div>
-                                    🕐
-                                    ${escapeHtml(
-                                        sale.date
-                                    )}
-                                </div>
-
                             </div>
+
 
                             <div class="order-total">
                                 مبلغ:
-                                ${formatNumber(
+                                ${money(
                                     sale.total
                                 )}
-                                تومان
                             </div>
 
                         </div>
                     `;
+
                 }
             )
             .join("");
 
-    } catch (error) {
-
-        showMessage(
-            error.message,
-            "error"
-        );
-    }
-}
-
-
-function calculateSaleTotal() {
-
-    const weight =
-        Number(
-            document.getElementById(
-                "saleWeight"
-            ).value
-        ) || 0;
-
-    const price =
-        Number(
-            document.getElementById(
-                "salePrice"
-            ).value
-        ) || 0;
-
-    const total =
-        weight * price;
-
-    document.getElementById(
-        "saleTotal"
-    ).textContent =
-        "مبلغ کل: " +
-        formatNumber(total) +
-        " تومان";
-}
-
-
-async function saveSale() {
-
-    const customerName =
-        document.getElementById(
-            "saleCustomerName"
-        ).value.trim();
-
-    const customerPhone =
-        document.getElementById(
-            "saleCustomerPhone"
-        ).value.trim();
-
-    const product =
-        document.getElementById(
-            "saleProduct"
-        ).value;
-
-    const weight =
-        Number(
-            document.getElementById(
-                "saleWeight"
-            ).value
-        ) || 0;
-
-    const pricePerUnit =
-        Number(
-            document.getElementById(
-                "salePrice"
-            ).value
-        ) || 0;
-
-    const paymentMethod =
-        document.getElementById(
-            "paymentMethod"
-        ).value;
-
-    const description =
-        document.getElementById(
-            "saleDescription"
-        ).value.trim();
-
-    const total =
-        weight * pricePerUnit;
-
-    if (weight <= 0) {
-
-        showMessage(
-            "وزن یا تعداد را وارد کنید.",
-            "error"
-        );
-
-        return;
     }
 
-    if (pricePerUnit < 0) {
 
-        showMessage(
-            "قیمت نامعتبر است.",
-            "error"
+    $("refreshSales")
+        .addEventListener(
+            "click",
+            loadSales
         );
 
-        return;
-    }
 
-    try {
+    /*
+     * LOAD ALL
+     */
 
-        await apiRequest(
-            "/api/sales",
-            {
-                method: "POST",
+    async function loadAll() {
 
-                body: JSON.stringify({
-
-                    customerName:
-                        customerName,
-
-                    customerPhone:
-                        customerPhone,
-
-                    product:
-                        product,
-
-                    weight:
-                        weight,
-
-                    pricePerUnit:
-                        pricePerUnit,
-
-                    total:
-                        total,
-
-                    paymentMethod:
-                        paymentMethod,
-
-                    description:
-                        description
-                })
-            }
-        );
-
-        showMessage(
-            "فروش حضوری با موفقیت ثبت شد."
-        );
-
-        document.getElementById(
-            "saleCustomerName"
-        ).value = "";
-
-        document.getElementById(
-            "saleCustomerPhone"
-        ).value = "";
-
-        document.getElementById(
-            "saleDescription"
-        ).value = "";
-
-        await loadSales();
-
-    } catch (error) {
-
-        showMessage(
-            error.message,
-            "error"
-        );
-    }
-}
-
-
-function escapeHtml(value) {
-
-    return String(
-        value ?? ""
-    )
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-
-function escapeJs(value) {
-
-    return String(
-        value ?? ""
-    )
-    .replace(/\\/g, "\\\\")
-    .replace(/'/g, "\\'");
-}
-
-
-document.getElementById(
-    "loginButton"
-).addEventListener(
-    "click",
-    login
-);
-
-
-document.getElementById(
-    "logoutButton"
-).addEventListener(
-    "click",
-    logout
-);
-
-
-document.getElementById(
-    "refreshOrders"
-).addEventListener(
-    "click",
-    async function() {
+        await loadOrders();
 
         await loadProducts();
-        await loadOrders();
+
         await loadSales();
 
-        showMessage(
-            "اطلاعات بروزرسانی شد."
-        );
-    }
-);
-
-
-document.getElementById(
-    "saleWeight"
-).addEventListener(
-    "input",
-    calculateSaleTotal
-);
-
-
-document.getElementById(
-    "salePrice"
-).addEventListener(
-    "input",
-    calculateSaleTotal
-);
-
-
-document.getElementById(
-    "saveSale"
-).addEventListener(
-    "click",
-    saveSale
-);
-
-
-document.getElementById(
-    "passwordInput"
-).addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Enter") {
-            login();
-        }
+        calculateSaleTotal();
 
     }
-);
 
 
-calculateSaleTotal();
+    /*
+     * AUTO LOGIN
+     */
 
-checkLogin();
+    if (
+        localStorage.getItem(
+            "nanak_admin_login"
+        ) === "true"
+    ) {
+
+        $("loginPage")
+            .classList
+            .add("hidden");
+
+
+        $("adminPage")
+            .classList
+            .remove("hidden");
+
+
+        loadAll();
+
+    }
 
 </script>
 
