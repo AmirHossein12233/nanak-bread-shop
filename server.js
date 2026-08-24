@@ -20,7 +20,7 @@ const PRODUCTS_FILE = path.join(ROOT, "products.json");
 */
 
 const ADMIN_PASSWORD =
-    process.env.ADMIN_PASSWORD || "نانک1405";
+    process.env.ADMIN_PASSWORD || "123456";
 
 /*
 ==================================================
