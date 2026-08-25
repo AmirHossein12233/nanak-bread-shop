@@ -1,20 +1,12 @@
-```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>پنل مدیریت نانک</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -22,8 +14,8 @@
 body {
     margin: 0;
     font-family: Tahoma, Arial, sans-serif;
-    background: #f5f1e8;
-    color: #33251b;
+    background: #f4f1eb;
+    color: #2d241c;
 }
 
 button,
@@ -37,206 +29,174 @@ textarea {
     display: none !important;
 }
 
-.btn {
-    border: 0;
-    border-radius: 11px;
-    padding: 11px 15px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-primary {
-    background: #8b4f25;
-    color: white;
-}
-
-.btn-success {
-    background: #2e7d32;
-    color: white;
-}
-
-.btn-danger {
-    background: #c62828;
-    color: white;
-}
-
-.btn-warning {
-    background: #ef8f00;
-    color: white;
-}
-
-.btn-gray {
-    background: #666;
-    color: white;
-}
-
-.input {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #ddd;
-    border-radius: 11px;
-    outline: none;
-    font-size: 15px;
-}
-
-.input:focus {
-    border-color: #b87535;
-}
-
-
 /* LOGIN */
 
-#loginPage {
+.login-page {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding: 20px;
 }
 
 .login-box {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     background: white;
-    padding: 30px;
-    border-radius: 23px;
-    text-align: center;
+    padding: 35px;
+    border-radius: 24px;
     box-shadow: 0 15px 45px rgba(0,0,0,.12);
+    text-align: center;
 }
 
-.login-logo {
+.logo {
     font-size: 55px;
+    margin-bottom: 10px;
 }
 
 .login-box h1 {
-    color: #7a431f;
+    margin: 0 0 8px;
 }
 
 .login-box p {
     color: #777;
+    margin-bottom: 25px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 12px;
+    padding: 13px 18px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: #8b5e34;
+    color: white;
+}
+
+.btn-danger {
+    background: #d9534f;
+    color: white;
+}
+
+.btn-success {
+    background: #388e3c;
+    color: white;
+}
+
+.btn-warning {
+    background: #e0a126;
+    color: white;
+}
+
+.btn-gray {
+    background: #777;
+    color: white;
 }
 
 .error {
-    color: #c62828;
+    color: #d32f2f;
     margin-top: 10px;
     font-weight: bold;
 }
 
+/* DASHBOARD */
 
-/* HEADER */
+.dashboard {
+    min-height: 100vh;
+}
 
-header {
-    background: linear-gradient(
-        135deg,
-        #7b421e,
-        #b66b2d
-    );
+.header {
+    background: linear-gradient(135deg, #7b4f2d, #b77a43);
     color: white;
-    padding: 18px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.15);
 }
 
 .header-inner {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.brand-icon {
-    font-size: 36px;
-}
-
-.brand h1 {
+.header h1 {
     margin: 0;
-    font-size: 21px;
+    font-size: 24px;
 }
 
-.brand span {
-    font-size: 12px;
+.header small {
+    opacity: .9;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: auto;
-    padding: 25px 15px 60px;
+    padding: 25px 15px 50px;
 }
-
 
 /* STATS */
 
 .stats {
     display: grid;
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin-bottom: 25px;
 }
 
 .stat {
     background: white;
-    border-radius: 18px;
     padding: 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.07);
-}
-
-.stat-icon {
-    font-size: 28px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
 }
 
 .stat-title {
     color: #777;
-    font-size: 13px;
-    margin-top: 8px;
+    font-size: 14px;
 }
 
 .stat-value {
-    color: #7a431f;
-    font-size: 23px;
+    margin-top: 8px;
+    font-size: 27px;
     font-weight: bold;
-    margin-top: 5px;
+    color: #7b4f2d;
 }
 
+/* CARDS */
 
-/* SECTION */
-
-.section {
+.card {
     background: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 22px;
     margin-bottom: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
 }
 
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
+.card h2 {
+    margin-top: 0;
+    font-size: 20px;
 }
-
-.section-title {
-    margin: 0;
-    color: #6d3c1d;
-}
-
-.actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
 
 /* CHART */
 
@@ -245,98 +205,116 @@ header {
     overflow-x: auto;
 }
 
-#salesChart {
-    width: 100%;
-    min-width: 700px;
-    height: 360px;
-    display: block;
-}
-
-.chart-summary {
-    display: grid;
-    grid-template-columns:
-        repeat(3, 1fr);
+.chart {
+    min-width: 650px;
+    height: 330px;
+    display: flex;
+    align-items: stretch;
     gap: 12px;
-    margin-top: 15px;
+    padding: 20px 10px 10px;
+    border-bottom: 2px solid #ddd;
 }
 
-.chart-summary-box {
-    background: #f8f3ec;
-    border-radius: 13px;
-    padding: 15px;
+.chart-day {
+    flex: 1;
+    min-width: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.bar-area {
+    height: 240px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bar {
+    width: 38px;
+    max-width: 80%;
+    min-height: 4px;
+    background: linear-gradient(to top, #7b4f2d, #d49a5b);
+    border-radius: 8px 8px 0 0;
+    transition: .3s;
+    position: relative;
+}
+
+.bar:hover {
+    opacity: .8;
+}
+
+.bar-value {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 11px;
+    color: #6d4c32;
+    margin-bottom: 5px;
+}
+
+.day-label {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+    white-space: nowrap;
+}
+
+.chart-empty {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
     text-align: center;
 }
 
-.chart-summary-box strong {
-    display: block;
-    color: #7a431f;
-    font-size: 18px;
-    margin-top: 5px;
-}
-
-
-/* ORDERS */
-
-.orders-list {
-    display: grid;
-    gap: 15px;
-}
-
-.order-card {
-    border: 1px solid #eadfd2;
-    border-radius: 16px;
-    padding: 17px;
-    background: #fffdfa;
-}
-
-.order-top {
+.chart-info {
+    margin-top: 15px;
     display: flex;
     justify-content: space-between;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
+    color: #666;
+    font-size: 13px;
+}
+
+/* TABLE */
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+}
+
+th,
+td {
+    padding: 13px 10px;
     border-bottom: 1px solid #eee;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
+    text-align: center;
 }
 
-.order-number {
-    font-weight: bold;
-    color: #7a431f;
+th {
+    background: #faf7f2;
+    color: #6d4c32;
 }
 
-.order-date {
-    font-size: 12px;
-    color: #888;
-    margin-top: 5px;
+tr:hover td {
+    background: #fffaf4;
 }
 
-.order-info {
-    display: grid;
-    grid-template-columns:
-        repeat(2, 1fr);
-    gap: 8px;
-    margin-bottom: 15px;
-    font-size: 14px;
-}
-
-.order-info div {
-    background: #f8f3ec;
-    padding: 10px;
-    border-radius: 9px;
-}
-
-.order-total {
-    color: #2e7d32;
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 13px;
-}
-
-.order-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-}
+/* STATUS */
 
 .status {
     display: inline-block;
@@ -347,1280 +325,824 @@ header {
 }
 
 .status-new {
-    background: #e3f2fd;
-    color: #1565c0;
+    background: #fff0c7;
+    color: #956d00;
 }
 
 .status-preparing {
-    background: #fff3cd;
-    color: #946200;
+    background: #dcecff;
+    color: #286090;
 }
 
 .status-ready {
-    background: #e8f5e9;
-    color: #2e7d32;
+    background: #dff4df;
+    color: #28732c;
 }
 
 .status-done {
-    background: #eeeeee;
+    background: #e5e5e5;
     color: #555;
 }
 
-.empty {
-    text-align: center;
-    color: #888;
-    padding: 35px;
-    background: #fafafa;
-    border-radius: 14px;
-}
-
-
-/* PRODUCTS */
-
-.products-list {
-    display: grid;
-    gap: 12px;
-}
-
-.product-card {
-    border: 1px solid #eadfd2;
-    border-radius: 15px;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.product-name {
-    font-weight: bold;
-}
-
-.product-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.price-input {
-    width: 130px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 9px;
-}
-
-
-/* FORM */
+/* FORMS */
 
 .form-grid {
     display: grid;
-    grid-template-columns:
-        repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
-    font-size: 13px;
+.field label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
     font-weight: bold;
 }
 
-textarea.input {
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+}
+
+.field textarea {
     min-height: 90px;
     resize: vertical;
 }
 
-.sale-total {
-    background: #f3eadf;
-    padding: 15px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #7a431f;
+.full {
+    grid-column: 1 / -1;
 }
 
+.total-preview {
+    background: #faf3e9;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* PRODUCT */
+
+.product-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.product-row:last-child {
+    border-bottom: none;
+}
+
+.product-info strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.product-info span {
+    color: #777;
+    font-size: 13px;
+}
+
+.available {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.unavailable {
+    color: #c62828;
+    font-weight: bold;
+}
 
 /* MESSAGE */
 
-#message {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    padding: 14px 18px;
-    border-radius: 12px;
-    color: white;
-    background: #333;
+.message {
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
     display: none;
-    z-index: 9999;
-    box-shadow: 0 8px 25px rgba(0,0,0,.2);
 }
 
-#message.success {
-    background: #2e7d32;
+.message.success {
+    display: block;
+    background: #e7f5e7;
+    color: #28732c;
 }
 
-#message.error {
-    background: #c62828;
+.message.error {
+    display: block;
+    background: #fdeaea;
+    color: #b71c1c;
 }
 
+/* RESPONSIVE */
 
-/* MOBILE */
+@media (max-width: 900px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-@media(max-width:800px) {
+@media (max-width: 650px) {
+    .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
 
     .stats {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .form-grid {
         grid-template-columns: 1fr;
     }
 
-    .form-group.full {
+    .full {
         grid-column: auto;
     }
 
-    .chart-summary {
-        grid-template-columns: 1fr;
+    .card {
+        padding: 16px;
     }
 
+    .chart {
+        min-width: 560px;
+    }
 }
-
-@media(max-width:550px) {
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .order-info {
-        grid-template-columns: 1fr;
-    }
-
-    .container {
-        padding: 15px 10px 50px;
-    }
-
-    .section {
-        padding: 15px;
-    }
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-
 <!-- LOGIN -->
 
-<div id="loginPage">
+<div id="loginPage" class="login-page">
 
     <div class="login-box">
 
-        <div class="login-logo">
-            🍞
-        </div>
+        <div class="logo">🍞</div>
 
-        <h1>
-            پنل مدیریت نانک
-        </h1>
+        <h1>پنل مدیریت نانک</h1>
 
-        <p>
-            ورود مدیر فروشگاه
-        </p>
+        <p>برای ورود رمز مدیریت را وارد کنید</p>
 
         <input
-            id="password"
-            class="input"
+            id="passwordInput"
             type="password"
-            placeholder="رمز پنل"
+            placeholder="رمز مدیریت"
+            autocomplete="off"
         >
 
-        <br><br>
-
         <button
-            id="loginButton"
             class="btn btn-primary"
             style="width:100%;"
+            onclick="login()"
         >
             ورود به پنل
         </button>
 
-        <div
-            id="loginError"
-            class="error"
-        ></div>
+        <div id="loginError" class="error"></div>
 
     </div>
 
 </div>
 
 
-<!-- ADMIN -->
+<!-- DASHBOARD -->
 
-<div
-    id="adminPage"
-    class="hidden"
->
+<div id="dashboard" class="dashboard hidden">
 
-<header>
+    <header class="header">
 
-    <div class="header-inner">
-
-        <div class="brand">
-
-            <div class="brand-icon">
-                🍞
-            </div>
+        <div class="header-inner">
 
             <div>
+                <h1>🍞 پنل مدیریت نانک</h1>
+                <small>مدیریت سفارش‌ها، فروش و محصولات</small>
+            </div>
 
-                <h1>
-                    پنل مدیریت نانک
-                </h1>
+            <button
+                class="btn btn-danger"
+                onclick="logout()"
+            >
+                خروج
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <div id="message" class="message"></div>
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat">
+                <div class="stat-title">کل سفارش‌ها</div>
+                <div id="totalOrders" class="stat-value">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-title">سفارش‌های جدید</div>
+                <div id="newOrders" class="stat-value">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-title">فروش ثبت‌شده</div>
+                <div id="totalSales" class="stat-value">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-title">مبلغ کل فروش</div>
+                <div id="totalMoney" class="stat-value">0 تومان</div>
+            </div>
+
+        </section>
+
+
+        <!-- DAILY CHART -->
+
+        <section class="card">
+
+            <h2>📊 نمودار فروش روزانه</h2>
+
+            <p style="color:#777;">
+                مبلغ سفارش‌ها و فروش‌های ثبت‌شده در ۷ روز اخیر
+            </p>
+
+            <div class="chart-wrapper">
+
+                <div id="dailyChart" class="chart"></div>
+
+            </div>
+
+            <div class="chart-info">
 
                 <span>
-                    مدیریت فروشگاه نان
+                    مجموع ۷ روز:
+                    <strong id="chartTotal">0 تومان</strong>
+                </span>
+
+                <span>
+                    پرفروش‌ترین روز:
+                    <strong id="bestDay">---</strong>
                 </span>
 
             </div>
 
-        </div>
+        </section>
 
-        <button
-            id="logoutButton"
-            class="btn btn-gray"
-        >
-            خروج
-        </button>
 
-    </div>
+        <!-- PRODUCTS -->
 
-</header>
+        <section class="card">
 
+            <h2>🍞 مدیریت محصولات</h2>
 
-<main class="container">
-
-
-<!-- STATS -->
-
-<div class="stats">
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            📦
-        </div>
-
-        <div class="stat-title">
-            کل سفارش‌ها
-        </div>
-
-        <div
-            id="totalOrders"
-            class="stat-value"
-        >
-            0
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            🆕
-        </div>
-
-        <div class="stat-title">
-            سفارش‌های جدید
-        </div>
-
-        <div
-            id="newOrders"
-            class="stat-value"
-        >
-            0
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            ⏳
-        </div>
-
-        <div class="stat-title">
-            در حال آماده‌سازی
-        </div>
-
-        <div
-            id="preparingOrders"
-            class="stat-value"
-        >
-            0
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            💰
-        </div>
-
-        <div class="stat-title">
-            مبلغ سفارش‌ها
-        </div>
-
-        <div
-            id="totalMoney"
-            class="stat-value"
-        >
-            0 تومان
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- DAILY CHART -->
-
-<section class="section">
-
-    <div class="section-header">
-
-        <h2 class="section-title">
-            📊 نمودار فروش روزانه
-        </h2>
-
-        <button
-            id="refreshChart"
-            class="btn btn-primary"
-        >
-            🔄 بروزرسانی نمودار
-        </button>
-
-    </div>
-
-    <div class="chart-wrapper">
-
-        <canvas
-            id="salesChart"
-            width="1000"
-            height="360"
-        ></canvas>
-
-    </div>
-
-
-    <div class="chart-summary">
-
-        <div class="chart-summary-box">
-
-            فروش امروز
-
-            <strong
-                id="todaySales"
-            >
-                0 تومان
-            </strong>
-
-        </div>
-
-
-        <div class="chart-summary-box">
-
-            فروش ۷ روز اخیر
-
-            <strong
-                id="weekSales"
-            >
-                0 تومان
-            </strong>
-
-        </div>
-
-
-        <div class="chart-summary-box">
-
-            تعداد فروش ۷ روز اخیر
-
-            <strong
-                id="weekSaleCount"
-            >
-                ۰
-            </strong>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ORDERS -->
-
-<section class="section">
-
-    <div class="section-header">
-
-        <h2 class="section-title">
-            📦 سفارش‌های مشتریان
-        </h2>
-
-        <div class="actions">
-
-            <button
-                id="refreshOrders"
-                class="btn btn-primary"
-            >
-                🔄 بروزرسانی
-            </button>
-
-            <button
-                id="deleteAllOrders"
-                class="btn btn-danger"
-            >
-                🗑️ حذف همه سفارش‌ها
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="ordersList"
-        class="orders-list"
-    >
-
-        <div class="empty">
-            در حال دریافت سفارش‌ها...
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PRODUCTS -->
-
-<section class="section">
-
-    <div class="section-header">
-
-        <h2 class="section-title">
-            🍞 محصولات
-        </h2>
-
-        <button
-            id="refreshProducts"
-            class="btn btn-primary"
-        >
-            🔄 بروزرسانی
-        </button>
-
-    </div>
-
-
-    <div
-        id="productsList"
-        class="products-list"
-    >
-
-        <div class="empty">
-            در حال دریافت محصولات...
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- SALE -->
-
-<section class="section">
-
-    <div class="section-header">
-
-        <h2 class="section-title">
-            🧾 ثبت فروش حضوری
-        </h2>
-
-    </div>
-
-
-    <form id="saleForm">
-
-        <div class="form-grid">
-
-
-            <div class="form-group">
-
-                <label>
-                    نام مشتری
-                </label>
-
-                <input
-                    id="saleCustomerName"
-                    class="input"
-                    type="text"
-                    placeholder="اختیاری"
-                >
-
+            <div id="productsList">
+                در حال دریافت محصولات...
             </div>
 
-
-            <div class="form-group">
-
-                <label>
-                    شماره تماس
-                </label>
-
-                <input
-                    id="saleCustomerPhone"
-                    class="input"
-                    type="tel"
-                    placeholder="اختیاری"
-                >
-
-            </div>
+        </section>
 
 
-            <div class="form-group">
+        <!-- MANUAL SALE -->
 
-                <label>
-                    محصول
-                </label>
+        <section class="card">
 
-                <select
-                    id="saleProduct"
-                    class="input"
-                ></select>
+            <h2>💰 ثبت فروش حضوری</h2>
 
-            </div>
+            <div id="saleMessage" class="message"></div>
 
+            <div class="form-grid">
 
-            <div class="form-group">
+                <div class="field">
+                    <label>نام مشتری</label>
+                    <input
+                        id="saleCustomerName"
+                        type="text"
+                        placeholder="اختیاری"
+                    >
+                </div>
 
-                <label>
-                    وزن / تعداد
-                </label>
+                <div class="field">
+                    <label>شماره مشتری</label>
+                    <input
+                        id="saleCustomerPhone"
+                        type="tel"
+                        placeholder="اختیاری"
+                    >
+                </div>
 
-                <input
-                    id="saleWeight"
-                    class="input"
-                    type="number"
-                    min="0"
-                    step="0.1"
-                    value="1"
-                >
+                <div class="field">
+                    <label>نوع نان</label>
 
-            </div>
+                    <select id="saleProduct">
+                        <option value="نان خانگی کنجدی">
+                            نان خانگی کنجدی
+                        </option>
+                    </select>
+                </div>
 
+                <div class="field">
+                    <label>وزن</label>
 
-            <div class="form-group">
+                    <input
+                        id="saleWeight"
+                        type="number"
+                        min="0"
+                        step="0.1"
+                        placeholder="مثلاً 1"
+                    >
+                </div>
 
-                <label>
-                    قیمت واحد
-                </label>
+                <div class="field">
+                    <label>قیمت</label>
 
-                <input
-                    id="salePrice"
-                    class="input"
-                    type="number"
-                    min="0"
-                    value="15000"
-                >
+                    <input
+                        id="salePrice"
+                        type="number"
+                        min="0"
+                        placeholder="قیمت کل"
+                    >
+                </div>
 
-            </div>
+                <div class="field">
+                    <label>روش پرداخت</label>
 
+                    <select id="salePayment">
+                        <option value="نقدی">نقدی</option>
+                        <option value="کارت">کارت</option>
+                        <option value="پرداخت نشده">
+                            پرداخت نشده
+                        </option>
+                    </select>
+                </div>
 
-            <div class="form-group">
+                <div class="field full">
+                    <label>توضیحات</label>
 
-                <label>
-                    روش پرداخت
-                </label>
-
-                <select
-                    id="paymentMethod"
-                    class="input"
-                >
-
-                    <option value="نقدی">
-                        💵 نقدی
-                    </option>
-
-                    <option value="کارت">
-                        💳 کارت
-                    </option>
-
-                    <option value="پرداخت نشده">
-                        ⏳ پرداخت نشده
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    توضیحات
-                </label>
-
-                <textarea
-                    id="saleDescription"
-                    class="input"
-                    placeholder="توضیحات فروش..."
-                ></textarea>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <div
-                    id="saleTotal"
-                    class="sale-total"
-                >
-                    مبلغ کل: 15,000 تومان
+                    <textarea
+                        id="saleDescription"
+                        placeholder="توضیحات فروش..."
+                    ></textarea>
                 </div>
 
             </div>
 
+            <div class="total-preview">
+                مبلغ فروش:
+                <span id="saleTotalPreview">0</span>
+                تومان
+            </div>
 
-            <div class="form-group full">
+            <br>
+
+            <button
+                class="btn btn-success"
+                onclick="submitSale()"
+            >
+                ثبت فروش حضوری
+            </button>
+
+        </section>
+
+
+        <!-- ORDERS -->
+
+        <section class="card">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:10px;
+                flex-wrap:wrap;
+            ">
+
+                <h2>📦 سفارش‌ها</h2>
 
                 <button
-                    type="submit"
-                    class="btn btn-success"
+                    class="btn btn-danger"
+                    onclick="deleteAllOrders()"
                 >
-                    ✅ ثبت فروش حضوری
+                    حذف همه سفارش‌ها
                 </button>
 
             </div>
 
-        </div>
+            <div class="table-wrap">
 
-    </form>
+                <table>
 
-</section>
+                    <thead>
 
+                        <tr>
+                            <th>شماره</th>
+                            <th>مشتری</th>
+                            <th>محصول</th>
+                            <th>تعداد</th>
+                            <th>مبلغ</th>
+                            <th>وضعیت</th>
+                            <th>عملیات</th>
+                        </tr>
 
-<!-- SALES -->
+                    </thead>
 
-<section class="section">
+                    <tbody id="ordersTable"></tbody>
 
-    <div class="section-header">
+                </table>
 
-        <h2 class="section-title">
-            🧾 فروش‌های ثبت‌شده
-        </h2>
+            </div>
 
-        <button
-            id="refreshSales"
-            class="btn btn-primary"
-        >
-            🔄 بروزرسانی
-        </button>
-
-    </div>
-
-
-    <div
-        id="salesList"
-        class="orders-list"
-    >
-
-        <div class="empty">
-            در حال دریافت فروش‌ها...
-        </div>
-
-    </div>
-
-</section>
+        </section>
 
 
-</main>
+        <!-- SALES -->
+
+        <section class="card">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:10px;
+                flex-wrap:wrap;
+            ">
+
+                <h2>💵 فروش‌های حضوری</h2>
+
+                <button
+                    class="btn btn-danger"
+                    onclick="deleteAllSales()"
+                >
+                    حذف همه فروش‌ها
+                </button>
+
+            </div>
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>تاریخ</th>
+                            <th>مشتری</th>
+                            <th>محصول</th>
+                            <th>وزن</th>
+                            <th>مبلغ</th>
+                            <th>پرداخت</th>
+                            <th>عملیات</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="salesTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </div>
 
 
-<div id="message"></div>
-
-
 <script>
 
+const ADMIN_PASSWORD = "123456";
 
-/* =========================
-   SETTINGS
-========================= */
-
-const ADMIN_PASSWORD =
-    "123456";
-
-const API_BASE = "";
+let orders = [];
+let sales = [];
+let products = [];
 
 
-/* =========================
-   HELPERS
-========================= */
-
-function $(id) {
-    return document.getElementById(id);
-}
-
-
-function money(value) {
-
-    return Number(
-        value || 0
-    ).toLocaleString(
-        "fa-IR"
-    ) + " تومان";
-
-}
-
-
-function numberFa(value) {
-
-    return Number(
-        value || 0
-    ).toLocaleString(
-        "fa-IR"
-    );
-
-}
-
-
-function escapeHtml(value) {
-
-    return String(
-        value ?? ""
-    )
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-
-}
-
-
-function escapeJs(value) {
-
-    return String(
-        value ?? ""
-    )
-    .replace(/\\/g, "\\\\")
-    .replace(/'/g, "\\'")
-    .replace(/\n/g, "\\n")
-    .replace(/\r/g, "\\r");
-
-}
-
-
-function showMessage(
-    text,
-    type = "success"
-) {
-
-    const box =
-        $("message");
-
-    box.textContent =
-        text;
-
-    box.className =
-        type;
-
-    box.style.display =
-        "block";
-
-
-    setTimeout(
-        function() {
-
-            box.style.display =
-                "none";
-
-        },
-        3000
-    );
-
-}
-
-
-/* =========================
-   API
-========================= */
-
-async function apiRequest(
-    endpoint,
-    options = {}
-) {
-
-    const response =
-        await fetch(
-            API_BASE +
-            endpoint,
-            {
-                ...options,
-
-                headers: {
-                    "Content-Type":
-                        "application/json",
-
-                    ...(options.headers || {})
-                }
-            }
-        );
-
-
-    let data;
-
-
-    try {
-
-        data =
-            await response.json();
-
-    } catch {
-
-        throw new Error(
-            "پاسخ سرور معتبر نیست."
-        );
-
-    }
-
-
-    if (!response.ok) {
-
-        throw new Error(
-            data.message ||
-            "خطا در ارتباط با سرور"
-        );
-
-    }
-
-
-    return data;
-
-}
-
-
-/* =========================
-   LOGIN
-========================= */
+// LOGIN
 
 function login() {
 
-    if (
-        $("password").value ===
-        ADMIN_PASSWORD
-    ) {
+    const input =
+        document.getElementById("passwordInput").value;
+
+    if (input === ADMIN_PASSWORD) {
 
         localStorage.setItem(
             "nanak_admin_login",
             "true"
         );
 
+        document
+            .getElementById("loginPage")
+            .classList.add("hidden");
 
-        $("loginPage")
-            .classList
-            .add("hidden");
+        document
+            .getElementById("dashboard")
+            .classList.remove("hidden");
 
-
-        $("adminPage")
-            .classList
-            .remove("hidden");
-
-
-        loadAll();
+        loadDashboard();
 
     } else {
 
-        $("loginError")
+        document
+            .getElementById("loginError")
             .textContent =
             "رمز عبور اشتباه است.";
 
     }
-
 }
 
 
-$("loginButton")
-    .addEventListener(
-        "click",
-        login
+function logout() {
+
+    localStorage.removeItem(
+        "nanak_admin_login"
     );
 
+    location.reload();
+}
 
-$("password")
-    .addEventListener(
-        "keydown",
-        function(event) {
 
-            if (
-                event.key ===
-                "Enter"
-            ) {
+document
+    .getElementById("passwordInput")
+    .addEventListener("keydown", function(event) {
 
-                login();
-
-            }
-
+        if (event.key === "Enter") {
+            login();
         }
-    );
+
+    });
 
 
-$("logoutButton")
-    .addEventListener(
-        "click",
-        function() {
+// AUTO LOGIN
 
-            localStorage.removeItem(
-                "nanak_admin_login"
-            );
+if (
+    localStorage.getItem("nanak_admin_login") === "true"
+) {
 
-            location.reload();
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
 
+    document
+        .getElementById("dashboard")
+        .classList.remove("hidden");
+
+    loadDashboard();
+}
+
+
+// MESSAGE
+
+function showMessage(text, type = "success") {
+
+    const box =
+        document.getElementById("message");
+
+    box.textContent = text;
+
+    box.className =
+        "message " + type;
+
+    setTimeout(function() {
+        box.className = "message";
+    }, 3500);
+}
+
+
+// LOAD DASHBOARD
+
+async function loadDashboard() {
+
+    try {
+
+        const health =
+            await fetch("/api/health");
+
+        if (!health.ok) {
+            throw new Error("Server error");
         }
-    );
+
+        await Promise.all([
+            loadOrders(),
+            loadSales(),
+            loadProducts()
+        ]);
+
+        updateStats();
+        renderDailyChart();
+
+    } catch (error) {
+
+        showMessage(
+            "اتصال به سرور برقرار نشد.",
+            "error"
+        );
+
+        console.error(error);
+    }
+}
 
 
-/* =========================
-   ORDERS
-========================= */
-
-let currentOrders = [];
-
+// ORDERS
 
 async function loadOrders() {
 
-    try {
+    const response =
+        await fetch("/api/orders");
 
-        const data =
-            await apiRequest(
-                "/api/orders"
-            );
+    const data =
+        await response.json();
 
-
-        currentOrders =
-            Array.isArray(
-                data.orders
-            )
-                ? data.orders
-                : [];
-
-
-        renderOrders(
-            currentOrders
-        );
-
-
-        updateStats(
-            currentOrders
-        );
-
-    } catch(error) {
-
-        $("ordersList")
-            .innerHTML =
-            `
-            <div class="empty">
-                ❌ اتصال به سرور برقرار نشد.
-                <br><br>
-                ${escapeHtml(
-                    error.message
-                )}
-            </div>
-            `;
-
+    if (!data.success) {
+        throw new Error("Orders error");
     }
 
+    orders = data.orders || [];
+
+    renderOrders();
 }
 
 
-function statusClass(status) {
+function renderOrders() {
 
-    if (
-        status === "جدید"
-    ) {
-        return "status-new";
-    }
+    const table =
+        document.getElementById("ordersTable");
 
-    if (
-        status ===
-        "در حال آماده‌سازی"
-    ) {
-        return "status-preparing";
-    }
+    if (!orders.length) {
 
-    if (
-        status ===
-        "آماده تحویل"
-    ) {
-        return "status-ready";
-    }
-
-    return "status-done";
-
-}
-
-
-function renderOrders(
-    orders
-) {
-
-    const list =
-        $("ordersList");
-
-
-    if (
-        orders.length === 0
-    ) {
-
-        list.innerHTML =
-            `
-            <div class="empty">
-                📭 هنوز سفارشی ثبت نشده است.
-            </div>
-            `;
+        table.innerHTML = `
+            <tr>
+                <td colspan="7">
+                    هنوز سفارشی ثبت نشده است.
+                </td>
+            </tr>
+        `;
 
         return;
-
     }
 
+    table.innerHTML =
+        orders.map(function(order) {
 
-    list.innerHTML =
-        orders.map(
-            function(order) {
+            return `
+                <tr>
 
-                return `
-                <div class="order-card">
+                    <td>
+                        ${escapeHTML(order.orderNumber || "-")}
+                    </td>
 
-                    <div class="order-top">
+                    <td>
+                        ${escapeHTML(order.customerName || "-")}
+                        <br>
+                        <small>
+                            ${escapeHTML(order.customerPhone || "")}
+                        </small>
+                    </td>
 
-                        <div>
+                    <td>
+                        ${escapeHTML(order.product || "-")}
+                    </td>
 
-                            <div class="order-number">
-                                🧾 ${escapeHtml(
-                                    order.orderNumber
-                                )}
-                            </div>
+                    <td>
+                        ${formatNumber(order.quantity || 0)}
+                    </td>
 
-                            <div class="order-date">
-                                ${escapeHtml(
-                                    order.date
-                                )}
-                            </div>
+                    <td>
+                        ${formatMoney(order.total || 0)}
+                    </td>
 
-                        </div>
+                    <td>
+                        ${statusSelect(order)}
+                    </td>
 
-                        <div class="status ${statusClass(
-                            order.status
-                        )}">
-                            ${escapeHtml(
-                                order.status ||
-                                "جدید"
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="order-info">
-
-                        <div>
-                            👤 <b>مشتری:</b>
-                            ${escapeHtml(
-                                order.customerName
-                            )}
-                        </div>
-
-                        <div>
-                            📞 <b>تماس:</b>
-                            ${escapeHtml(
-                                order.customerPhone
-                            )}
-                        </div>
-
-                        <div>
-                            🍞 <b>محصول:</b>
-                            ${escapeHtml(
-                                order.product
-                            )}
-                        </div>
-
-                        <div>
-                            🔢 <b>تعداد:</b>
-                            ${escapeHtml(
-                                order.quantity
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="order-total">
-                        مبلغ کل:
-                        ${money(
-                            order.total
-                        )}
-                    </div>
-
-
-                    <div class="order-actions">
-
-                        <button
-                            class="btn btn-primary"
-                            onclick="changeOrderStatus(
-                                '${escapeJs(
-                                    order.orderNumber
-                                )}',
-                                'جدید'
-                            )"
-                        >
-                            🆕 جدید
-                        </button>
-
-
-                        <button
-                            class="btn btn-warning"
-                            onclick="changeOrderStatus(
-                                '${escapeJs(
-                                    order.orderNumber
-                                )}',
-                                'در حال آماده‌سازی'
-                            )"
-                        >
-                            ⏳ آماده‌سازی
-                        </button>
-
-
-                        <button
-                            class="btn btn-success"
-                            onclick="changeOrderStatus(
-                                '${escapeJs(
-                                    order.orderNumber
-                                )}',
-                                'آماده تحویل'
-                            )"
-                        >
-                            ✅ آماده تحویل
-                        </button>
-
-
-                        <button
-                            class="btn btn-gray"
-                            onclick="changeOrderStatus(
-                                '${escapeJs(
-                                    order.orderNumber
-                                )}',
-                                'تحویل شد'
-                            )"
-                        >
-                            📦 تحویل شد
-                        </button>
-
+                    <td>
 
                         <button
                             class="btn btn-danger"
-                            onclick="deleteOrder(
-                                '${escapeJs(
-                                    order.orderNumber
-                                )}'
-                            )"
+                            onclick="deleteOrder('${escapeJS(order.orderNumber)}')"
                         >
-                            🗑️ حذف
+                            حذف
                         </button>
 
-                    </div>
+                    </td>
 
-                </div>
-                `;
+                </tr>
+            `;
 
-            }
-        )
-        .join("");
-
+        }).join("");
 }
 
 
-async function changeOrderStatus(
-    orderNumber,
-    status
-) {
+function statusSelect(order) {
+
+    const status =
+        order.status || "جدید";
+
+    return `
+        <select
+            onchange="changeOrderStatus(
+                '${escapeJS(order.orderNumber)}',
+                this.value
+            )"
+        >
+
+            <option value="جدید" ${status === "جدید" ? "selected" : ""}>
+                جدید
+            </option>
+
+            <option value="در حال آماده‌سازی" ${status === "در حال آماده‌سازی" ? "selected" : ""}>
+                در حال آماده‌سازی
+            </option>
+
+            <option value="آماده تحویل" ${status === "آماده تحویل" ? "selected" : ""}>
+                آماده تحویل
+            </option>
+
+            <option value="تحویل شد" ${status === "تحویل شد" ? "selected" : ""}>
+                تحویل شد
+            </option>
+
+        </select>
+    `;
+}
+
+
+async function changeOrderStatus(orderNumber, status) {
 
     try {
 
-        await apiRequest(
-            "/api/orders/" +
-            encodeURIComponent(
-                orderNumber
-            ),
-            {
-                method: "PUT",
+        const response =
+            await fetch(
+                "/api/orders/" +
+                encodeURIComponent(orderNumber),
+                {
+                    method: "PUT",
 
-                body:
-                    JSON.stringify({
-                        status:
-                            status
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        status: status
                     })
-            }
-        );
+                }
+            );
 
+        const data =
+            await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        const order =
+            orders.find(
+                item =>
+                    item.orderNumber === orderNumber
+            );
+
+        if (order) {
+            order.status = status;
+        }
+
+        updateStats();
 
         showMessage(
             "وضعیت سفارش تغییر کرد."
         );
 
-
-        await loadOrders();
-
-    } catch(error) {
+    } catch (error) {
 
         showMessage(
-            error.message,
+            "تغییر وضعیت انجام نشد.",
             "error"
         );
 
+        console.error(error);
     }
-
 }
 
 
-async function deleteOrder(
-    orderNumber
-) {
+async function deleteOrder(orderNumber) {
 
     if (
         !confirm(
@@ -1630,36 +1152,39 @@ async function deleteOrder(
         return;
     }
 
-
     try {
 
-        await apiRequest(
-            "/api/orders/" +
-            encodeURIComponent(
-                orderNumber
-            ),
-            {
-                method: "DELETE"
-            }
-        );
+        const response =
+            await fetch(
+                "/api/orders/" +
+                encodeURIComponent(orderNumber),
+                {
+                    method: "DELETE"
+                }
+            );
 
+        const data =
+            await response.json();
 
-        showMessage(
-            "سفارش حذف شد."
-        );
-
+        if (!data.success) {
+            throw new Error(data.message);
+        }
 
         await loadOrders();
 
-    } catch(error) {
+        updateStats();
+
+        renderDailyChart();
+
+        showMessage("سفارش حذف شد.");
+
+    } catch (error) {
 
         showMessage(
-            error.message,
+            "حذف سفارش انجام نشد.",
             "error"
         );
-
     }
-
 }
 
 
@@ -1667,866 +1192,819 @@ async function deleteAllOrders() {
 
     if (
         !confirm(
-            "⚠️ تمام سفارش‌ها حذف می‌شوند.\n\nادامه می‌دهید؟"
+            "آیا می‌خواهید تمام سفارش‌ها حذف شوند؟"
         )
     ) {
         return;
     }
 
-
     try {
 
-        await apiRequest(
-            "/api/orders",
-            {
-                method: "DELETE"
-            }
-        );
+        const response =
+            await fetch(
+                "/api/orders/delete-all",
+                {
+                    method: "DELETE"
+                }
+            );
 
+        const data =
+            await response.json();
 
-        showMessage(
-            "تمام سفارش‌ها حذف شدند."
-        );
-
+        if (!data.success) {
+            throw new Error(data.message);
+        }
 
         await loadOrders();
 
-    } catch(error) {
+        updateStats();
+
+        renderDailyChart();
 
         showMessage(
-            error.message,
+            "همه سفارش‌ها حذف شدند."
+        );
+
+    } catch (error) {
+
+        showMessage(
+            "حذف سفارش‌ها انجام نشد.",
+            "error"
+        );
+    }
+}
+
+
+// SALES
+
+async function loadSales() {
+
+    const response =
+        await fetch("/api/sales");
+
+    const data =
+        await response.json();
+
+    if (!data.success) {
+        throw new Error("Sales error");
+    }
+
+    sales = data.sales || [];
+
+    renderSales();
+}
+
+
+function renderSales() {
+
+    const table =
+        document.getElementById("salesTable");
+
+    if (!sales.length) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="7">
+                    هنوز فروش حضوری ثبت نشده است.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    table.innerHTML =
+        sales.map(function(sale) {
+
+            return `
+                <tr>
+
+                    <td>
+                        ${escapeHTML(sale.date || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(sale.customerName || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(sale.product || "-")}
+                    </td>
+
+                    <td>
+                        ${formatNumber(sale.weight || 0)}
+                    </td>
+
+                    <td>
+                        ${formatMoney(sale.total || 0)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            sale.paymentMethod || "-"
+                        )}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="btn btn-danger"
+                            onclick="deleteSale('${escapeJS(String(sale.id))}')"
+                        >
+                            حذف
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
+}
+
+
+async function submitSale() {
+
+    const customerName =
+        document.getElementById(
+            "saleCustomerName"
+        ).value.trim();
+
+    const customerPhone =
+        document.getElementById(
+            "saleCustomerPhone"
+        ).value.trim();
+
+    const product =
+        document.getElementById(
+            "saleProduct"
+        ).value;
+
+    const weight =
+        Number(
+            document.getElementById(
+                "saleWeight"
+            ).value
+        ) || 0;
+
+    const price =
+        Number(
+            document.getElementById(
+                "salePrice"
+            ).value
+        ) || 0;
+
+    const paymentMethod =
+        document.getElementById(
+            "salePayment"
+        ).value;
+
+    const description =
+        document.getElementById(
+            "saleDescription"
+        ).value.trim();
+
+    if (price <= 0) {
+
+        showMessage(
+            "قیمت فروش را وارد کنید.",
             "error"
         );
 
+        return;
     }
-
-}
-
-
-$("deleteAllOrders")
-    .addEventListener(
-        "click",
-        deleteAllOrders
-    );
-
-
-$("refreshOrders")
-    .addEventListener(
-        "click",
-        loadOrders
-    );
-
-
-/* =========================
-   STATS
-========================= */
-
-function updateStats(
-    orders
-) {
-
-    $("totalOrders")
-        .textContent =
-        numberFa(
-            orders.length
-        );
-
-
-    const newCount =
-        orders.filter(
-            order =>
-                order.status ===
-                "جدید"
-        ).length;
-
-
-    const preparingCount =
-        orders.filter(
-            order =>
-                order.status ===
-                "در حال آماده‌سازی"
-        ).length;
-
-
-    const total =
-        orders.reduce(
-            function(sum, order) {
-
-                return sum +
-                    Number(
-                        order.total || 0
-                    );
-
-            },
-            0
-        );
-
-
-    $("newOrders")
-        .textContent =
-        numberFa(
-            newCount
-        );
-
-
-    $("preparingOrders")
-        .textContent =
-        numberFa(
-            preparingCount
-        );
-
-
-    $("totalMoney")
-        .textContent =
-        money(
-            total
-        );
-
-}
-
-
-/* =========================
-   PRODUCTS
-========================= */
-
-let products = [];
-
-
-async function loadProducts() {
 
     try {
 
-        const data =
-            await apiRequest(
-                "/api/products"
+        const response =
+            await fetch(
+                "/api/sales",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        customerName,
+                        customerPhone,
+                        product,
+                        weight,
+                        pricePerUnit: price,
+                        total: price,
+                        paymentMethod,
+                        description
+
+                    })
+                }
             );
 
+        const data =
+            await response.json();
 
-        products =
-            Array.isArray(
-                data.products
-            )
-                ? data.products
-                : [];
+        if (!data.success) {
+            throw new Error(data.message);
+        }
 
+        document.getElementById(
+            "saleCustomerName"
+        ).value = "";
 
-        renderProducts(
-            products
+        document.getElementById(
+            "saleCustomerPhone"
+        ).value = "";
+
+        document.getElementById(
+            "saleWeight"
+        ).value = "";
+
+        document.getElementById(
+            "salePrice"
+        ).value = "";
+
+        document.getElementById(
+            "saleDescription"
+        ).value = "";
+
+        document.getElementById(
+            "saleTotalPreview"
+        ).textContent = "0";
+
+        await loadSales();
+
+        updateStats();
+
+        renderDailyChart();
+
+        showMessage(
+            "فروش حضوری با موفقیت ثبت شد."
         );
 
+    } catch (error) {
 
-        updateSaleProducts(
-            products
+        showMessage(
+            "ثبت فروش انجام نشد.",
+            "error"
         );
 
-    } catch(error) {
-
-        $("productsList")
-            .innerHTML =
-            `
-            <div class="empty">
-                ❌ خطا در دریافت محصولات
-            </div>
-            `;
-
+        console.error(error);
     }
-
 }
 
 
-function renderProducts(
-    products
-) {
+document
+    .getElementById("salePrice")
+    .addEventListener(
+        "input",
+        updateSalePreview
+    );
+
+
+function updateSalePreview() {
+
+    const price =
+        Number(
+            document.getElementById(
+                "salePrice"
+            ).value
+        ) || 0;
+
+    document.getElementById(
+        "saleTotalPreview"
+    ).textContent =
+        formatMoney(price);
+}
+
+
+async function deleteSale(id) {
 
     if (
-        products.length === 0
+        !confirm(
+            "آیا از حذف این فروش مطمئن هستید؟"
+        )
     ) {
-
-        $("productsList")
-            .innerHTML =
-            `
-            <div class="empty">
-                محصولی وجود ندارد.
-            </div>
-            `;
-
         return;
-
     }
 
+    try {
 
-    $("productsList")
-        .innerHTML =
-        products.map(
-            function(product) {
+        const response =
+            await fetch(
+                "/api/sales/" +
+                encodeURIComponent(id),
+                {
+                    method: "DELETE"
+                }
+            );
 
-                return `
-                <div class="product-card">
+        const data =
+            await response.json();
 
-                    <div>
+        if (!data.success) {
+            throw new Error(data.message);
+        }
 
-                        <div class="product-name">
-                            🍞 ${escapeHtml(
-                                product.name
-                            )}
-                        </div>
+        await loadSales();
 
-                        <div
-                            style="
-                            margin-top:6px;
-                            color:#777;
-                            font-size:13px;
-                            "
-                        >
+        updateStats();
+
+        renderDailyChart();
+
+        showMessage("فروش حذف شد.");
+
+    } catch (error) {
+
+        showMessage(
+            "حذف فروش انجام نشد.",
+            "error"
+        );
+    }
+}
+
+
+async function deleteAllSales() {
+
+    if (
+        !confirm(
+            "آیا می‌خواهید تمام فروش‌های حضوری حذف شوند؟"
+        )
+    ) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/sales/delete-all",
+                {
+                    method: "DELETE"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        await loadSales();
+
+        updateStats();
+
+        renderDailyChart();
+
+        showMessage(
+            "همه فروش‌ها حذف شدند."
+        );
+
+    } catch (error) {
+
+        showMessage(
+            "حذف فروش‌ها انجام نشد.",
+            "error"
+        );
+    }
+}
+
+
+// PRODUCTS
+
+async function loadProducts() {
+
+    const response =
+        await fetch("/api/products");
+
+    const data =
+        await response.json();
+
+    if (!data.success) {
+        throw new Error("Products error");
+    }
+
+    products =
+        data.products || [];
+
+    renderProducts();
+
+    updateSaleProducts();
+}
+
+
+function renderProducts() {
+
+    const container =
+        document.getElementById(
+            "productsList"
+        );
+
+    if (!products.length) {
+
+        container.innerHTML =
+            "محصولی وجود ندارد.";
+
+        return;
+    }
+
+    container.innerHTML =
+        products.map(function(product) {
+
+            return `
+                <div class="product-row">
+
+                    <div class="product-info">
+
+                        <strong>
+                            ${escapeHTML(product.name)}
+                        </strong>
+
+                        <span>
+                            قیمت:
+                            ${formatMoney(product.price)}
+                            تومان
+                        </span>
+
+                        <br>
+
+                        <span class="${
+                            product.available
+                                ? "available"
+                                : "unavailable"
+                        }">
+
                             ${
                                 product.available
-                                ? "🟢 موجود"
-                                : "🔴 ناموجود"
+                                    ? "● موجود"
+                                    : "● ناموجود"
                             }
-                        </div>
+
+                        </span>
 
                     </div>
 
-
-                    <div class="product-controls">
-
-                        <input
-                            id="price-${escapeHtml(
-                                product.id
-                            )}"
-                            class="price-input"
-                            type="number"
-                            min="0"
-                            value="${Number(
-                                product.price || 0
-                            )}"
-                        >
-
-
-                        <button
-                            class="btn btn-primary"
-                            onclick="saveProduct(
-                                '${escapeJs(
-                                    product.id
-                                )}'
-                            )"
-                        >
-                            💾 ذخیره
-                        </button>
-
+                    <div>
 
                         <button
                             class="btn ${
                                 product.available
-                                ? "btn-danger"
-                                : "btn-success"
+                                    ? "btn-danger"
+                                    : "btn-success"
                             }"
                             onclick="toggleProduct(
-                                '${escapeJs(
-                                    product.id
-                                )}',
-                                ${
-                                    !product.available
-                                }
+                                '${escapeJS(product.id)}',
+                                ${!product.available}
                             )"
                         >
+
                             ${
                                 product.available
-                                ? "🔴 ناموجود"
-                                : "🟢 موجود"
+                                    ? "ناموجود کردن"
+                                    : "موجود کردن"
                             }
+
                         </button>
 
                     </div>
 
                 </div>
-                `;
+            `;
 
-            }
-        )
-        .join("");
-
+        }).join("");
 }
 
 
-async function saveProduct(
-    id
-) {
+function updateSaleProducts() {
 
-    const input =
-        $("price-" + id);
-
-
-    const price =
-        Number(
-            input.value
+    const select =
+        document.getElementById(
+            "saleProduct"
         );
 
-
-    try {
-
-        await apiRequest(
-            "/api/products",
-            {
-                method: "PUT",
-
-                body:
-                    JSON.stringify({
-                        id: id,
-                        price: price
-                    })
-            }
-        );
-
-
-        showMessage(
-            "قیمت ذخیره شد."
-        );
-
-
-        await loadProducts();
-
-    } catch(error) {
-
-        showMessage(
-            error.message,
-            "error"
-        );
-
+    if (!products.length) {
+        return;
     }
 
+    select.innerHTML =
+        products.map(function(product) {
+
+            return `
+                <option value="${escapeHTML(product.name)}">
+                    ${escapeHTML(product.name)}
+                </option>
+            `;
+
+        }).join("");
 }
 
 
-async function toggleProduct(
-    id,
-    available
-) {
+async function toggleProduct(id, available) {
 
     try {
 
-        await apiRequest(
-            "/api/products",
-            {
-                method: "PUT",
+        const response =
+            await fetch(
+                "/api/products",
+                {
+                    method: "PUT",
 
-                body:
-                    JSON.stringify({
-                        id: id,
-                        available:
-                            available
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        id,
+                        available
                     })
-            }
-        );
+                }
+            );
 
+        const data =
+            await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        await loadProducts();
 
         showMessage(
             available
-            ? "محصول موجود شد."
-            : "محصول ناموجود شد."
+                ? "محصول موجود شد."
+                : "محصول ناموجود شد."
         );
 
-
-        await loadProducts();
-
-    } catch(error) {
+    } catch (error) {
 
         showMessage(
-            error.message,
+            "تغییر وضعیت محصول انجام نشد.",
             "error"
         );
-
     }
-
 }
 
 
-$("refreshProducts")
-    .addEventListener(
-        "click",
-        loadProducts
-    );
+// STATS
 
+function updateStats() {
 
-/* =========================
-   SALES FORM
-========================= */
+    document.getElementById(
+        "totalOrders"
+    ).textContent =
+        formatNumber(orders.length);
 
-function updateSaleProducts(
-    products
-) {
+    const newCount =
+        orders.filter(function(order) {
+            return order.status === "جدید";
+        }).length;
 
-    const select =
-        $("saleProduct");
+    document.getElementById(
+        "newOrders"
+    ).textContent =
+        formatNumber(newCount);
 
+    document.getElementById(
+        "totalSales"
+    ).textContent =
+        formatNumber(sales.length);
 
-    select.innerHTML =
-        "";
+    const orderMoney =
+        orders.reduce(function(total, order) {
+            return total + Number(order.total || 0);
+        }, 0);
 
+    const saleMoney =
+        sales.reduce(function(total, sale) {
+            return total + Number(sale.total || 0);
+        }, 0);
 
-    products.forEach(
-        function(product) {
+    const total =
+        orderMoney + saleMoney;
 
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                product.name;
-
-
-            option.textContent =
-                product.name;
-
-
-            option.dataset.price =
-                product.price || 0;
-
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    updateSalePrice();
-
+    document.getElementById(
+        "totalMoney"
+    ).textContent =
+        formatMoney(total) + " تومان";
 }
 
 
-function updateSalePrice() {
+// DAILY CHART
 
-    const select =
-        $("saleProduct");
+function renderDailyChart() {
 
-
-    const option =
-        select.options[
-            select.selectedIndex
-        ];
-
-
-    if (option) {
-
-        $("salePrice")
-            .value =
-            option.dataset.price || 0;
-
-    }
-
-
-    calculateSaleTotal();
-
-}
-
-
-$("saleProduct")
-    .addEventListener(
-        "change",
-        updateSalePrice
-    );
-
-
-function calculateSaleTotal() {
-
-    const weight =
-        Number(
-            $("saleWeight").value
-        ) || 0;
-
-
-    const price =
-        Number(
-            $("salePrice").value
-        ) || 0;
-
-
-    $("saleTotal")
-        .textContent =
-        "مبلغ کل: " +
-        money(
-            weight * price
+    const chart =
+        document.getElementById(
+            "dailyChart"
         );
 
-}
+    const days = [];
 
+    for (let i = 6; i >= 0; i--) {
 
-$("saleWeight")
-    .addEventListener(
-        "input",
-        calculateSaleTotal
-    );
+        const date = new Date();
 
+        date.setHours(0, 0, 0, 0);
 
-$("salePrice")
-    .addEventListener(
-        "input",
-        calculateSaleTotal
-    );
-
-
-$("saleForm")
-    .addEventListener(
-        "submit",
-        async function(event) {
-
-            event.preventDefault();
-
-
-            const weight =
-                Number(
-                    $("saleWeight").value
-                ) || 0;
-
-
-            const price =
-                Number(
-                    $("salePrice").value
-                ) || 0;
-
-
-            const total =
-                weight * price;
-
-
-            if (
-                weight <= 0
-            ) {
-
-                showMessage(
-                    "وزن یا تعداد را وارد کنید.",
-                    "error"
-                );
-
-                return;
-
-            }
-
-
-            try {
-
-                await apiRequest(
-                    "/api/sales",
-                    {
-                        method: "POST",
-
-                        body:
-                            JSON.stringify({
-
-                                customerName:
-                                    $("saleCustomerName")
-                                        .value
-                                        .trim(),
-
-                                customerPhone:
-                                    $("saleCustomerPhone")
-                                        .value
-                                        .trim(),
-
-                                product:
-                                    $("saleProduct")
-                                        .value,
-
-                                weight:
-                                    weight,
-
-                                pricePerUnit:
-                                    price,
-
-                                total:
-                                    total,
-
-                                paymentMethod:
-                                    $("paymentMethod")
-                                        .value,
-
-                                description:
-                                    $("saleDescription")
-                                        .value
-                                        .trim()
-
-                            })
-                    }
-                );
-
-
-                showMessage(
-                    "فروش حضوری ثبت شد."
-                );
-
-
-                $("saleForm")
-                    .reset();
-
-
-                $("saleWeight")
-                    .value =
-                    "1";
-
-
-                updateSalePrice();
-
-
-                await loadSales();
-
-                await loadChart();
-
-            } catch(error) {
-
-                showMessage(
-                    error.message,
-                    "error"
-                );
-
-            }
-
-        }
-    );
-
-
-/* =========================
-   SALES HISTORY
-========================= */
-
-async function loadSales() {
-
-    try {
-
-        const data =
-            await apiRequest(
-                "/api/sales"
-            );
-
-
-        const sales =
-            Array.isArray(
-                data.sales
-            )
-                ? data.sales
-                : [];
-
-
-        renderSales(
-            sales
+        date.setDate(
+            date.getDate() - i
         );
 
-    } catch(error) {
-
-        $("salesList")
-            .innerHTML =
-            `
-            <div class="empty">
-                ❌ خطا در دریافت فروش‌ها
-            </div>
-            `;
+        days.push({
+            date: date,
+            key: dateKey(date),
+            label: getDayLabel(date),
+            total: 0
+        });
 
     }
 
-}
+    orders.forEach(function(order) {
 
+        const date =
+            getOrderDate(order);
 
-function renderSales(
-    sales
-) {
+        if (!date) return;
 
-    if (
-        sales.length === 0
-    ) {
+        const key =
+            dateKey(date);
 
-        $("salesList")
-            .innerHTML =
-            `
-            <div class="empty">
-                📭 هنوز فروش حضوری ثبت نشده است.
-            </div>
-            `;
+        const day =
+            days.find(
+                item => item.key === key
+            );
 
-        return;
+        if (day) {
+            day.total +=
+                Number(order.total || 0);
+        }
 
-    }
+    });
 
+    sales.forEach(function(sale) {
 
-    $("salesList")
-        .innerHTML =
-        sales.map(
-            function(sale) {
+        const date =
+            getSaleDate(sale);
 
-                return `
-                <div class="order-card">
+        if (!date) return;
 
-                    <div class="order-top">
+        const key =
+            dateKey(date);
 
-                        <div>
+        const day =
+            days.find(
+                item => item.key === key
+            );
 
-                            <div class="order-number">
-                                🧾 فروش حضوری
-                            </div>
+        if (day) {
+            day.total +=
+                Number(sale.total || 0);
+        }
 
-                            <div class="order-date">
-                                ${escapeHtml(
-                                    sale.date
-                                )}
-                            </div>
+    });
 
-                        </div>
+    const max =
+        Math.max(
+            ...days.map(day => day.total),
+            1
+        );
 
-                        <div class="status status-ready">
-                            ${escapeHtml(
-                                sale.paymentMethod ||
-                                "نقدی"
-                            )}
+    const total =
+        days.reduce(
+            (sum, day) =>
+                sum + day.total,
+            0
+        );
+
+    let best =
+        days[0];
+
+    days.forEach(function(day) {
+
+        if (day.total > best.total) {
+            best = day;
+        }
+
+    });
+
+    document.getElementById(
+        "chartTotal"
+    ).textContent =
+        formatMoney(total) +
+        " تومان";
+
+    document.getElementById(
+        "bestDay"
+    ).textContent =
+        best.total > 0
+            ? best.label +
+              " (" +
+              formatMoney(best.total) +
+              " تومان)"
+            : "---";
+
+    chart.innerHTML =
+        days.map(function(day) {
+
+            const height =
+                day.total > 0
+                    ? Math.max(
+                        5,
+                        (day.total / max) * 100
+                    )
+                    : 2;
+
+            return `
+                <div class="chart-day">
+
+                    <div class="bar-area">
+
+                        <div
+                            class="bar"
+                            style="height:${height}%"
+                        >
+
+                            ${
+                                day.total > 0
+                                    ? `
+                                        <div class="bar-value">
+                                            ${formatMoney(day.total)}
+                                        </div>
+                                      `
+                                    : ""
+                            }
+
                         </div>
 
                     </div>
 
-
-                    <div class="order-info">
-
-                        <div>
-                            👤 <b>مشتری:</b>
-                            ${escapeHtml(
-                                sale.customerName ||
-                                "بدون نام"
-                            )}
-                        </div>
-
-                        <div>
-                            📞 <b>تماس:</b>
-                            ${escapeHtml(
-                                sale.customerPhone ||
-                                "-"
-                            )}
-                        </div>
-
-                        <div>
-                            🍞 <b>محصول:</b>
-                            ${escapeHtml(
-                                sale.product
-                            )}
-                        </div>
-
-                        <div>
-                            ⚖️ <b>وزن/تعداد:</b>
-                            ${escapeHtml(
-                                sale.weight
-                            )}
-                        </div>
-
-                    </div>
-
-
-                    <div class="order-total">
-                        مبلغ:
-                        ${money(
-                            sale.total
-                        )}
+                    <div class="day-label">
+                        ${day.label}
                     </div>
 
                 </div>
-                `;
+            `;
 
-            }
-        )
-        .join("");
-
+        }).join("");
 }
 
 
-$("refreshSales")
-    .addEventListener(
-        "click",
-        async function() {
+function getOrderDate(order) {
 
-            await loadSales();
+    if (order.timestamp) {
 
-            await loadChart();
+        const date =
+            new Date(order.timestamp);
 
+        if (!isNaN(date.getTime())) {
+            return date;
         }
-    );
-
-
-/* =========================
-   DAILY SALES CHART
-========================= */
-
-let chartSales = [];
-
-
-async function loadChart() {
-
-    try {
-
-        const data =
-            await apiRequest(
-                "/api/sales"
-            );
-
-
-        chartSales =
-            Array.isArray(
-                data.sales
-            )
-                ? data.sales
-                : [];
-
-
-        drawSalesChart(
-            chartSales
-        );
-
-    } catch(error) {
-
-        console.log(
-            "Chart error:",
-            error
-        );
-
     }
 
+    if (order.date) {
+
+        const date =
+            new Date(order.date);
+
+        if (!isNaN(date.getTime())) {
+            return date;
+        }
+    }
+
+    return null;
 }
 
 
-function getDateKey(
-    date
-) {
+function getSaleDate(sale) {
 
-    const d =
-        new Date(date);
+    if (sale.timestamp) {
 
+        const date =
+            new Date(sale.timestamp);
 
-    if (
-        Number.isNaN(
-            d.getTime()
-        )
-    ) {
-
-        return null;
-
+        if (!isNaN(date.getTime())) {
+            return date;
+        }
     }
 
+    if (sale.date) {
 
-    return (
-        d.getFullYear() +
-        "-" +
-        String(
-            d.getMonth() + 1
-        ).padStart(2, "0") +
-        "-" +
-        String(
-            d.getDate()
-        ).padStart(2, "0")
-    );
+        const date =
+            new Date(sale.date);
 
+        if (!isNaN(date.getTime())) {
+            return date;
+        }
+    }
+
+    return null;
 }
 
 
-function makeDayKey(
-    date
-) {
+function dateKey(date) {
 
     return (
         date.getFullYear() +
@@ -2539,651 +2017,67 @@ function makeDayKey(
             date.getDate()
         ).padStart(2, "0")
     );
-
 }
 
 
-function shortDate(
-    date
-) {
+function getDayLabel(date) {
+
+    const days = [
+        "یکشنبه",
+        "دوشنبه",
+        "سه‌شنبه",
+        "چهارشنبه",
+        "پنجشنبه",
+        "جمعه",
+        "شنبه"
+    ];
 
     return (
-        String(
-            date.getMonth() + 1
-        ).padStart(2, "0") +
-        "/" +
-        String(
-            date.getDate()
-        ).padStart(2, "0")
+        days[date.getDay()] +
+        " " +
+        date.getDate()
     );
-
 }
 
 
-function drawSalesChart(
-    sales
-) {
+// HELPERS
 
-    const canvas =
-        $("salesChart");
+function formatNumber(number) {
 
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-
-    const dpr =
-        window.devicePixelRatio ||
-        1;
-
-
-    const width =
-        Math.max(
-            rect.width,
-            700
-        );
-
-
-    const height =
-        360;
-
-
-    canvas.width =
-        width * dpr;
-
-
-    canvas.height =
-        height * dpr;
-
-
-    canvas.style.height =
-        height + "px";
-
-
-    ctx.scale(
-        dpr,
-        dpr
-    );
-
-
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    /*
-     * ۷ روز اخیر
-     */
-
-    const days = [];
-
-
-    for (
-        let i = 6;
-        i >= 0;
-        i--
-    ) {
-
-        const date =
-            new Date();
-
-
-        date.setHours(
-            0,
-            0,
-            0,
-            0
-        );
-
-
-        date.setDate(
-            date.getDate() - i
-        );
-
-
-        days.push({
-            date: date,
-            key: makeDayKey(date),
-            value: 0,
-            count: 0
-        });
-
-    }
-
-
-    /*
-     * جمع فروش هر روز
-     */
-
-    sales.forEach(
-        function(sale) {
-
-            let date = null;
-
-
-            if (
-                sale.timestamp
-            ) {
-
-                date =
-                    new Date(
-                        sale.timestamp
-                    );
-
-            }
-
-
-            if (
-                !date ||
-                Number.isNaN(
-                    date.getTime()
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            const key =
-                makeDayKey(
-                    date
-                );
-
-
-            const day =
-                days.find(
-                    function(item) {
-                        return item.key === key;
-                    }
-                );
-
-
-            if (day) {
-
-                day.value +=
-                    Number(
-                        sale.total || 0
-                    );
-
-                day.count++;
-
-            }
-
-        }
-    );
-
-
-    const values =
-        days.map(
-            day =>
-                day.value
-        );
-
-
-    const maxValue =
-        Math.max(
-            ...values,
-            1
-        );
-
-
-    const left =
-        70;
-
-    const right =
-        25;
-
-    const top =
-        25;
-
-    const bottom =
-        55;
-
-
-    const chartWidth =
-        width -
-        left -
-        right;
-
-
-    const chartHeight =
-        height -
-        top -
-        bottom;
-
-
-    /*
-     * پس زمینه
-     */
-
-    ctx.fillStyle =
-        "#fff";
-
-
-    ctx.fillRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    /*
-     * خطوط افقی
-     */
-
-    ctx.strokeStyle =
-        "#eadfd2";
-
-    ctx.lineWidth =
-        1;
-
-
-    for (
-        let i = 0;
-        i <= 5;
-        i++
-    ) {
-
-        const y =
-            top +
-            chartHeight -
-            (
-                chartHeight *
-                i /
-                5
-            );
-
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            left,
-            y
-        );
-
-        ctx.lineTo(
-            width - right,
-            y
-        );
-
-        ctx.stroke();
-
-
-        const value =
-            maxValue *
-            i /
-            5;
-
-
-        ctx.fillStyle =
-            "#777";
-
-        ctx.font =
-            "12px Tahoma";
-
-        ctx.textAlign =
-            "right";
-
-
-        ctx.fillText(
-            moneyShort(value),
-            left - 8,
-            y + 4
-        );
-
-    }
-
-
-    /*
-     * خط نمودار
-     */
-
-    ctx.beginPath();
-
-
-    days.forEach(
-        function(day, index) {
-
-            const x =
-                left +
-                (
-                    chartWidth *
-                    index /
-                    (
-                        days.length - 1
-                    )
-                );
-
-
-            const y =
-                top +
-                chartHeight -
-                (
-                    day.value /
-                    maxValue *
-                    chartHeight
-                );
-
-
-            if (
-                index === 0
-            ) {
-
-                ctx.moveTo(
-                    x,
-                    y
-                );
-
-            } else {
-
-                ctx.lineTo(
-                    x,
-                    y
-                );
-
-            }
-
-        }
-    );
-
-
-    ctx.strokeStyle =
-        "#8b4f25";
-
-    ctx.lineWidth =
-        4;
-
-    ctx.lineJoin =
-        "round";
-
-    ctx.lineCap =
-        "round";
-
-    ctx.stroke();
-
-
-    /*
-     * نقاط
-     */
-
-    days.forEach(
-        function(day, index) {
-
-            const x =
-                left +
-                (
-                    chartWidth *
-                    index /
-                    (
-                        days.length - 1
-                    )
-                );
-
-
-            const y =
-                top +
-                chartHeight -
-                (
-                    day.value /
-                    maxValue *
-                    chartHeight
-                );
-
-
-            ctx.beginPath();
-
-            ctx.arc(
-                x,
-                y,
-                6,
-                0,
-                Math.PI * 2
-            );
-
-
-            ctx.fillStyle =
-                "#b66b2d";
-
-            ctx.fill();
-
-
-            ctx.strokeStyle =
-                "#fff";
-
-            ctx.lineWidth =
-                2;
-
-            ctx.stroke();
-
-
-            /*
-             * مبلغ بالای نقطه
-             */
-
-            if (
-                day.value > 0
-            ) {
-
-                ctx.fillStyle =
-                    "#6d3c1d";
-
-                ctx.font =
-                    "bold 11px Tahoma";
-
-                ctx.textAlign =
-                    "center";
-
-
-                ctx.fillText(
-                    moneyShort(
-                        day.value
-                    ),
-                    x,
-                    y - 12
-                );
-
-            }
-
-
-            /*
-             * تاریخ
-             */
-
-            ctx.fillStyle =
-                "#777";
-
-            ctx.font =
-                "12px Tahoma";
-
-            ctx.textAlign =
-                "center";
-
-
-            ctx.fillText(
-                shortDate(
-                    day.date
-                ),
-                x,
-                height - 25
-            );
-
-        }
-    );
-
-
-    /*
-     * خلاصه
-     */
-
-    const today =
-        days[
-            days.length - 1
-        ].value;
-
-
-    const week =
-        days.reduce(
-            function(sum, day) {
-                return sum + day.value;
-            },
-            0
-        );
-
-
-    const count =
-        days.reduce(
-            function(sum, day) {
-                return sum + day.count;
-            },
-            0
-        );
-
-
-    $("todaySales")
-        .textContent =
-        money(today);
-
-
-    $("weekSales")
-        .textContent =
-        money(week);
-
-
-    $("weekSaleCount")
-        .textContent =
-        numberFa(count);
-
+    return Number(number || 0)
+        .toLocaleString("fa-IR");
 }
 
 
-function moneyShort(
-    value
-) {
+function formatMoney(number) {
 
-    value =
-        Number(
-            value || 0
-        );
-
-
-    if (
-        value >= 1000000
-    ) {
-
-        return (
-            (
-                value / 1000000
-            ).toFixed(1)
-        ) +
-        "م";
-
-    }
-
-
-    if (
-        value >= 1000
-    ) {
-
-        return (
-            Math.round(
-                value / 1000
-            )
-        ) +
-        "هزار";
-
-    }
-
-
-    return Math.round(
-        value
-    ).toLocaleString(
-        "fa-IR"
-    );
-
+    return Number(number || 0)
+        .toLocaleString("fa-IR");
 }
 
 
-$("refreshChart")
-    .addEventListener(
-        "click",
-        loadChart
-    );
+function escapeHTML(value) {
 
-
-window.addEventListener(
-    "resize",
-    function() {
-
-        if (
-            chartSales.length
-        ) {
-
-            drawSalesChart(
-                chartSales
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   LOAD ALL
-========================= */
-
-async function loadAll() {
-
-    await loadOrders();
-
-    await loadProducts();
-
-    await loadSales();
-
-    await loadChart();
-
-    calculateSaleTotal();
-
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
-/* =========================
-   AUTO LOGIN
-========================= */
+function escapeJS(value) {
 
-if (
-    localStorage.getItem(
-        "nanak_admin_login"
-    ) === "true"
-) {
-
-    $("loginPage")
-        .classList
-        .add("hidden");
-
-
-    $("adminPage")
-        .classList
-        .remove("hidden");
-
-
-    loadAll();
-
+    return String(value ?? "")
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, "\\n")
+        .replace(/\r/g, "\\r");
 }
 
 </script>
 
 </body>
 </html>
-```
