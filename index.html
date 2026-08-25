@@ -1,1707 +1,256 @@
+```html
 <!DOCTYPE html>
-
 <html lang="fa" dir="rtl">
-
 <head>
+    <meta charset="UTF-8">
 
-```
-<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <title>نانک | فروش نان خانگی کنجدی تازه</title>
 
-<meta
-    name="description"
-    content="نانک؛ فروش نان خانگی تازه و خوشمزه با امکان ثبت سفارش برای خرید حضوری."
->
+    <meta name="description"
+          content="نانک؛ فروش نان خانگی کنجدی تازه و خوش‌طعم. مشاهده محصولات، قیمت‌ها و وضعیت موجودی نان.">
 
-<meta
-    name="robots"
-    content="index, follow"
->
+    <meta name="keywords"
+          content="نانک, نان خانگی کنجدی, نان کنجدی, خرید نان کنجدی, فروش نان خانگی, نان تازه">
 
-<link
-    rel="canonical"
-    href="https://nanak-bread-shop.onrender.com/"
->
+    <meta name="robots" content="index, follow">
 
-<title>نانک | فروش نان خانگی</title>
+    <meta name="theme-color" content="#8b4513">
 
-<style>
+    <link rel="canonical"
+          href="https://amirhossein12233.github.io/nanak-bread-shop/">
 
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        font-family:
-            Tahoma,
-            Arial,
-            sans-serif;
-
-        background:
-            linear-gradient(
-                180deg,
-                #fffaf3 0%,
-                #f7efe4 100%
-            );
-
-        color: #34261d;
-        line-height: 1.8;
-    }
-
-    button,
-    input,
-    select {
-        font-family: inherit;
-    }
-
-    .container {
-        width: min(
-            1100px,
-            calc(100% - 30px)
-        );
-
-        margin: auto;
-    }
-
-    /* HEADER */
-
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-
-        background:
-            rgba(255,255,255,.96);
-
-        backdrop-filter: blur(10px);
-
-        border-bottom:
-            1px solid #eadbca;
-    }
-
-    .nav {
-        min-height: 72px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        gap: 15px;
-    }
-
-    .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-
-        font-size: 23px;
-        font-weight: bold;
-
-        color: #8b4d1f;
-
-        text-decoration: none;
-    }
-
-    .brand-icon {
-        font-size: 35px;
-    }
-
-    .nav-button {
-        border: 0;
-        background: #8b4d1f;
-        color: white;
-
-        padding:
-            10px 17px;
-
-        border-radius: 12px;
-
-        cursor: pointer;
-
-        font-weight: bold;
-    }
-
-    /* HERO */
-
-    .hero {
-        padding:
-            75px 0
-            55px;
-    }
-
-    .hero-box {
-        background:
-            linear-gradient(
-                135deg,
-                #f3dfc3,
-                #fff7ea
-            );
-
-        border:
-            1px solid #e7d2b8;
-
-        border-radius: 30px;
-
-        padding:
-            45px 30px;
-
-        text-align: center;
-
-        box-shadow:
-            0 15px 40px
-            rgba(100,70,40,.08);
-    }
-
-    .hero-icon {
-        font-size: 70px;
-        margin-bottom: 10px;
-    }
-
-    .hero h1 {
-        font-size:
-            clamp(30px, 6vw, 52px);
-
-        color: #6d3917;
-
-        margin-bottom: 10px;
-    }
-
-    .hero p {
-        max-width: 650px;
-        margin: auto;
-
-        color: #6e6259;
-
-        font-size: 17px;
-    }
-
-    .hero-button {
-        display: inline-block;
-
-        margin-top: 25px;
-
-        padding:
-            14px 28px;
-
-        border-radius: 14px;
-
-        background: #a85f24;
-        color: white;
-
-        text-decoration: none;
-
-        font-weight: bold;
-
-        border: 0;
-
-        cursor: pointer;
-    }
-
-    /* SECTION */
-
-    .section {
-        padding:
-            25px 0
-            55px;
-    }
-
-    .section-title {
-        text-align: center;
-
-        font-size: 29px;
-
-        margin-bottom: 10px;
-
-        color: #6d3917;
-    }
-
-    .section-description {
-        text-align: center;
-
-        color: #777;
-
-        margin-bottom: 25px;
-    }
-
-    /* PRODUCT */
-
-    .product-card {
-        max-width: 520px;
-
-        margin: auto;
-
-        background: white;
-
-        border:
-            1px solid #eadbca;
-
-        border-radius: 25px;
-
-        padding: 25px;
-
-        box-shadow:
-            0 10px 30px
-            rgba(80,50,20,.08);
-    }
-
-    .product-icon {
-        text-align: center;
-
-        font-size: 90px;
-
-        margin-bottom: 5px;
-    }
-
-    .product-name {
-        text-align: center;
-
-        font-size: 25px;
-
-        font-weight: bold;
-
-        color: #57351f;
-    }
-
-    .product-price {
-        text-align: center;
-
-        margin-top: 8px;
-
-        color: #a85f24;
-
-        font-size: 22px;
-
-        font-weight: bold;
-    }
-
-    .availability {
-        display: table;
-
-        margin:
-            12px auto;
-
-        padding:
-            6px 14px;
-
-        border-radius: 20px;
-
-        font-size: 14px;
-
-        font-weight: bold;
-    }
-
-    .available {
-        background: #e6f6e9;
-        color: #227332;
-    }
-
-    .unavailable {
-        background: #fde8e8;
-        color: #aa2727;
-    }
-
-    /* ORDER */
-
-    .order-box {
-        max-width: 620px;
-
-        margin: 35px auto 0;
-
-        background: white;
-
-        border:
-            1px solid #eadbca;
-
-        border-radius: 25px;
-
-        padding: 25px;
-
-        box-shadow:
-            0 10px 30px
-            rgba(80,50,20,.08);
-    }
-
-    .order-box h3 {
-        text-align: center;
-
-        color: #6d3917;
-
-        margin-bottom: 20px;
-
-        font-size: 23px;
-    }
-
-    .field {
-        margin-bottom: 15px;
-    }
-
-    .field label {
-        display: block;
-
-        margin-bottom: 6px;
-
-        font-size: 14px;
-
-        font-weight: bold;
-    }
-
-    .field input,
-    .field select {
-        width: 100%;
-
-        border:
-            1px solid #ddcfbf;
-
-        background: #fffdf9;
-
-        border-radius: 13px;
-
-        padding:
-            13px 14px;
-
-        font-size: 16px;
-
-        outline: none;
-    }
-
-    .field input:focus,
-    .field select:focus {
-        border-color: #a85f24;
-    }
-
-    .quantity-row {
-        display: grid;
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 12px;
-    }
-
-    .total-box {
-        background: #fff5e7;
-
-        border-radius: 14px;
-
-        padding: 14px;
-
-        margin:
-            15px 0;
-
-        text-align: center;
-
-        color: #8a4d1e;
-
-        font-size: 19px;
-
-        font-weight: bold;
-    }
-
-    .submit-button {
-        width: 100%;
-
-        border: 0;
-
-        background: #a85f24;
-
-        color: white;
-
-        padding:
-            15px;
-
-        border-radius: 14px;
-
-        font-size: 17px;
-
-        font-weight: bold;
-
-        cursor: pointer;
-    }
-
-    .submit-button:hover {
-        background: #874819;
-    }
-
-    .submit-button:disabled {
-        opacity: .6;
-        cursor: not-allowed;
-    }
-
-    /* SUCCESS */
-
-    .success-box {
-        display: none;
-
-        max-width: 620px;
-
-        margin:
-            25px auto;
-
-        background: #edf9ef;
-
-        border:
-            1px solid #b9dfbf;
-
-        border-radius: 22px;
-
-        padding: 25px;
-
-        text-align: center;
-
-        color: #245d2c;
-    }
-
-    .success-icon {
-        font-size: 55px;
-    }
-
-    .success-box h3 {
-        margin:
-            5px 0 10px;
-
-        font-size: 23px;
-    }
-
-    .order-number {
-        margin:
-            12px 0;
-
-        font-weight: bold;
-    }
-
-    .phone-box {
-        background: white;
-
-        border-radius: 15px;
-
-        padding: 14px;
-
-        margin-top: 15px;
-
-        border:
-            1px solid #c9e2cd;
-    }
-
-    .phone-number {
-        display: inline-block;
-
-        margin-top: 6px;
-
-        font-size: 24px;
-
-        color: #23722e;
-
-        direction: ltr;
-
-        font-weight: bold;
-
-        text-decoration: none;
-    }
-
-    /* INFO */
-
-    .info-grid {
-        display: grid;
-
-        grid-template-columns:
-            repeat(3, 1fr);
-
-        gap: 15px;
-
-        margin-top: 20px;
-    }
-
-    .info-card {
-        background: white;
-
-        border:
-            1px solid #eadbca;
-
-        border-radius: 18px;
-
-        padding: 20px;
-
-        text-align: center;
-    }
-
-    .info-icon {
-        font-size: 35px;
-    }
-
-    .info-card h3 {
-        margin:
-            7px 0;
-
-        color: #70421f;
-    }
-
-    .info-card p {
-        color: #777;
-
-        font-size: 14px;
-    }
-
-    /* LOADING */
-
-    .loading {
-        text-align: center;
-
-        padding: 25px;
-
-        color: #777;
-    }
-
-    .error-box {
-        display: none;
-
-        background: #fff0f0;
-
-        color: #a32626;
-
-        border:
-            1px solid #f0c1c1;
-
-        border-radius: 14px;
-
-        padding: 13px;
-
-        margin-bottom: 15px;
-
-        text-align: center;
-    }
-
-    /* FOOTER */
-
-    footer {
-        margin-top: 30px;
-
-        background: #3d2a1e;
-
-        color: #eee;
-
-        padding:
-            30px 0;
-
-        text-align: center;
-    }
-
-    footer strong {
-        color: #f0c48e;
-    }
-
-    .footer-phone {
-        display: inline-block;
-
-        color: #fff;
-
-        margin-top: 8px;
-
-        direction: ltr;
-
-        text-decoration: none;
-
-        font-size: 18px;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 700px) {
-
-        .hero {
-            padding:
-                35px 0
-                25px;
-        }
-
-        .hero-box {
-            padding:
-                35px 18px;
-        }
-
-        .hero-icon {
-            font-size: 55px;
-        }
-
-        .product-card,
-        .order-box {
-            padding: 18px;
-        }
-
-        .info-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .quantity-row {
-            grid-template-columns: 1fr;
-        }
-
-        .nav {
-            min-height: 62px;
-        }
-
-        .brand {
-            font-size: 19px;
-        }
-
-        .brand-icon {
-            font-size: 28px;
-        }
-
-    }
-
-</style>
-```
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+    <header class="site-header">
 
-```
-<div class="container nav">
+        <div class="container">
 
-    <a
-        href="#top"
-        class="brand"
-    >
-
-        <span class="brand-icon">
-            🍞
-        </span>
-
-        <span>
-            نانک
-        </span>
-
-    </a>
-
-
-    <a
-        href="#order"
-        class="nav-button"
-    >
-        ثبت سفارش
-    </a>
-
-</div>
-```
-
-</header>
-
-<main id="top">
-
-```
-<section class="hero">
-
-    <div class="container">
-
-        <div class="hero-box">
-
-            <div class="hero-icon">
-                🍞
+            <div class="logo">
+                🍞 نانک
             </div>
 
-            <h1>
-                نانک
-            </h1>
-
-            <p>
-                نان خانگی تازه و خوشمزه
-                برای خرید حضوری
-            </p>
-
-            <a
-                href="#order"
-                class="hero-button"
-            >
-                ثبت سفارش برای خرید حضوری
-            </a>
+            <nav>
+                <a href="#products">محصولات</a>
+                <a href="#about">درباره نانک</a>
+                <a href="#contact">تماس با ما</a>
+            </nav>
 
         </div>
 
-    </div>
-
-</section>
+    </header>
 
 
+    <main>
 
-<section class="section">
+        <!-- بخش معرفی -->
 
-    <div class="container">
+        <section class="hero">
 
-        <h2 class="section-title">
-            محصول ما
-        </h2>
+            <div class="container">
 
-        <p class="section-description">
-            نان تازه خانگی با کیفیت خوب
-        </p>
+                <div class="hero-content">
 
-
-        <div
-            id="productArea"
-            class="product-card"
-        >
-
-            <div class="loading">
-                در حال دریافت اطلاعات محصول...
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<section
-    id="order"
-    class="section"
->
-
-    <div class="container">
-
-        <h2 class="section-title">
-            ثبت سفارش
-        </h2>
-
-        <p class="section-description">
-            سفارش خود را ثبت کنید تا برای خرید حضوری هماهنگ کنیم.
-        </p>
-
-
-        <div
-            id="serverError"
-            class="error-box"
-        ></div>
-
-
-        <div class="order-box">
-
-            <h3>
-                اطلاعات سفارش
-            </h3>
-
-
-            <form id="orderForm">
-
-
-                <div class="field">
-
-                    <label for="customerName">
-                        نام و نام خانوادگی
-                    </label>
-
-                    <input
-                        id="customerName"
-                        type="text"
-                        placeholder="مثلاً امیر احمدی"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="customerPhone">
-                        شماره تماس شما
-                    </label>
-
-                    <input
-                        id="customerPhone"
-                        type="tel"
-                        inputmode="tel"
-                        placeholder="مثلاً 09123456789"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="productSelect">
-                        محصول
-                    </label>
-
-                    <select
-                        id="productSelect"
-                        required
-                    >
-
-                        <option value="">
-                            در حال دریافت...
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="quantity-row">
-
-                    <div class="field">
-
-                        <label for="quantity">
-                            تعداد
-                        </label>
-
-                        <input
-                            id="quantity"
-                            type="number"
-                            min="1"
-                            max="100"
-                            value="1"
-                            required
-                        >
-
+                    <div class="hero-icon">
+                        🍞
                     </div>
 
+                    <h1>
+                        نان خانگی کنجدی نانک
+                    </h1>
 
-                    <div class="field">
+                    <p>
+                        نان خانگی تازه، خوش‌طعم و کنجدی
+                    </p>
 
-                        <label>
-                            قیمت واحد
-                        </label>
+                    <p>
+                        کیفیت خوب و تهیه‌شده با دقت برای شما
+                    </p>
 
-                        <input
-                            id="unitPrice"
-                            type="text"
-                            value="۰ تومان"
-                            readonly
-                        >
+                    <a href="#products" class="hero-button">
+                        مشاهده محصولات
+                    </a>
 
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- محصولات -->
+
+        <section id="products" class="products-section">
+
+            <div class="container">
+
+                <h2>
+                    🍞 محصولات نانک
+                </h2>
+
+                <p class="section-description">
+                    نان خانگی کنجدی و محصولات موجود را مشاهده کنید.
+                </p>
+
+                <div id="productsContainer" class="products-container">
+
+                    <div class="loading">
+                        در حال دریافت محصولات...
                     </div>
 
                 </div>
 
+            </div>
 
-                <div
-                    id="totalBox"
-                    class="total-box"
-                >
-                    مبلغ کل: ۰ تومان
+        </section>
+
+
+        <!-- درباره ما -->
+
+        <section id="about" class="about-section">
+
+            <div class="container">
+
+                <h2>
+                    درباره نانک
+                </h2>
+
+                <p>
+                    به نانک خوش آمدید 🍞
+                </p>
+
+                <p>
+                    نانک با هدف ارائه نان خانگی کنجدی تازه و خوش‌طعم
+                    فعالیت می‌کند.
+                </p>
+
+                <p>
+                    تلاش ما این است که نان با کیفیت مناسب و طعم خوب
+                    در اختیار مشتریان قرار بگیرد.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- مزایا -->
+
+        <section class="features-section">
+
+            <div class="container">
+
+                <h2>
+                    چرا نانک؟
+                </h2>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            🌾
+                        </div>
+
+                        <h3>
+                            خانگی
+                        </h3>
+
+                        <p>
+                            نان با حال‌وهوای خانگی و خوش‌طعم
+                        </p>
+                    </div>
+
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            🌰
+                        </div>
+
+                        <h3>
+                            کنجدی
+                        </h3>
+
+                        <p>
+                            تهیه نان با کنجد برای طعم بهتر
+                        </p>
+                    </div>
+
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            🍞
+                        </div>
+
+                        <h3>
+                            تازه
+                        </h3>
+
+                        <p>
+                            تلاش برای ارائه نان تازه و باکیفیت
+                        </p>
+                    </div>
+
                 </div>
 
-
-                <button
-                    id="submitButton"
-                    type="submit"
-                    class="submit-button"
-                >
-                    ثبت سفارش
-                </button>
-
-
-            </form>
-
-        </div>
-
-
-        <div
-            id="successBox"
-            class="success-box"
-        >
-
-            <div class="success-icon">
-                ✅
             </div>
 
-            <h3>
-                سفارش شما با موفقیت ثبت شد
-            </h3>
-
-            <p>
-                سفارش شما ثبت شده است.
-                برای خرید حضوری و هماهنگی،
-                با شماره زیر تماس بگیرید.
-            </p>
+        </section>
 
 
-            <div class="order-number">
-                شماره سفارش:
-                <span id="successOrderNumber">
-                    -
-                </span>
-            </div>
+        <!-- تماس -->
 
+        <section id="contact" class="contact-section">
 
-            <div class="phone-box">
+            <div class="container">
 
-                📞 شماره تماس نانک
+                <h2>
+                    📞 تماس با نانک
+                </h2>
 
-                <br>
+                <p>
+                    برای هماهنگی و اطلاعات بیشتر با ما تماس بگیرید.
+                </p>
 
-                <a
-                    class="phone-number"
-                    href="tel:09933896831"
-                >
-                    ۰۹۹۳۳۸۹۶۸۳۱
+                <a href="tel:09933896831" class="phone-button">
+                    📞 09933896831
                 </a>
 
             </div>
 
-        </div>
+        </section>
 
-    </div>
-
-</section>
+    </main>
 
 
+    <!-- فوتر -->
 
-<section class="section">
+    <footer>
 
-    <div class="container">
+        <div class="container">
 
-        <h2 class="section-title">
-            چرا نانک؟
-        </h2>
+            <p class="footer-logo">
+                🍞 نانک
+            </p>
 
+            <p>
+                فروش نان خانگی کنجدی
+            </p>
 
-        <div class="info-grid">
-
-
-            <div class="info-card">
-
-                <div class="info-icon">
-                    🍞
-                </div>
-
-                <h3>
-                    تازه
-                </h3>
-
-                <p>
-                    نان تازه و خانگی
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <div class="info-icon">
-                    🏠
-                </div>
-
-                <h3>
-                    خانگی
-                </h3>
-
-                <p>
-                    تهیه‌شده با دقت و کیفیت
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <div class="info-icon">
-                    🤝
-                </div>
-
-                <h3>
-                    خرید حضوری
-                </h3>
-
-                <p>
-                    پس از ثبت سفارش برای هماهنگی تماس می‌گیریم.
-                </p>
-
-            </div>
-
+            <p>
+                © 2026 نانک - تمامی حقوق محفوظ است.
+            </p>
 
         </div>
 
-    </div>
+    </footer>
 
-</section>
-```
 
-</main>
-
-<footer>
-
-```
-<div class="container">
-
-    <strong>
-        🍞 نانک
-    </strong>
-
-    <br>
-
-    فروش نان خانگی
-
-    <br>
-
-    <a
-        class="footer-phone"
-        href="tel:09933896831"
-    >
-        ۰۹۹۳۳۸۹۶۸۳۱
-    </a>
-
-    <br>
-
-    © ۱۴۰۵ نانک
-
-</div>
-```
-
-</footer>
-
-<script>
-
-const API = "";
-
-
-let products = [];
-
-let selectedProduct = null;
-
-
-
-const productArea =
-    document.getElementById(
-        "productArea"
-    );
-
-
-const productSelect =
-    document.getElementById(
-        "productSelect"
-    );
-
-
-const quantityInput =
-    document.getElementById(
-        "quantity"
-    );
-
-
-const unitPriceInput =
-    document.getElementById(
-        "unitPrice"
-    );
-
-
-const totalBox =
-    document.getElementById(
-        "totalBox"
-    );
-
-
-const orderForm =
-    document.getElementById(
-        "orderForm"
-    );
-
-
-const submitButton =
-    document.getElementById(
-        "submitButton"
-    );
-
-
-const serverError =
-    document.getElementById(
-        "serverError"
-    );
-
-
-const successBox =
-    document.getElementById(
-        "successBox"
-    );
-
-
-function formatNumber(number) {
-
-    return Number(number || 0)
-        .toLocaleString("fa-IR");
-
-}
-
-
-
-function showError(message) {
-
-    serverError.textContent =
-        message;
-
-    serverError.style.display =
-        "block";
-
-}
-
-
-
-function hideError() {
-
-    serverError.style.display =
-        "none";
-
-}
-
-
-
-async function loadProducts() {
-
-    try {
-
-        const response =
-            await fetch(
-                API + "/api/products"
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "دریافت محصولات ناموفق بود."
-            );
-        }
-
-
-        const data =
-            await response.json();
-
-
-        products =
-            data.products || [];
-
-
-        renderProducts();
-
-
-        updateProductSelect();
-
-
-    } catch (error) {
-
-        console.error(error);
-
-
-        productArea.innerHTML = `
-
-            <div
-                class="loading"
-                style="color:#a32626"
-            >
-
-                اتصال به سرور برقرار نشد.
-
-                <br>
-
-                لطفاً کمی بعد دوباره امتحان کنید.
-
-            </div>
-
-        `;
-
-
-        productSelect.innerHTML = `
-
-            <option value="">
-                محصول در دسترس نیست
-            </option>
-
-        `;
-
-    }
-
-}
-
-
-
-function renderProducts() {
-
-    if (!products.length) {
-
-        productArea.innerHTML = `
-
-            <div class="loading">
-
-                در حال حاضر محصولی برای فروش وجود ندارد.
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-
-    const product =
-        products[0];
-
-
-    selectedProduct =
-        product;
-
-
-    const statusClass =
-        product.available
-            ? "available"
-            : "unavailable";
-
-
-    const statusText =
-        product.available
-            ? "موجود"
-            : "ناموجود";
-
-
-    productArea.innerHTML = `
-
-        <div class="product-icon">
-            🍞
-        </div>
-
-        <div class="product-name">
-            ${escapeHtml(product.name)}
-        </div>
-
-        <div class="product-price">
-            ${formatNumber(product.price)}
-            تومان
-        </div>
-
-        <div class="availability ${statusClass}">
-            ${statusText}
-        </div>
-
-    `;
-
-
-    if (!product.available) {
-
-        submitButton.disabled =
-            true;
-
-        submitButton.textContent =
-            "محصول فعلاً ناموجود است";
-
-    } else {
-
-        submitButton.disabled =
-            false;
-
-        submitButton.textContent =
-            "ثبت سفارش";
-
-    }
-
-
-    updateTotal();
-
-}
-
-
-
-function updateProductSelect() {
-
-    const availableProducts =
-        products.filter(
-            function(product) {
-
-                return product.available;
-            }
-        );
-
-
-    productSelect.innerHTML =
-        "";
-
-
-    if (!availableProducts.length) {
-
-        productSelect.innerHTML = `
-
-            <option value="">
-                محصول فعلاً موجود نیست
-            </option>
-
-        `;
-
-        submitButton.disabled =
-            true;
-
-        return;
-    }
-
-
-    availableProducts.forEach(
-        function(product) {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value =
-                product.id;
-
-            option.textContent =
-                product.name +
-                " - " +
-                formatNumber(
-                    product.price
-                ) +
-                " تومان";
-
-            productSelect.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    selectedProduct =
-        availableProducts[0];
-
-
-    productSelect.value =
-        selectedProduct.id;
-
-
-    updatePrice();
-
-
-}
-
-
-
-function updatePrice() {
-
-    const id =
-        productSelect.value;
-
-
-    selectedProduct =
-        products.find(
-            function(product) {
-
-                return String(
-                    product.id
-                ) === String(id);
-
-            }
-        );
-
-
-    if (!selectedProduct) {
-
-        unitPriceInput.value =
-            "۰ تومان";
-
-        return;
-    }
-
-
-    unitPriceInput.value =
-        formatNumber(
-            selectedProduct.price
-        ) +
-        " تومان";
-
-
-    updateTotal();
-
-}
-
-
-
-function updateTotal() {
-
-    if (!selectedProduct) {
-
-        totalBox.textContent =
-            "مبلغ کل: ۰ تومان";
-
-        return;
-    }
-
-
-    const quantity =
-        Number(
-            quantityInput.value
-        ) || 0;
-
-
-    const total =
-        quantity *
-        Number(
-            selectedProduct.price
-        );
-
-
-    totalBox.textContent =
-        "مبلغ کل: " +
-        formatNumber(total) +
-        " تومان";
-
-}
-
-
-
-productSelect.addEventListener(
-    "change",
-    updatePrice
-);
-
-
-quantityInput.addEventListener(
-    "input",
-    updateTotal
-);
-
-
-
-orderForm.addEventListener(
-    "submit",
-    async function(event) {
-
-        event.preventDefault();
-
-        hideError();
-
-
-        if (!selectedProduct) {
-
-            showError(
-                "محصولی انتخاب نشده است."
-            );
-
-            return;
-        }
-
-
-        if (!selectedProduct.available) {
-
-            showError(
-                "این محصول در حال حاضر ناموجود است."
-            );
-
-            return;
-        }
-
-
-        const customerName =
-            document
-                .getElementById(
-                    "customerName"
-                )
-                .value
-                .trim();
-
-
-        const customerPhone =
-            document
-                .getElementById(
-                    "customerPhone"
-                )
-                .value
-                .trim();
-
-
-        const quantity =
-            Number(
-                quantityInput.value
-            );
-
-
-        if (!customerName) {
-
-            showError(
-                "لطفاً نام خود را وارد کنید."
-            );
-
-            return;
-        }
-
-
-        if (!customerPhone) {
-
-            showError(
-                "لطفاً شماره تماس خود را وارد کنید."
-            );
-
-            return;
-        }
-
-
-        if (
-            !Number.isFinite(quantity) ||
-            quantity < 1 ||
-            quantity > 100
-        ) {
-
-            showError(
-                "تعداد سفارش باید بین ۱ تا ۱۰۰ باشد."
-            );
-
-            return;
-        }
-
-
-        submitButton.disabled =
-            true;
-
-        submitButton.textContent =
-            "در حال ثبت سفارش...";
-
-
-        try {
-
-            const response =
-                await fetch(
-                    API + "/api/orders",
-                    {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body:
-                            JSON.stringify({
-
-                                customerName:
-                                    customerName,
-
-                                customerPhone:
-                                    customerPhone,
-
-                                product:
-                                    selectedProduct.name,
-
-                                quantity:
-                                    quantity,
-
-                                unitPrice:
-                                    Number(
-                                        selectedProduct.price
-                                    )
-
-                            })
-
-                    }
-                );
-
-
-            const data =
-                await response.json();
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    data.message ||
-                    "ثبت سفارش ناموفق بود."
-                );
-            }
-
-
-            orderForm.style.display =
-                "none";
-
-
-            successBox.style.display =
-                "block";
-
-
-            document.getElementById(
-                "successOrderNumber"
-            ).textContent =
-                data.order &&
-                data.order.orderNumber
-                    ? data.order.orderNumber
-                    : "-";
-
-
-            successBox.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-
-        } catch (error) {
-
-            console.error(error);
-
-
-            showError(
-                error.message ||
-                "اتصال به سرور برقرار نشد."
-            );
-
-
-            submitButton.disabled =
-                false;
-
-            submitButton.textContent =
-                "ثبت سفارش";
-
-        }
-
-    }
-);
-
-
-
-function escapeHtml(value) {
-
-    return String(
-        value ?? ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
-}
-
-
-
-loadProducts();
-
-</script>
+    <script src="script.js"></script>
 
 </body>
-
 </html>
+```
